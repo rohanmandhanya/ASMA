@@ -1,0 +1,41 @@
+name: Refresh Instagram token
+
+# Weekly is a large safety margin inside the ~60-day long-lived token
+# lifetime — if this silently fails for a couple weeks straight (see the
+# failure-issue it opens), there's still buffer before the token actually
+# expires.
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Monday 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Log the intended refresh without calling Meta or writing the secret"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      # GH_PAT_FOR_SECRETS is a dedicated fine-grained PAT scoped to just
+      # this repo's "Secrets: write" permission — the default GITHUB_TOKEN
+      # cannot write repo secrets, only read/write contents and issues.
+      GH_PAT_FOR_SECRETS: ${{ secrets.GH_PAT_FOR_SECRETS }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Set up gh CLI auth
+        run: echo "${{ secrets.GH_PAT_FOR_SECRETS }}" | gh auth login --with-token
+      - run: uv run python scripts/run_refresh_token.py

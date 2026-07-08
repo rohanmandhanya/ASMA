@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+
+# Rendered/generated media — reproducible from data/*.jsonl + code, not committed
+assets/rendered/
+*.mp4
+*.png
+!assets/audio/README.md

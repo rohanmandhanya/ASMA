@@ -1,0 +1,48 @@
+name: Growth report
+
+on:
+  schedule:
+    - cron: "0 12 * * *" # once daily, 12:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: asma-data-write
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_APP_PASSWORD: ${{ secrets.SMTP_APP_PASSWORD }}
+      MILESTONE_EMAIL_TO: nate@kiloforge.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - run: uv run python scripts/run_growth_report.py
+      - name: Commit updated state
+        if: always()
+        run: |
+          git config user.name "asma-bot"
+          git config user.email "actions@github.com"
+          git pull --rebase
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: daily metrics snapshot [skip ci]"
+          git push

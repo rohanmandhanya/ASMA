@@ -1,0 +1,38 @@
+[project]
+name = "asma"
+version = "0.1.0"
+description = "Autonomous Instagram growth agent: history trivia carousels and Reels, zero human in the loop."
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.116.0",
+    "boto3>=1.43.42",
+    "jinja2>=3.1.6",
+    "playwright>=1.61.0",
+    "pydantic>=2.13.4",
+    "requests>=2.34.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.15.20",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "slow: launches a real headless browser or ffmpeg subprocess (Playwright/ffmpeg install required)",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asma"]

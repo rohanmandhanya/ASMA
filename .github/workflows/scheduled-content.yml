@@ -1,0 +1,73 @@
+name: Scheduled content
+
+# Fires every few hours during active hours; most firings no-op once the
+# day's cadence-ramp budget (config.CADENCE_RAMP) is used — see
+# growth/budget_allocator.py. This is what implements the slow ramp from
+# 1 post/day to 5 posts/day: the schedule itself never changes, only how
+# many firings actually publish.
+on:
+  schedule:
+    - cron: "17 */3 * * *" # every 3 hours, offset from the hour to avoid GH Actions' peak-minute congestion
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Log intended actions without publishing or touching any network side effect"
+        type: boolean
+        default: true
+      format:
+        description: "Content format to generate"
+        type: choice
+        options: [auto, quiz_carousel, country_fact_reel]
+        default: auto
+
+permissions:
+  contents: write
+
+concurrency:
+  group: asma-data-write
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      TTS_API_KEY: ${{ secrets.TTS_API_KEY }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # only used as the media_host.py fallback if R2 isn't configured
+      GITHUB_REPOSITORY: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - run: uv sync --frozen
+
+      - name: Install Playwright Chromium
+        run: uv run playwright install --with-deps chromium
+
+      - name: Ensure ffmpeg is present
+        run: ffmpeg -version || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+
+      - name: Generate and publish
+        run: |
+          uv run python scripts/manual_post_once.py --format "${{ github.event_name == 'workflow_dispatch' && inputs.format || 'auto' }}"
+
+      - name: Commit updated state
+        if: always()
+        run: |
+          git config user.name "asma-bot"
+          git config user.email "actions@github.com"
+          git pull --rebase
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: record post + updated state [skip ci]"
+          git push
