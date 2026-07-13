@@ -44,9 +44,9 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # only used as the media_host.py fallback if R2 isn't configured
       GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
 
