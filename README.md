@@ -87,7 +87,12 @@ uv run python -m piper.download_voices en_GB-alan-medium --download-dir assets/t
 5. **Background-image provider** (optional, and free either way): Reel illustrations use Pollinations.ai (`render/background_client.py`), which needs **no signup at all** to work — anonymous requests generate real images, just watermarked and rate-limited to ~1 request/15s. Optionally register a free account at auth.pollinations.ai (no card) and set `POLLINATIONS_API_TOKEN` to remove the watermark and get a faster rate tier. Used only by Reels (both types) — quiz carousels generate their own background locally and never call this API. Falls back to the flat theme background if a call ever fails. (Voiceovers, background music, and quiz-carousel backgrounds also need **no signup at all** — Piper (TTS), the bundled ambient beds, and `render/flow_art.py` are all free and self-contained; see above, `assets/audio/`, and `render/flow_art.py`.)
 6. **Media hosting**: either set up a free Cloudflare R2 bucket (`R2_*` secrets) or leave it unset — `media_host.py` falls back to GitHub Releases automatically, using the repo's own `GITHUB_TOKEN`, no extra signup required.
 7. **Milestone email**: generate an SMTP app password on an existing email account (Gmail: Settings → 2-Step Verification → App Passwords) and add `SMTP_USERNAME`/`SMTP_APP_PASSWORD` as secrets.
-8. **Secret-rotation PAT**: create a fine-grained GitHub PAT scoped to this repo's "Secrets: write" permission only, add it as `GH_PAT_FOR_SECRETS`. This is deliberately the *only* place a broad token is used — everything else uses the workflow's own scoped `GITHUB_TOKEN`.
+8. **Secret-rotation PAT** (the one remaining step): `refresh-token.yml` needs to *write* a new `IG_ACCESS_TOKEN` value every ~60 days when Instagram's long-lived token needs rotating — the default `GITHUB_TOKEN` every workflow gets can read/write contents and issues, but it cannot write repo secrets, so this one operation needs its own token. This is deliberately the *only* place a broad token is used — everything else uses the workflow's own scoped `GITHUB_TOKEN`.
+   - github.com/settings/tokens?type=beta → **Generate new token** (fine-grained)
+   - **Repository access**: "Only select repositories" → this repo only
+   - **Permissions → Repository permissions → Secrets**: **Read and write** (the only permission this token needs)
+   - Set an expiration (90 days is reasonable — you'll need to regenerate and update the secret when it expires)
+   - Copy the token (`github_pat_...`) and add it as the `GH_PAT_FOR_SECRETS` repo secret
 
 ### Repo secrets
 
