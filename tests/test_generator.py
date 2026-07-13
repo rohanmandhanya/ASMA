@@ -93,6 +93,56 @@ def test_generate_quiz_card_raises_on_unparseable_response():
         generator.generate_quiz_card(client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM)
 
 
+def test_generate_country_fact_script_success(sample_country_fact_script):
+    client = _fake_client(parsed=sample_country_fact_script)
+    script = generator.generate_country_fact_script(
+        client,
+        topic_id=sample_country_fact_script.topic_id,
+        country=sample_country_fact_script.country,
+        seed_angle="some seed angle",
+        hook=HookStyle.STAT_LED,
+    )
+    assert script.topic_id == sample_country_fact_script.topic_id
+    client.models.generate_content.assert_called_once()
+
+
+def test_generate_country_fact_script_forces_requested_topic_country_hook(sample_country_fact_script):
+    drifted = sample_country_fact_script.model_copy(update={"topic_id": "wrong_topic", "country": "Nowhere"})
+    client = _fake_client(parsed=drifted)
+    script = generator.generate_country_fact_script(
+        client, topic_id="peru_inca_quipu_records", country="Peru", seed_angle="x", hook=HookStyle.STAT_LED
+    )
+    assert script.topic_id == "peru_inca_quipu_records"
+    assert script.country == "Peru"
+
+
+def test_generate_country_fact_script_forces_requested_category(sample_country_fact_script):
+    # Even if the model echoes back "history" (its default), an explicitly
+    # requested pop_culture category must win, same as generate_quiz_card.
+    client = _fake_client(parsed=sample_country_fact_script)
+    script = generator.generate_country_fact_script(
+        client,
+        topic_id="movie_jaws_mechanical_shark",
+        country="Movies",
+        seed_angle="x",
+        hook=HookStyle.STAT_LED,
+        category="pop_culture",
+    )
+    assert script.category == "pop_culture"
+    used_config = client.models.generate_content.call_args.kwargs["config"]
+    from asma.content.prompts import COUNTRY_FACT_REEL_SYSTEM_PROMPT_POP_CULTURE
+
+    assert used_config.system_instruction == COUNTRY_FACT_REEL_SYSTEM_PROMPT_POP_CULTURE
+
+
+def test_generate_country_fact_script_raises_on_refusal():
+    client = _fake_client(finish_reason="SAFETY", parsed=None)
+    with pytest.raises(generator.GenerationError, match="finish_reason"):
+        generator.generate_country_fact_script(
+            client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM
+        )
+
+
 def test_judge_comment_answer_returns_parsed_judgement():
     judgement_out = CommentAnswerJudgement(is_correct=True, matched_answer_text="the Yam", is_substantive_fact_share=False)
     client = _fake_client(parsed=judgement_out)

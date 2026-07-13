@@ -3,6 +3,7 @@ from __future__ import annotations
 from asma.content.prompts import (
     QUIZ_CARD_SYSTEM_PROMPT_HISTORY,
     QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE,
+    country_fact_reel_system_prompt,
     quiz_card_system_prompt,
 )
 
@@ -32,3 +33,19 @@ def test_history_and_pop_culture_prompts_share_the_same_quiz_structure():
     # setup/question/reveal structure — only the niche-core guardrails differ.
     assert "setup_slide" in QUIZ_CARD_SYSTEM_PROMPT_HISTORY
     assert "setup_slide" in QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE
+
+
+def test_country_fact_reel_system_prompt_routes_by_category():
+    history_prompt = country_fact_reel_system_prompt("history", country="Peru")
+    assert "beautiful old fact about Peru" in history_prompt
+
+    # The pop-culture pool's "country" field is really a rotation-bucket
+    # label ("Movies"/"Television"/"Sports"), not a place — the pop-culture
+    # variant is a static prompt that never templates it in at all (unlike
+    # the history variant above, which correctly templates a real country
+    # in). Proven directly: two different `country` values produce identical
+    # output for this category, so there's no leakage possible.
+    pop_culture_prompt_a = country_fact_reel_system_prompt("pop_culture", country="Movies")
+    pop_culture_prompt_b = country_fact_reel_system_prompt("pop_culture", country="Television")
+    assert pop_culture_prompt_a == pop_culture_prompt_b
+    assert "spoil" in pop_culture_prompt_a.lower()

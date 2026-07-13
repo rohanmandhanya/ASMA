@@ -58,6 +58,22 @@ def test_full_carousel_orchestration_end_to_end(sample_quiz_card):
     assert persisted[0].post_id == record.post_id
 
 
+def test_full_country_fact_reel_orchestration_end_to_end(sample_country_fact_script):
+    import manual_post_once
+
+    record = manual_post_once._publish_country_fact_reel(_fake_client(sample_country_fact_script))
+
+    assert record is not None
+    assert record.format == ContentFormat.COUNTRY_FACT_REEL
+    assert record.topic_id  # now populated, unlike before this change
+    assert record.ig_media_id == "DRYRUN_MEDIA_0000000000"
+
+    append_jsonl("posts.jsonl", record)
+    persisted = read_jsonl("posts.jsonl", PostRecord)
+    assert len(persisted) == 1
+    assert persisted[0].post_id == record.post_id
+
+
 def test_cadence_ramp_gate_blocks_post_once_day_0_target_is_met(sample_quiz_card, monkeypatch):
     """Proves the real (non-mocked) budget_allocator + rate_limiter chain
     actually blocks a publish once day 0's target is met — the specific

@@ -99,3 +99,17 @@ def test_build_prompt_without_country_uses_generic_celebratory_scene():
     prompt = background_client.build_prompt(fact_text="This week's leaderboard champion answered seven in a row.")
     assert "leaderboard champion" in prompt
     assert "celebratory" in prompt.lower()
+
+
+def test_build_prompt_with_scene_hint_and_no_country():
+    prompt = background_client.build_prompt(
+        fact_text="A classic film's shark kept breaking down.", scene_hint="classic cinema and filmmaking"
+    )
+    assert "classic cinema and filmmaking" in prompt
+    assert "celebratory" not in prompt.lower()
+
+
+def test_build_prompt_country_takes_precedence_over_scene_hint():
+    prompt = background_client.build_prompt(fact_text="x", country="Peru", scene_hint="classic cinema")
+    assert "Peru" in prompt
+    assert "classic cinema" not in prompt

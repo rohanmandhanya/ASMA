@@ -70,9 +70,19 @@ class QuizCard(BaseModel):
 
 
 class CountryFactScript(BaseModel):
-    """Recurring Reel: 'a beautiful old fact about <country>', randomly rotated."""
+    """Recurring Reel: 'a beautiful old fact about <country>' for history topics, or a
+    movies/TV/sports fact when category='pop_culture' — same shared topic pool and
+    bandit-driven selection as QuizCard (topic_selector.select_topic())."""
 
-    country: str
+    topic_id: str = Field(description="Stable slug identifying this topic, e.g. 'mongolia_yam_relay'")
+    country: str = Field(
+        description="Country/culture (history) or rotation-bucket label (pop culture), e.g. 'Peru' or 'Movies'"
+    )
+    category: str = Field(
+        default="history",
+        description="'history' or 'pop_culture' — selects which system-prompt guardrails generated this script, "
+        "forced by the caller rather than model-chosen.",
+    )
     hook: HookStyle
     hook_line: str = Field(description="First on-screen + spoken line — must work with audio off")
     beats: list[str] = Field(min_length=3, max_length=6, description="One on-screen text card per narration beat")

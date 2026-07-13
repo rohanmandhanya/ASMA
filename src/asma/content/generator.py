@@ -31,8 +31,8 @@ from asma.content.prompts import (
     ANSWER_JUDGE_SYSTEM_PROMPT,
     COMMENT_REPLY_FACT_SHARE_SYSTEM_PROMPT,
     COMMENT_REPLY_GUESS_SYSTEM_PROMPT,
-    COUNTRY_FACT_REEL_SYSTEM_PROMPT,
     WINNER_ANNOUNCEMENT_SYSTEM_PROMPT,
+    country_fact_reel_system_prompt,
     quiz_card_system_prompt,
 )
 from asma.models import (
@@ -64,14 +64,14 @@ def _context_blob(**kwargs: object) -> str:
 # ---------------------------------------------------------------------------
 # Gemini's response_schema rejects any Pydantic field with an explicit
 # default value ("Default value is not supported in the response schema for
-# the Gemini API") — QuizCard (category/stump_the_bot_prompt/sources_note)
-# and CommentAnswerJudgement (matched_answer_text) both have them, so
-# generation uses these default-free mirrors instead, and the real model is
-# constructed from the parsed result afterward. CountryFactScript/
-# WinnerAnnouncement/CommentReply have no defaulted fields and are used
-# directly as response_schema. `category` is dropped entirely from the quiz
-# schema below — the caller always overwrites it, so there's no reason to
-# ask the model for it at all.
+# the Gemini API") — QuizCard (category/stump_the_bot_prompt/sources_note),
+# CountryFactScript (topic_id/category), and CommentAnswerJudgement
+# (matched_answer_text) all have them, so generation uses these default-free
+# mirrors instead, and the real model is constructed from the parsed result
+# afterward. WinnerAnnouncement/CommentReply have no defaulted fields and are
+# used directly as response_schema. `category`/`topic_id` are dropped
+# entirely from the mirrors below — the caller always overwrites them, so
+# there's no reason to ask the model for them at all.
 # ---------------------------------------------------------------------------
 
 
@@ -93,6 +93,18 @@ class _QuizCardSchema(BaseModel):
     hashtags: list[str] = Field(min_length=3, max_length=5)
     stump_the_bot_prompt: str = Field(description="The comment-hook line appended to the caption or final slide.")
     sources_note: str | None = Field(description="Optional short citation/source note for accuracy transparency.")
+
+
+class _CountryFactScriptSchema(BaseModel):
+    country: str = Field(
+        description="Country this fact is about, e.g. 'Peru' (or a pop-culture rotation-bucket label)"
+    )
+    hook: HookStyle
+    hook_line: str = Field(description="First on-screen + spoken line — must work with audio off")
+    beats: list[str] = Field(min_length=3, max_length=6, description="One on-screen text card per narration beat")
+    voiceover_script: str = Field(description="Full narration script, 60-90s spoken at natural pace")
+    caption: str
+    hashtags: list[str] = Field(min_length=3, max_length=5)
 
 
 class _CommentAnswerJudgementSchema(BaseModel):
@@ -177,21 +189,25 @@ def generate_quiz_card(
 def generate_country_fact_script(
     client: genai.Client,
     *,
+    topic_id: str,
     country: str,
+    seed_angle: str,
     hook: HookStyle,
+    category: str = "history",
     recent_posts_summary: str = "",
     performance_summary: str = "",
 ) -> CountryFactScript:
-    system = COUNTRY_FACT_REEL_SYSTEM_PROMPT.format(country=country)
     user_content = (
-        f"Write today's country-fact Reel about {country}. Use hook='{hook.value}'.\n\n"
+        f"Write today's country-fact Reel.\nTopic seed: {seed_angle}\n"
+        f"Use topic_id='{topic_id}', country='{country}', hook='{hook.value}'.\n\n"
         + _context_blob(recent_posts=recent_posts_summary, performance=performance_summary)
     )
+    system = country_fact_reel_system_prompt(category, country=country)
     parsed = _generate(
-        client, model=CONTENT_MODEL, system=system, user_content=user_content, schema=CountryFactScript
+        client, model=CONTENT_MODEL, system=system, user_content=user_content, schema=_CountryFactScriptSchema
     )
     data = parsed.model_dump()
-    data.update(country=country, hook=hook)
+    data.update(topic_id=topic_id, country=country, hook=hook, category=category)
     return CountryFactScript(**data)
 
 

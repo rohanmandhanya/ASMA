@@ -65,8 +65,29 @@ def test_caption_dedup_allows_genuinely_different_captions(sample_quiz_card):
 
 
 def test_country_fact_script_validation(sample_country_fact_script):
-    result = guardrails.validate_country_fact_script(sample_country_fact_script, recent_captions=[])
+    result = guardrails.validate_country_fact_script(
+        sample_country_fact_script, recent_topic_ids=[], recent_captions=[]
+    )
     assert result.passed
+
+
+def test_country_fact_script_with_spoiler_cue_fails_validation(sample_country_fact_script):
+    spoiler_script = sample_country_fact_script.model_copy(
+        update={"beats": ["Spoiler alert: it turns out to be the butler."]}
+    )
+    result = guardrails.validate_country_fact_script(spoiler_script, recent_topic_ids=[], recent_captions=[])
+    assert not result.passed
+    assert any("spoiler" in issue for issue in result.issues)
+
+
+def test_country_fact_script_topic_recently_used_is_rejected(sample_country_fact_script):
+    result = guardrails.validate_country_fact_script(
+        sample_country_fact_script,
+        recent_topic_ids=[sample_country_fact_script.topic_id],
+        recent_captions=[],
+    )
+    assert not result.passed
+    assert any("used within the last" in issue for issue in result.issues)
 
 
 def test_winner_announcement_validation():

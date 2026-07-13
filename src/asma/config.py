@@ -127,13 +127,17 @@ CAROUSEL_ASPECT_RATIO = (1080, 1350)
 TOPIC_CATEGORY_HISTORY = "history"
 TOPIC_CATEGORY_POP_CULTURE = "pop_culture"
 
-# Fraction of quiz_carousel topic picks drawn from pop culture vs history —
-# a minority share, deliberately: mixing topic categories measurably hurts
-# Instagram's algorithmic categorization of the account (it reads the last
-# 9-12 posts to build a "topic graph" for Explore/Reels-tab targeting), so
-# this stays a minority within the already-minority quiz_carousel format
-# (30% of all posts) rather than touching the majority-weight Reels, which
-# stay pure history. Adjust here if the mix should skew differently.
+# Fraction of topic picks drawn from pop culture vs history — both
+# quiz_carousel AND country_fact_reel share this single draw, via
+# topic_selector.select_topic(). Originally scoped to quiz_carousel only,
+# specifically to protect the majority-weight (~70%) Reel format's
+# Instagram "topic graph" categorization (the 2026 ranking system reads an
+# account's last 9-12 posts to build that graph for Explore/Reels-tab
+# targeting, and mixed-category content measurably hurts it). Deliberately
+# reversed: Reels now mix categories too, the same way quiz_carousel always
+# has, rather than staying pure-history — a conscious trade-off, the
+# topic-graph cost accepted going in rather than discovered later. Adjust
+# here if the mix should skew differently.
 POP_CULTURE_TOPIC_WEIGHT = 0.3
 
 
@@ -257,14 +261,15 @@ HISTORY_TOPIC_POOL: list[Topic] = [
 assert len(HISTORY_TOPIC_POOL) >= 70, "history pool must sustain a 14-day no-repeat window at 5 posts/day"
 
 # ---------------------------------------------------------------------------
-# Pop-culture topic pool — quiz_carousel only (see POP_CULTURE_TOPIC_WEIGHT
-# above), never the majority-weight Reels. Deliberately scoped to
-# well-established production/record facts, not plot points or subjective
-# rankings — same "verifiable, not disputed" rigor as the history pool's
-# historian-consensus framing, just applied to movies/TV/sports. See
-# prompts.py's pop-culture system prompt for the guardrails this implies
-# (no spoilers, no reproducing exact copyrighted dialogue/lyrics, facts
-# only). `country` here doubles as a rotation-diversity label (e.g.
+# Pop-culture topic pool — shared by both quiz_carousel and
+# country_fact_reel via the same select_topic() bandit (see
+# POP_CULTURE_TOPIC_WEIGHT above). Deliberately scoped to well-established
+# production/record facts, not plot points or subjective rankings — same
+# "verifiable, not disputed" rigor as the history pool's historian-consensus
+# framing, just applied to movies/TV/sports. See prompts.py's pop-culture
+# system prompts for the guardrails this implies (no spoilers, no
+# reproducing exact copyrighted dialogue/lyrics, facts only). `country`
+# here doubles as a rotation-diversity label (e.g.
 # "Movies"/"Television"/"Sports") rather than a literal country, reusing
 # the same no-repeat/no-single-bucket-dominates machinery already built for
 # history's country rotation.

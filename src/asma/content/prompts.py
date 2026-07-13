@@ -85,13 +85,7 @@ QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE = _POP_CULTURE_NICHE_CORE + _QUIZ_CARD_STRUC
 def quiz_card_system_prompt(category: str) -> str:
     return QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE if category == "pop_culture" else QUIZ_CARD_SYSTEM_PROMPT_HISTORY
 
-COUNTRY_FACT_REEL_SYSTEM_PROMPT = (
-    _NICHE_CORE
-    + """
-You are generating one "beautiful old fact about {country}" Reel script — a recurring \
-format that rotates across countries at random, so the account never reads as focused \
-on one place.
-
+_COUNTRY_FACT_REEL_STRUCTURE = """
 The hook_line is the single most important line: it must work with the SOUND OFF, since \
 roughly half of Reels are watched muted — the on-screen text of the hook has to carry \
 the meaning by itself, not just the voiceover. Avoid a slow intro; open directly with \
@@ -104,7 +98,35 @@ be short enough to read comfortably in 2-3 seconds.
 150-230 words). Write it to be read aloud, not read silently — short sentences, no \
 dense subordinate clauses.
 """
+
+COUNTRY_FACT_REEL_SYSTEM_PROMPT_HISTORY = (
+    _NICHE_CORE
+    + """
+You are generating one "beautiful old fact about {country}" Reel script — a recurring \
+format that rotates across countries at random, so the account never reads as focused \
+on one place.
+"""
+    + _COUNTRY_FACT_REEL_STRUCTURE
 )
+
+COUNTRY_FACT_REEL_SYSTEM_PROMPT_POP_CULTURE = (
+    _POP_CULTURE_NICHE_CORE
+    + """
+You are generating one pop-culture Reel script — the same recurring narrated-Reel format \
+as the account's history Reels, just drawing on movies, TV, and sports instead of a \
+country. "Movies"/"Television"/"Sports" is an internal rotation-bucket label used only for \
+topic-diversity bookkeeping — never mention it, never frame the Reel as being "about \
+Movies" or "about Television". Open directly on the actual movie/show/event named in the \
+topic seed you're given, and its surprising production fact, record, or real-world detail.
+"""
+    + _COUNTRY_FACT_REEL_STRUCTURE
+)
+
+
+def country_fact_reel_system_prompt(category: str, *, country: str) -> str:
+    if category == "pop_culture":
+        return COUNTRY_FACT_REEL_SYSTEM_PROMPT_POP_CULTURE
+    return COUNTRY_FACT_REEL_SYSTEM_PROMPT_HISTORY.format(country=country)
 
 WINNER_ANNOUNCEMENT_SYSTEM_PROMPT = """\
 You are generating a short, genuinely upbeat weekly Reel script that recognizes the \

@@ -79,11 +79,7 @@ def test_select_topic_draws_both_categories_over_many_picks():
     categories = {topic_selector.select_topic(now=now).category for _ in range(200)}
     # With POP_CULTURE_TOPIC_WEIGHT=0.3, 200 draws should turn up both — this
     # would only ever return one category if the weighting were broken.
+    # country_fact_reel now shares this exact same picker (topic_selector no
+    # longer has a separate, history-only Reel selection path), so this one
+    # test already proves both formats draw both categories.
     assert categories == {TOPIC_CATEGORY_HISTORY, TOPIC_CATEGORY_POP_CULTURE}
-
-
-def test_select_country_fact_country_never_returns_pop_culture_label():
-    now = datetime.now(timezone.utc)
-    pop_culture_labels = {t.country for t in TOPIC_POOL if t.category == TOPIC_CATEGORY_POP_CULTURE}
-    picks = {topic_selector.select_country_fact_country(now=now) for _ in range(50)}
-    assert picks.isdisjoint(pop_culture_labels)

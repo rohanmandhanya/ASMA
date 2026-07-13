@@ -48,14 +48,26 @@ class BackgroundImageError(RuntimeError):
     pass
 
 
-def build_prompt(*, fact_text: str, country: str = "") -> str:
+def build_prompt(*, fact_text: str, country: str = "", scene_hint: str = "") -> str:
     """One prompt per Reel — `fact_text` is whatever line best captures the
     post (a CountryFactScript's hook_line, a WinnerAnnouncement's hook_line).
-    `country` is optional: formats without a natural location (e.g. the
-    weekly winner Reel) just get a generic celebratory scene instead. The
-    fixed style suffix keeps every generated image visually consistent with
-    the account's look, even though the subject changes post to post."""
-    scene = f"A scene evoking {country}." if country else "A warm, celebratory scene."
+    `country` must be a real place — formats/topics without one (the weekly
+    winner Reel, or a pop-culture CountryFactScript whose `country` field is
+    really a "Movies"/"Television"/"Sports" rotation-bucket label, not a
+    place) should leave it empty rather than pass that label through, since
+    "a scene evoking Movies" reads as a nonexistent location. `scene_hint` is
+    the alternative for that case — a generic thematic phrase (e.g. "classic
+    cinema and filmmaking"), used only when `country` is empty. If neither is
+    given, a fully generic celebratory scene is used instead (unchanged
+    behavior for the weekly winner Reel). The fixed style suffix keeps every
+    generated image visually consistent with the account's look, even though
+    the subject changes post to post."""
+    if country:
+        scene = f"A scene evoking {country}."
+    elif scene_hint:
+        scene = f"A scene evoking {scene_hint}."
+    else:
+        scene = "A warm, celebratory scene."
     return f"{fact_text} {scene} {_STYLE_SUFFIX}"
 
 

@@ -121,30 +121,6 @@ def select_hook(now: datetime | None = None) -> HookStyle:
     return _softmax_sample(hooks, scores)
 
 
-def select_country_fact_country(now: datetime | None = None) -> str:
-    """For the recurring country-fact Reel: rotate across the *history*
-    pool's countries directly (a lighter draw than the full topic bandit,
-    since this format doesn't need a specific pre-written topic — just a
-    country seed for the generator to pick a fact from). Deliberately excludes
-    pop-culture topics — Reels are the majority-weight, reach-optimized
-    format, and stay pure history so the account's topic graph doesn't get
-    diluted there; pop culture is scoped to the minority quiz_carousel share
-    only (see config.POP_CULTURE_TOPIC_WEIGHT)."""
-    now = now or datetime.now(timezone.utc)
-    state = _load_state()
-    cutoff = now - timedelta(days=TOPIC_NO_REPEAT_DAYS)
-    all_countries = sorted({t.country for t in TOPIC_POOL if t.category == TOPIC_CATEGORY_HISTORY})
-    eligible = []
-    for country in all_countries:
-        entry = state["countries"].get(country)
-        if entry and entry.get("last_used_at"):
-            last_used = datetime.fromisoformat(entry["last_used_at"])
-            if last_used > cutoff:
-                continue
-        eligible.append(country)
-    return random.choice(eligible or all_countries)
-
-
 def record_topic_used(topic: Topic, hook: HookStyle, now: datetime | None = None) -> None:
     now = now or datetime.now(timezone.utc)
     state = _load_state()
@@ -153,13 +129,6 @@ def record_topic_used(topic: Topic, hook: HookStyle, now: datetime | None = None
     topic_entry["last_used_at"] = now.isoformat()
     state["countries"].setdefault(topic.country, {})["last_used_at"] = now.isoformat()
     state["hooks"].setdefault(hook.value, {"ema_score": _DEFAULT_SCORE})["last_used_at"] = now.isoformat()
-    _save_state(state)
-
-
-def record_country_fact_used(country: str, now: datetime | None = None) -> None:
-    now = now or datetime.now(timezone.utc)
-    state = _load_state()
-    state["countries"].setdefault(country, {})["last_used_at"] = now.isoformat()
     _save_state(state)
 
 

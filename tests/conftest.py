@@ -69,6 +69,7 @@ def sample_country_fact_script():
     from asma.models import CountryFactScript, HookStyle
 
     return CountryFactScript(
+        topic_id="peru_inca_quipu_records",
         country="Peru",
         hook=HookStyle.BOLD_CLAIM,
         hook_line="The Inca had no writing system. They ran an empire of 12 million people anyway.",

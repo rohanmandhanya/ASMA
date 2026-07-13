@@ -17,7 +17,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from playwright.sync_api import sync_playwright
 
-from asma.config import CAROUSEL_ASPECT_RATIO, REEL_ASPECT_RATIO
+from asma.config import CAROUSEL_ASPECT_RATIO, REEL_ASPECT_RATIO, TOPIC_CATEGORY_HISTORY
 from asma.models import CountryFactScript, QuizCard, WinnerAnnouncement
 from asma.render import background_client
 from asma.render.flow_art import generate_flow_art_svg
@@ -134,14 +134,17 @@ def _quiz_background(*, theme: Theme, width: int, height: int) -> str:
     return f"data:image/svg+xml;base64,{encoded}"
 
 
-def _reel_illustration(*, fact_text: str, country: str, width: int, height: int, log_id: str) -> str | None:
+def _reel_illustration(
+    *, fact_text: str, country: str, width: int, height: int, log_id: str, scene_hint: str = ""
+) -> str | None:
     """Per-post AI-generated illustration for Reels — unlike quiz carousels'
     flow-art background (_quiz_background above), Reels still use a real
     per-post AI illustration tied to that Reel's own fact/country. No
     fallback icon exists for this failure case, so a failed generation just
     means no background image: the card still renders against the existing
-    flat theme, exactly like before this feature existed."""
-    prompt = background_client.build_prompt(country=country, fact_text=fact_text)
+    flat theme, exactly like before this feature existed. `scene_hint` is
+    the placeless-topic alternative to `country` (see build_prompt())."""
+    prompt = background_client.build_prompt(country=country, scene_hint=scene_hint, fact_text=fact_text)
     try:
         image_bytes = background_client.generate_background_image(prompt, width=width, height=height)
     except background_client.BackgroundImageError:
@@ -188,15 +191,33 @@ def render_quiz_card_slides(card: QuizCard, *, theme_name: str = "parchment") ->
         ]
 
 
+_POP_CULTURE_SCENE_HINTS: dict[str, str] = {
+    "Movies": "classic cinema and filmmaking",
+    "Television": "vintage television broadcasting",
+    "Sports": "athletic competition and stadiums",
+}
+
+
 def render_country_fact_cards(script: CountryFactScript, *, theme_name: str = "ink") -> list[bytes]:
     theme = THEMES[theme_name]
     width, height = REEL_ASPECT_RATIO
     beats = [script.hook_line, *script.beats]
     total = len(beats)
     # One illustration per Reel (not per beat), same z-indexed background/bubble
-    # layering the quiz carousel uses.
+    # layering the quiz carousel uses. Pop-culture Reels' `country` field is a
+    # rotation-diversity bucket label ("Movies"/"Television"/"Sports"), not a
+    # real place, so it's never handed to build_prompt() as a literal
+    # location (that produced an awkward "a scene evoking Movies" prompt) —
+    # pass a themed scene_hint instead, same idea as the winner-announcement
+    # Reel's existing empty-country fallback.
+    is_history = script.category == TOPIC_CATEGORY_HISTORY
     background_image_data_uri = _reel_illustration(
-        fact_text=script.hook_line, country=script.country, width=width, height=height, log_id=f"country={script.country}"
+        fact_text=script.hook_line,
+        country=script.country if is_history else "",
+        scene_hint="" if is_history else _POP_CULTURE_SCENE_HINTS.get(script.country, "movies, television, and sports"),
+        width=width,
+        height=height,
+        log_id=f"topic={script.topic_id}",
     )
     with CardRenderer() as renderer:
         return [

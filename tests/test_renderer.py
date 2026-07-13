@@ -93,6 +93,34 @@ def test_render_country_fact_cards_renders_with_background_image(sample_country_
 
 
 @pytest.mark.slow
+def test_render_country_fact_cards_pop_culture_never_passes_bucket_label_as_country(
+    sample_country_fact_script, monkeypatch
+):
+    """Pop-culture CountryFactScripts' `country` field is really a rotation-
+    bucket label ("Movies"/"Television"/"Sports"), not a place — this
+    confirms it's never handed to build_prompt() as a literal country
+    (which would produce an awkward "a scene evoking Movies" prompt),
+    routing through scene_hint instead."""
+    captured = {}
+    original_build_prompt = background_client.build_prompt
+
+    def _capture(*, fact_text, country="", scene_hint=""):
+        captured["country"] = country
+        captured["scene_hint"] = scene_hint
+        return original_build_prompt(fact_text=fact_text, country=country, scene_hint=scene_hint)
+
+    monkeypatch.setattr(background_client, "build_prompt", _capture)
+    monkeypatch.setattr(background_client, "generate_background_image", lambda *a, **k: b"")
+
+    pop_culture_script = sample_country_fact_script.model_copy(
+        update={"category": "pop_culture", "country": "Movies", "topic_id": "movie_jaws_mechanical_shark"}
+    )
+    render_country_fact_cards(pop_culture_script)
+    assert captured["country"] == ""
+    assert captured["scene_hint"] and captured["scene_hint"] != "Movies"
+
+
+@pytest.mark.slow
 def test_render_country_fact_cards_falls_back_to_flat_theme_when_background_generation_fails(
     sample_country_fact_script, monkeypatch
 ):

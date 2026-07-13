@@ -126,11 +126,14 @@ def validate_quiz_card(
 def validate_country_fact_script(
     script: CountryFactScript,
     *,
+    recent_topic_ids: list[str],
     recent_captions: list[str],
 ) -> GuardrailResult:
     issues = _issues_from_checks(
         check_hashtag_count(script.hashtags),
         check_no_sensational_language(script.hook_line, script.voiceover_script, script.caption, *script.beats),
+        check_no_spoiler_cues(script.hook_line, script.voiceover_script, script.caption, *script.beats),
+        check_topic_not_recently_used(script.topic_id, recent_topic_ids),
         check_caption_not_duplicate(script.caption, recent_captions),
     )
     return GuardrailResult(passed=not issues, issues=issues)

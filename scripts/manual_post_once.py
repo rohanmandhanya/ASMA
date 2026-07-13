@@ -126,20 +126,28 @@ def _publish_carousel(client: genai.Client, *, will_attach_story: bool) -> PostR
 
 
 def _publish_country_fact_reel(client: genai.Client) -> PostRecord | None:
-    country = topic_selector.select_country_fact_country()
+    topic = topic_selector.select_topic()
     hook = topic_selector.select_hook()
-    _, recent_captions, _ = _recent_context()
+    recent_topic_ids, recent_captions, _ = _recent_context()
     performance_summary = feedback.build_performance_summary()
 
     try:
         script = generator.generate_country_fact_script(
-            client, country=country, hook=hook, performance_summary=performance_summary
+            client,
+            topic_id=topic.topic_id,
+            country=topic.country,
+            seed_angle=topic.seed_angle,
+            hook=hook,
+            category=topic.category,
+            performance_summary=performance_summary,
         )
     except generator.GenerationError as exc:
         logger.error("country fact script generation failed/refused, aborting this run: %s", exc)
         return None
 
-    result = guardrails.validate_country_fact_script(script, recent_captions=recent_captions)
+    result = guardrails.validate_country_fact_script(
+        script, recent_topic_ids=recent_topic_ids, recent_captions=recent_captions
+    )
     if not result.passed:
         logger.error("country fact script failed guardrails, aborting this run: %s", result.issues)
         return None
@@ -165,13 +173,14 @@ def _publish_country_fact_reel(client: genai.Client) -> PostRecord | None:
     graph_client.poll_container_until_finished(container_id, is_video=True)
     media_id = graph_client.publish_container(container_id)
 
-    topic_selector.record_country_fact_used(country)
+    topic_selector.record_topic_used(topic, hook)
 
     return PostRecord(
-        post_id=f"country-{country.lower().replace(' ', '_')}-{datetime.now(timezone.utc):%Y%m%d%H%M%S}",
+        post_id=f"{topic.topic_id}-{datetime.now(timezone.utc):%Y%m%d%H%M%S}",
         ig_media_id=media_id,
         format=ContentFormat.COUNTRY_FACT_REEL,
-        country=country,
+        topic_id=topic.topic_id,
+        country=topic.country,
         hook=hook,
         caption=script.caption,
         hashtags=script.hashtags,
