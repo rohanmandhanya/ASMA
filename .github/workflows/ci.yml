@@ -26,15 +26,6 @@ jobs:
       - name: Ensure ffmpeg is present
         run: ffmpeg -version || (sudo apt-get update && sudo apt-get install -y ffmpeg)
 
-      - name: Cache Piper voice model
-        uses: actions/cache@v4
-        with:
-          path: assets/tts
-          key: piper-voice-en_GB-alan-medium
-
-      - name: Install Piper voice model
-        run: uv run python -m piper.download_voices en_GB-alan-medium --download-dir assets/tts
-
       - name: Lint
         run: uv run ruff check src/ tests/ scripts/
 

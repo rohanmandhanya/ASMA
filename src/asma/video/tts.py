@@ -7,12 +7,15 @@ generation this project already treats as optional. Swapping providers
 later only touches this file — everything downstream just consumes MP3
 bytes.
 
-Piper's voice model (~60MB) is intentionally not committed to git — same
-convention as Playwright's browser binaries. It's downloaded once per
-workflow run (see the "Install Piper voice model" step in
-.github/workflows/*.yml) via `python -m piper.download_voices`, or once
-locally for dev (see README) into assets/tts/, which this module reads
-from directly.
+Piper's voice model (~60MB) is committed to git directly in assets/tts/,
+which this module reads from — deliberately not fetched at workflow runtime.
+It was originally downloaded on demand instead (same convention as
+Playwright's browser binaries), but that made every run depend on Hugging
+Face's CDN being up; a real, confirmed outage there (HTTP 403 from
+cas-bridge.xethub.hf.co, HF's large-file storage backend, affecting
+unrelated projects too) took down every workflow that needed real TTS,
+for a fixed, unchanging 60MB file. Committing it once removes that
+dependency and the redownload latency entirely.
 
 Known issue (verified, not a guess): the piper-tts PyPI wheel for macOS
 (at least 1.4.2) ships with a hardcoded, build-machine-specific path to its

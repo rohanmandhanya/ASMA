@@ -70,11 +70,7 @@ Generate one real post end-to-end without touching Instagram (this **does** call
 DRY_RUN=true GEMINI_API_KEY=... uv run python scripts/manual_post_once.py --format quiz_carousel
 ```
 
-To hear real voiceover output too (`DRY_RUN=false`), download the Piper voice model once:
-
-```bash
-uv run python -m piper.download_voices en_GB-alan-medium --download-dir assets/tts
-```
+To hear real voiceover output too (`DRY_RUN=false`), no extra step needed — the Piper voice model is committed directly in `assets/tts/` (not downloaded at runtime; see `assets/tts/README.md` for why: a real Hugging Face CDN outage took down every workflow that fetched it on demand, over a fixed file that never changes).
 
 **macOS note**: `piper-tts`'s macOS PyPI wheel has a verified packaging bug (a hardcoded build-machine path to its bundled espeak-ng data) that breaks real synthesis on Mac entirely, independent of any system `espeak-ng` install — confirmed by direct testing. The Linux wheel (what the actual GitHub Actions runners use) does not have this bug — confirmed by running the identical synthesis call inside a `python:3.12-slim` container. `DRY_RUN=true` never touches Piper at all, so this only blocks manually testing real audio locally on a Mac, not production. See `assets/tts/README.md`.
 
@@ -111,7 +107,7 @@ No TTS secret — voiceovers use Piper (local, free, offline neural TTS), not a 
 ## Phased rollout
 
 1. Dry-run the carousel path locally (above) until the content and card design look right.
-2. Dry-run the Reel path (`--format country_fact_reel`) — download the Piper voice model first (`uv run python -m piper.download_voices en_GB-alan-medium --download-dir assets/tts`) to hear actual narrated output; no API key needed.
+2. Dry-run the Reel path (`--format country_fact_reel`) to hear actual narrated output — the Piper voice model is already committed in `assets/tts/`, no download or API key needed.
 3. Do the manual setup steps above.
 4. Trigger `scheduled-content.yml` manually with `dry_run=false` for one carousel, confirm it *and* its Story publish correctly in the actual app. Then one Reel. Then one manual `engage-comments.yml` run against a seeded test comment. Then one manual `refresh-token.yml` run — **do this now**, not on day ~55 when the token is actually about to expire.
 5. Enable all five workflow schedules. Cadence starts at 3 posts/day on day 0 and holds at 5/day from day 1 onward (`config.CADENCE_RAMP`) — compressed for a 7-day, 100-follower push rather than an open-ended timeline. Still a ramp (not an instant jump on a zero-history account), and `MIN_HOURS_BETWEEN_POSTS` plus the Graph API 24h cap are what actually guard against the spam-detection triggers Instagram's own guidance names (clustered bursts, not a fast ramp per se).
