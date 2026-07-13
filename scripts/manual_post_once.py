@@ -21,9 +21,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-import anthropic  # noqa: E402
+from google import genai  # noqa: E402
 
-from asma.config import ANTHROPIC_API_KEY, DRY_RUN  # noqa: E402
+from asma.config import DRY_RUN, GEMINI_API_KEY  # noqa: E402
 from asma.content import generator, guardrails, topic_selector  # noqa: E402
 from asma.content.trend_research import research_trending_history_topics  # noqa: E402
 from asma.content.trend_research_schedule import is_trend_research_due, mark_trend_research_ran  # noqa: E402
@@ -32,16 +32,20 @@ from asma.models import ContentFormat, PostRecord  # noqa: E402
 from asma.publish import graph_client, media_host  # noqa: E402
 from asma.render.renderer import render_country_fact_cards, render_quiz_card_slides  # noqa: E402
 from asma.store.jsonl_store import append_jsonl, read_jsonl  # noqa: E402
-from asma.video.assembler import assemble_reel  # noqa: E402
+from asma.video.assembler import assemble_reel, select_background_bed  # noqa: E402
 from asma.video.tts import synthesize_voiceover  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("manual_post_once")
 
-# Format mix for --format auto: carousel-led (the data-validated flagship
-# format for the quiz mechanic) with Reels running alongside for the reach
-# a brand-new account needs to break past its own follower base.
-_AUTO_FORMAT_WEIGHTS = {ContentFormat.QUIZ_CAROUSEL: 0.6, ContentFormat.COUNTRY_FACT_REEL: 0.4}
+# Format mix for --format auto: Reel-led for the launch push. Reels reach
+# 3-5x more non-followers than carousels (Instagram tests every post against
+# a small non-follower group first, then expands reach from there) — that's
+# the audience a 0-follower account actually needs. quiz_carousel keeps the
+# swipe-to-reveal quiz mechanic (still the stronger per-viewer engagement/
+# save format) as the minority, retention-oriented format for week 1;
+# revisit this ratio back toward carousel-led once past 100 followers.
+_AUTO_FORMAT_WEIGHTS = {ContentFormat.QUIZ_CAROUSEL: 0.3, ContentFormat.COUNTRY_FACT_REEL: 0.7}
 
 
 def _recent_context(days: int = 14) -> tuple[list[str], list[str], str]:
@@ -55,7 +59,7 @@ def _recent_context(days: int = 14) -> tuple[list[str], list[str], str]:
     return recent_topic_ids, recent_captions, summary
 
 
-def _publish_carousel(client: anthropic.Anthropic, *, will_attach_story: bool) -> PostRecord | None:
+def _publish_carousel(client: genai.Client, *, will_attach_story: bool) -> PostRecord | None:
     topic = topic_selector.select_topic()
     hook = topic_selector.select_hook()
     recent_topic_ids, recent_captions, recent_summary = _recent_context()
@@ -73,6 +77,7 @@ def _publish_carousel(client: anthropic.Anthropic, *, will_attach_story: bool) -
             country=topic.country,
             seed_angle=topic.seed_angle,
             hook=hook,
+            category=topic.category,
             recent_posts_summary=recent_summary,
             performance_summary=performance_summary,
             trend_summary=trend_summary,
@@ -120,7 +125,7 @@ def _publish_carousel(client: anthropic.Anthropic, *, will_attach_story: bool) -
     )
 
 
-def _publish_country_fact_reel(client: anthropic.Anthropic) -> PostRecord | None:
+def _publish_country_fact_reel(client: genai.Client) -> PostRecord | None:
     country = topic_selector.select_country_fact_country()
     hook = topic_selector.select_hook()
     _, recent_captions, _ = _recent_context()
@@ -141,7 +146,19 @@ def _publish_country_fact_reel(client: anthropic.Anthropic) -> PostRecord | None
 
     cards = render_country_fact_cards(script)
     voiceover = synthesize_voiceover(script.voiceover_script)
-    video_path = assemble_reel(cards, voiceover, Path("assets/rendered") / "country_fact.mp4")
+    # Same [hook_line, *beats] order render_country_fact_cards() used to
+    # build `cards` — character count as a cheap proxy for "how long this
+    # beat takes to actually convey", so text-heavy cards get more on-screen
+    # time instead of an even split across all cards regardless of length.
+    beats = [script.hook_line, *script.beats]
+    duration_weights = [len(beat) for beat in beats]
+    video_path = assemble_reel(
+        cards,
+        voiceover,
+        Path("assets/rendered") / "country_fact.mp4",
+        background_audio_path=select_background_bed(),
+        duration_weights=duration_weights,
+    )
     video_url = media_host.upload_media(video_path.read_bytes(), extension=".mp4")
 
     container_id = graph_client.create_video_container(video_url, caption=script.caption, media_type="REELS")
@@ -177,11 +194,11 @@ def main() -> int:
             logger.info("not publishing this firing: %s", reason)
             return 0
 
-    if not DRY_RUN and not ANTHROPIC_API_KEY:
-        logger.error("ANTHROPIC_API_KEY is not set and DRY_RUN is false — refusing to run")
+    if not DRY_RUN and not GEMINI_API_KEY:
+        logger.error("GEMINI_API_KEY is not set and DRY_RUN is false — refusing to run")
         return 1
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY) if ANTHROPIC_API_KEY else anthropic.Anthropic()
+    client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else genai.Client()
 
     chosen_format = args.format
     if chosen_format == "auto":

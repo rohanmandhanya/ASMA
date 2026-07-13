@@ -9,6 +9,8 @@ a real source of nondeterminism from an unattended run.
 
 from __future__ import annotations
 
+import base64
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -17,6 +19,10 @@ from playwright.sync_api import sync_playwright
 
 from asma.config import CAROUSEL_ASPECT_RATIO, REEL_ASPECT_RATIO
 from asma.models import CountryFactScript, QuizCard, WinnerAnnouncement
+from asma.render import background_client
+from asma.render.flow_art import generate_flow_art_svg
+
+logger = logging.getLogger(__name__)
 
 _TEMPLATE_DIR = Path(__file__).parent / "templates"
 _FONTS_DIR = (Path(__file__).resolve().parents[3] / "assets" / "fonts").resolve()
@@ -92,6 +98,7 @@ class CardRenderer:
         height: int,
         slide_index: int = 0,
         total_slides: int = 1,
+        background_image_data_uri: str | None = None,
     ) -> bytes:
         html = _template.render(
             fonts_dir=str(_FONTS_DIR),
@@ -105,6 +112,7 @@ class CardRenderer:
             slide_index=slide_index,
             total_slides=total_slides,
             handle=_ACCOUNT_HANDLE,
+            background_image_data_uri=background_image_data_uri,
         )
         page = self._browser.new_page(viewport={"width": width, "height": height})
         try:
@@ -112,6 +120,42 @@ class CardRenderer:
             return page.screenshot(type="png")
         finally:
             page.close()
+
+
+def _quiz_background(*, theme: Theme, width: int, height: int) -> str:
+    """Full-bleed generative flow-art background for quiz carousels — see
+    render/flow_art.py. Consistent for an entire ISO week (not per-post) so
+    the account has a recognizable, current "look" rather than a new
+    AI-attempted scene per fact. Pure local computation, so unlike the
+    per-post AI illustration Reels still use (_reel_illustration below),
+    there's no key, no network call, and no failure mode to fall back from."""
+    svg = generate_flow_art_svg(width=width, height=height, ink=theme.ink, accent=theme.accent)
+    encoded = base64.b64encode(svg.encode("utf-8")).decode("ascii")
+    return f"data:image/svg+xml;base64,{encoded}"
+
+
+def _reel_illustration(*, fact_text: str, country: str, width: int, height: int, log_id: str) -> str | None:
+    """Per-post AI-generated illustration for Reels — unlike quiz carousels'
+    flow-art background (_quiz_background above), Reels still use a real
+    per-post AI illustration tied to that Reel's own fact/country. No
+    fallback icon exists for this failure case, so a failed generation just
+    means no background image: the card still renders against the existing
+    flat theme, exactly like before this feature existed."""
+    prompt = background_client.build_prompt(country=country, fact_text=fact_text)
+    try:
+        image_bytes = background_client.generate_background_image(prompt, width=width, height=height)
+    except background_client.BackgroundImageError:
+        logger.warning(
+            "background image generation failed for %s; falling back to the flat theme background",
+            log_id,
+            exc_info=True,
+        )
+        image_bytes = b""
+
+    if not image_bytes:
+        return None
+    encoded = base64.b64encode(image_bytes).decode("ascii")
+    return f"data:image/png;base64,{encoded}"
 
 
 def render_quiz_card_slides(card: QuizCard, *, theme_name: str = "parchment") -> list[bytes]:
@@ -123,6 +167,10 @@ def render_quiz_card_slides(card: QuizCard, *, theme_name: str = "parchment") ->
         *[("THE ANSWER" if i == 0 else "", text, "") for i, text in enumerate(card.reveal_slides)],
     ]
     total = len(slides)
+    # One background per post (not per slide) — generated once so every
+    # slide in the swipe sequence shares the same art, and the same art
+    # holds across every post for the current ISO week.
+    background_image_data_uri = _quiz_background(theme=theme, width=width, height=height)
     with CardRenderer() as renderer:
         return [
             renderer.render_card(
@@ -134,6 +182,7 @@ def render_quiz_card_slides(card: QuizCard, *, theme_name: str = "parchment") ->
                 height=height,
                 slide_index=i,
                 total_slides=total,
+                background_image_data_uri=background_image_data_uri,
             )
             for i, (kicker, headline, subtext) in enumerate(slides)
         ]
@@ -144,6 +193,11 @@ def render_country_fact_cards(script: CountryFactScript, *, theme_name: str = "i
     width, height = REEL_ASPECT_RATIO
     beats = [script.hook_line, *script.beats]
     total = len(beats)
+    # One illustration per Reel (not per beat), same z-indexed background/bubble
+    # layering the quiz carousel uses.
+    background_image_data_uri = _reel_illustration(
+        fact_text=script.hook_line, country=script.country, width=width, height=height, log_id=f"country={script.country}"
+    )
     with CardRenderer() as renderer:
         return [
             renderer.render_card(
@@ -154,6 +208,7 @@ def render_country_fact_cards(script: CountryFactScript, *, theme_name: str = "i
                 height=height,
                 slide_index=i,
                 total_slides=total,
+                background_image_data_uri=background_image_data_uri,
             )
             for i, beat in enumerate(beats)
         ]
@@ -164,6 +219,11 @@ def render_winner_announcement_cards(script: WinnerAnnouncement, *, theme_name: 
     width, height = REEL_ASPECT_RATIO
     beats = [script.hook_line, *script.beats]
     total = len(beats)
+    # No natural "country" for a leaderboard win — build_prompt() falls back
+    # to a generic celebratory scene instead.
+    background_image_data_uri = _reel_illustration(
+        fact_text=script.hook_line, country="", width=width, height=height, log_id=f"winner={script.winner_username}"
+    )
     with CardRenderer() as renderer:
         return [
             renderer.render_card(
@@ -174,6 +234,7 @@ def render_winner_announcement_cards(script: WinnerAnnouncement, *, theme_name: 
                 height=height,
                 slide_index=i,
                 total_slides=total,
+                background_image_data_uri=background_image_data_uri,
             )
             for i, beat in enumerate(beats)
         ]

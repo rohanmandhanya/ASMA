@@ -27,12 +27,29 @@ DRY_RUN: bool = _env("DRY_RUN", "true").strip().lower() in ("1", "true", "yes")
 # Secrets (all optional at import time — only required when actually used,
 # so `DRY_RUN=true` local dev works with no secrets configured at all)
 # ---------------------------------------------------------------------------
-ANTHROPIC_API_KEY = _env("ANTHROPIC_API_KEY")
-TTS_API_KEY = _env("TTS_API_KEY")
+# Gemini (see content/generator.py, content/trend_research.py) — free tier
+# covers this project's entire call volume (content generation + comment
+# replies + trend research all fit comfortably inside 1,500 requests/day),
+# chosen specifically to avoid any paid-API cost; Anthropic has no free tier
+# at all, which is why this project moved off it entirely.
+GEMINI_API_KEY = _env("GEMINI_API_KEY")
+# No TTS secret: voiceovers use Piper (local, free, offline neural TTS —
+# see video/tts.py) specifically because it has no per-character cost and
+# no missing-key failure mode to design around.
+# Pollinations.ai (see render/background_client.py) — free, no billing account.
+# Fully optional: works with zero setup (anonymous, watermarked, rate-limited);
+# a free-registered token here just unlocks `nologo` + a faster rate tier.
+POLLINATIONS_API_TOKEN = _env("POLLINATIONS_API_TOKEN")
 IG_ACCESS_TOKEN = _env("IG_ACCESS_TOKEN")
 IG_BUSINESS_ACCOUNT_ID = _env("IG_BUSINESS_ACCOUNT_ID")
-FB_APP_ID = _env("FB_APP_ID")
-FB_APP_SECRET = _env("FB_APP_SECRET")
+# Instagram Login flow (not Facebook Login) — these are the Instagram app's
+# own ID/secret from the Meta app dashboard's "Instagram API setup with
+# Instagram login" product, not a Facebook app ID. Unused by any code path
+# directly (token minting/refresh happens via Meta's own tools, not this
+# codebase) — kept only as documented reference for that manual step, same
+# as before.
+IG_APP_ID = _env("IG_APP_ID")
+IG_APP_SECRET = _env("IG_APP_SECRET")
 GH_PAT_FOR_SECRETS = _env("GH_PAT_FOR_SECRETS")
 # The default GITHUB_TOKEN (auto-provided every workflow run, scoped via
 # `permissions:` in the workflow YAML) is used for everything that only
@@ -57,10 +74,11 @@ MILESTONE_EMAIL_TO = _env("MILESTONE_EMAIL_TO", "nate@kiloforge.com")
 
 # ---------------------------------------------------------------------------
 # Model tiering — quality where it's judged, cheap where volume is high.
+# Both are free within Gemini's free tier at this project's call volume
+# (content generation: ~5/day; replies/judging: capped at 20 per 4-hour run).
 # ---------------------------------------------------------------------------
-CONTENT_MODEL = "claude-opus-4-8"
-CONTENT_MODEL_EFFORT = "high"
-REPLY_MODEL = "claude-haiku-4-5"
+CONTENT_MODEL = "gemini-3.5-flash"
+REPLY_MODEL = "gemini-3.1-flash-lite"
 
 # ---------------------------------------------------------------------------
 # Instagram Graph API limits (verify against current docs at deploy time —
@@ -70,20 +88,22 @@ GRAPH_API_ROLLING_24H_POST_CAP = 25  # carousels + Stories + Reels share this bu
 GRAPH_API_HOURLY_CALL_CAP = 200
 
 # ---------------------------------------------------------------------------
-# Cadence ramp — deliberately slow, per the spam-detection research in the
-# plan. `day_index` is days since scheduled-content.yml was first enabled
-# (persisted in data/topics_state.json, not wall-clock date, so a paused
-# rollout doesn't skip steps). Each step defines the posts/day target
-# starting from that day index; the target holds until the next threshold.
-# Reaches and holds at TARGET_POSTS_PER_DAY.
+# Cadence ramp — compressed to hit target cadence by day 1, for a 7-day
+# 100-follower push (the original 13-day ramp was designed for an open-ended
+# timeline and is structurally incompatible with a 1-week target). Still a
+# ramp, not an instant jump to max velocity on a zero-history account — day 0
+# builds one day of posting/engagement baseline before holding at target for
+# the rest of the week. `day_index` is days since scheduled-content.yml was
+# first enabled (persisted in data/topics_state.json, not wall-clock date, so
+# a paused rollout doesn't skip steps). The actual anti-burst/anti-clustering
+# safeguards are MIN_HOURS_BETWEEN_POSTS and the Graph API 24h cap below, not
+# the day-count of this ramp — Instagram's own guidance names posting
+# volume in short clustered windows as the spam trigger, not a fast ramp.
 # ---------------------------------------------------------------------------
 TARGET_POSTS_PER_DAY = 5
 CADENCE_RAMP: list[tuple[int, int]] = [
-    (0, 1),   # days 0-3:  1 post/day — build a posting history + engagement baseline
-    (4, 2),   # days 4-6:  2 posts/day
-    (7, 3),   # days 7-9:  3 posts/day
-    (10, 4),  # days 10-12: 4 posts/day
-    (13, TARGET_POSTS_PER_DAY),  # day 13 onward: hold at target
+    (0, 3),                      # day 0: 3 posts — one day of ramp before max velocity
+    (1, TARGET_POSTS_PER_DAY),   # day 1 onward: hold at target for the rest of the week
 ]
 MIN_HOURS_BETWEEN_POSTS = 2.5  # spreads the day's budget out; avoids "short window" spam trigger
 
@@ -104,18 +124,32 @@ REEL_ASPECT_RATIO = (1080, 1920)
 CAROUSEL_ASPECT_RATIO = (1080, 1350)
 
 
+TOPIC_CATEGORY_HISTORY = "history"
+TOPIC_CATEGORY_POP_CULTURE = "pop_culture"
+
+# Fraction of quiz_carousel topic picks drawn from pop culture vs history —
+# a minority share, deliberately: mixing topic categories measurably hurts
+# Instagram's algorithmic categorization of the account (it reads the last
+# 9-12 posts to build a "topic graph" for Explore/Reels-tab targeting), so
+# this stays a minority within the already-minority quiz_carousel format
+# (30% of all posts) rather than touching the majority-weight Reels, which
+# stay pure history. Adjust here if the mix should skew differently.
+POP_CULTURE_TOPIC_WEIGHT = 0.3
+
+
 @dataclass(frozen=True)
 class Topic:
     topic_id: str
     country: str
     seed_angle: str
+    category: str = TOPIC_CATEGORY_HISTORY
 
 
 # ---------------------------------------------------------------------------
-# Topic/country pool. Deliberately spread across every inhabited continent —
+# History topic pool. Deliberately spread across every inhabited continent —
 # this is the guardrail against "digital colonialism"/single-culture
 # concentration as much as it is a content-sourcing list. `seed_angle` gives
-# Claude a starting point; it still does its own historian-consensus
+# the generator a starting point; it still does its own historian-consensus
 # generation and citation, guided by content/prompts.py's guardrails — this
 # list is not a source of truth for facts, just a topic-rotation seed.
 #
@@ -123,7 +157,7 @@ class Topic:
 # window, at least 14*5=70 distinct entries are needed to avoid repeating;
 # this pool has real exploration headroom above that floor.
 # ---------------------------------------------------------------------------
-TOPIC_POOL: list[Topic] = [
+HISTORY_TOPIC_POOL: list[Topic] = [
     # Asia
     Topic("mongolia_yam_relay", "Mongolia", "the Mongol Empire's Yam postal relay system, centuries ahead of European mail networks"),
     Topic("china_zheng_he_fleet", "China", "Zheng He's early-1400s treasure fleet, decades before and vastly larger than Columbus's ships"),
@@ -220,4 +254,45 @@ TOPIC_POOL: list[Topic] = [
     Topic("israel_ancient_aqueduct_engineering", "Israel", "the engineering precision behind ancient Levantine aqueduct systems"),
 ]
 
-assert len(TOPIC_POOL) >= 70, "topic pool must sustain a 14-day no-repeat window at 5 posts/day"
+assert len(HISTORY_TOPIC_POOL) >= 70, "history pool must sustain a 14-day no-repeat window at 5 posts/day"
+
+# ---------------------------------------------------------------------------
+# Pop-culture topic pool — quiz_carousel only (see POP_CULTURE_TOPIC_WEIGHT
+# above), never the majority-weight Reels. Deliberately scoped to
+# well-established production/record facts, not plot points or subjective
+# rankings — same "verifiable, not disputed" rigor as the history pool's
+# historian-consensus framing, just applied to movies/TV/sports. See
+# prompts.py's pop-culture system prompt for the guardrails this implies
+# (no spoilers, no reproducing exact copyrighted dialogue/lyrics, facts
+# only). `country` here doubles as a rotation-diversity label (e.g.
+# "Movies"/"Television"/"Sports") rather than a literal country, reusing
+# the same no-repeat/no-single-bucket-dominates machinery already built for
+# history's country rotation.
+# ---------------------------------------------------------------------------
+POP_CULTURE_TOPIC_POOL: list[Topic] = [
+    # Movies
+    Topic("movie_jaws_mechanical_shark", "Movies", "the Jaws mechanical shark that broke down constantly during filming, forcing Spielberg to shoot around it — creating the suspense style that made the movie work", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("movie_titanic_budget_overrun", "Movies", "Titanic (1997) becoming the most expensive film ever made at the time, running so far over budget the studio nearly shut production down", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("movie_wizard_of_oz_ruby_slippers", "Movies", "the Wizard of Oz's ruby slippers were originally written as silver, matching the book, until early Technicolor tests showed silver didn't read well on screen", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("movie_lotr_new_zealand_shoot", "Movies", "The Lord of the Rings trilogy's unusually long, continuous single shoot across New Zealand, filming all three films back to back", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("movie_psycho_shower_scene_takes", "Movies", "Psycho's 45-second shower scene took about a week and dozens of camera setups to film", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("movie_star_wars_practical_models", "Movies", "the practical model/miniature work behind the original Star Wars trilogy's space battles, built years before CGI was viable", category=TOPIC_CATEGORY_POP_CULTURE),
+    # Television
+    Topic("tv_friends_central_perk_couch", "Television", "the story behind Friends' orange Central Perk couch prop and what happened to it after the show ended", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("tv_breaking_bad_pilot_rejections", "Television", "Breaking Bad's pilot being turned down by multiple networks before AMC picked it up", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("tv_seinfeld_show_about_nothing_pitch", "Television", "the famously unconventional network pitch behind Seinfeld's 'show about nothing' premise", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("tv_got_battle_of_winterfell_production", "Television", "the record-setting production scale behind Game of Thrones' 'Battle of Winterfell' episode", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("tv_i_love_lucy_multicam_invention", "Television", "how I Love Lucy's production needs led to inventing the three-camera sitcom format still used today", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("tv_sesame_street_puppet_origin", "Television", "the puppetry innovations Jim Henson brought to Sesame Street that hadn't been used in children's TV before", category=TOPIC_CATEGORY_POP_CULTURE),
+    # Sports
+    Topic("sport_marathon_distance_origin", "Sports", "why the Olympic marathon is exactly 26.2 miles — a distance set by the 1908 London Olympics royal viewing box, not the original Greek legend", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("sport_basketball_peach_basket_origin", "Sports", "basketball's invention using actual peach baskets with the bottoms still intact, meaning the ball had to be retrieved by hand after every score", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("sport_jules_rimet_trophy_theft", "Sports", "the World Cup's original Jules Rimet trophy being stolen in 1966 and recovered by a dog named Pickles", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("sport_wimbledon_all_white_rule_origin", "Sports", "Wimbledon's strict all-white dress code tracing back to Victorian-era etiquette about sweat visibility", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("sport_cricket_timeless_test_1939", "Sports", "the 1939 'timeless Test' cricket match, called off undecided after 10 days because the touring team had to catch their ship home", category=TOPIC_CATEGORY_POP_CULTURE),
+    Topic("sport_first_modern_olympics_1896", "Sports", "the first modern Olympic Games in 1896 Athens and how different the event lineup was from today's", category=TOPIC_CATEGORY_POP_CULTURE),
+]
+
+assert len(POP_CULTURE_TOPIC_POOL) >= 14, "pop-culture pool should clear the 14-day no-repeat window at its selection rate"
+
+TOPIC_POOL: list[Topic] = HISTORY_TOPIC_POOL + POP_CULTURE_TOPIC_POOL

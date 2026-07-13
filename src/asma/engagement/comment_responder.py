@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import logging
 
-import anthropic
+from google import genai
 
 from asma.content.generator import GenerationError, generate_comment_reply
 from asma.publish.graph_client import reply_to_comment
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def reply_to_judged_comment(
-    client: anthropic.Anthropic,
+    client: genai.Client,
     *,
     comment_id: str,
     comment_text: str,

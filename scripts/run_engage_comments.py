@@ -11,9 +11,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-import anthropic  # noqa: E402
+from google import genai  # noqa: E402
 
-from asma.config import ANTHROPIC_API_KEY  # noqa: E402
+from asma.config import GEMINI_API_KEY  # noqa: E402
 from asma.engagement.answer_tracker import process_comments_for_post  # noqa: E402
 from asma.models import ContentFormat, PostRecord  # noqa: E402
 from asma.store.jsonl_store import read_jsonl  # noqa: E402
@@ -27,7 +27,7 @@ _LOOKBACK_DAYS = 7
 
 
 def main() -> int:
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY) if ANTHROPIC_API_KEY else anthropic.Anthropic()
+    client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else genai.Client()
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=_LOOKBACK_DAYS)
     quiz_posts = [

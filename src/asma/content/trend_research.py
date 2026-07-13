@@ -1,17 +1,18 @@
-"""Periodic (weekly, not every run) trend-awareness pass using Claude's own
-web-search tool. This is the ONLY way topic selection gets any signal about
-what's currently resonating — it never scrapes TikTok or Instagram directly
-(both prohibited by ToS; TikTok's official Research API is restricted to
-qualifying academic institutions, not available here). Claude searches
-public, secondary sources (articles, roundups) and writes an original
-summary; nothing here reproduces another platform's content.
+"""Periodic (weekly, not every run) trend-awareness pass using Gemini's
+built-in Google Search grounding tool. This is the ONLY way topic selection
+gets any signal about what's currently resonating — it never scrapes TikTok
+or Instagram directly (both prohibited by ToS; TikTok's official Research
+API is restricted to qualifying academic institutions, not available here).
+Gemini searches public, secondary sources (articles, roundups) and writes
+an original summary; nothing here reproduces another platform's content.
 """
 
 from __future__ import annotations
 
 import logging
 
-import anthropic
+from google import genai
+from google.genai import types
 
 from asma.config import CONTENT_MODEL, DRY_RUN
 from asma.content.prompts import trend_research_prompt
@@ -24,22 +25,23 @@ _FALLBACK_SUMMARY = (
 )
 
 
-def research_trending_history_topics(client: anthropic.Anthropic) -> str:
+def research_trending_history_topics(client: genai.Client) -> str:
     if DRY_RUN:
         logger.info("[DRY_RUN] trend_research: skipping real web-search call")
         return "[DRY_RUN] " + _FALLBACK_SUMMARY
 
-    response = client.messages.create(
+    response = client.models.generate_content(
         model=CONTENT_MODEL,
-        max_tokens=1024,
-        tools=[{"type": "web_search_20260209", "name": "web_search"}],
-        messages=[{"role": "user", "content": trend_research_prompt()}],
+        contents=trend_research_prompt(),
+        config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())]),
     )
 
-    if response.stop_reason == "refusal":
-        logger.warning("trend_research: model refused; falling back to no-bias summary")
+    candidates = response.candidates or []
+    finish_reason = getattr(candidates[0], "finish_reason", None) if candidates else None
+    finished_normally = finish_reason is not None and str(finish_reason).rsplit(".", 1)[-1] == "STOP"
+    if not candidates or not finished_normally:
+        logger.warning("trend_research: model refused/blocked (finish_reason=%s); falling back", finish_reason)
         return _FALLBACK_SUMMARY
 
-    text_parts = [block.text for block in response.content if block.type == "text"]
-    summary = "\n".join(text_parts).strip()
+    summary = (response.text or "").strip()
     return summary or _FALLBACK_SUMMARY

@@ -21,23 +21,25 @@ def test_target_post_count_starts_low_and_ramps():
 
 def test_should_publish_now_respects_daily_target():
     now = datetime.now(timezone.utc)
-    topic_selector.mark_campaign_launched_if_needed(now)  # day 0 -> target is 1/day
+    topic_selector.mark_campaign_launched_if_needed(now)  # day 0
 
+    day_0_target = CADENCE_RAMP[0][1]
     allowed, _ = budget_allocator.should_publish_now(now)
     assert allowed
 
-    append_jsonl(
-        "posts.jsonl",
-        PostRecord(
-            post_id="p1",
-            ig_media_id="m1",
-            format=ContentFormat.QUIZ_CAROUSEL,
-            caption="c",
-            hashtags=["#a", "#b", "#c"],
-            published_at=now - timedelta(minutes=1),
-            dry_run=False,
-        ),
-    )
+    for i in range(day_0_target):
+        append_jsonl(
+            "posts.jsonl",
+            PostRecord(
+                post_id=f"p{i}",
+                ig_media_id=f"m{i}",
+                format=ContentFormat.QUIZ_CAROUSEL,
+                caption="c",
+                hashtags=["#a", "#b", "#c"],
+                published_at=now - timedelta(minutes=1),
+                dry_run=False,
+            ),
+        )
     allowed, reason = budget_allocator.should_publish_now(now)
     assert not allowed
     assert "target" in reason

@@ -4,7 +4,7 @@ from collections import Counter
 from datetime import datetime, timedelta, timezone
 
 from asma.content import topic_selector
-from asma.config import TOPIC_POOL
+from asma.config import TOPIC_CATEGORY_HISTORY, TOPIC_CATEGORY_POP_CULTURE, TOPIC_POOL
 from asma.models import HookStyle
 
 
@@ -72,3 +72,18 @@ def test_days_since_launch_is_stable_across_calls():
     first = topic_selector.days_since_launch(now)
     later = topic_selector.days_since_launch(now + timedelta(days=3))
     assert later - first == 3
+
+
+def test_select_topic_draws_both_categories_over_many_picks():
+    now = datetime.now(timezone.utc)
+    categories = {topic_selector.select_topic(now=now).category for _ in range(200)}
+    # With POP_CULTURE_TOPIC_WEIGHT=0.3, 200 draws should turn up both — this
+    # would only ever return one category if the weighting were broken.
+    assert categories == {TOPIC_CATEGORY_HISTORY, TOPIC_CATEGORY_POP_CULTURE}
+
+
+def test_select_country_fact_country_never_returns_pop_culture_label():
+    now = datetime.now(timezone.utc)
+    pop_culture_labels = {t.country for t in TOPIC_POOL if t.category == TOPIC_CATEGORY_POP_CULTURE}
+    picks = {topic_selector.select_country_fact_country(now=now) for _ in range(50)}
+    assert picks.isdisjoint(pop_culture_labels)

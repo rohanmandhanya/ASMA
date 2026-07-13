@@ -11,7 +11,15 @@ import math
 import random
 from datetime import datetime, timedelta, timezone
 
-from asma.config import TOPIC_EXPLORATION_RATE, TOPIC_NO_REPEAT_DAYS, TOPIC_POOL, Topic
+from asma.config import (
+    POP_CULTURE_TOPIC_WEIGHT,
+    TOPIC_CATEGORY_HISTORY,
+    TOPIC_CATEGORY_POP_CULTURE,
+    TOPIC_EXPLORATION_RATE,
+    TOPIC_NO_REPEAT_DAYS,
+    TOPIC_POOL,
+    Topic,
+)
 from asma.models import HookStyle
 from asma.store.jsonl_store import read_raw_json_state, write_raw_json_state
 
@@ -71,10 +79,27 @@ def _eligible_topics(state: dict, now: datetime) -> list[Topic]:
     return eligible or list(TOPIC_POOL)
 
 
+def _scoped_to_category(eligible: list[Topic], category: str) -> list[Topic]:
+    """Narrows eligible topics to one category (history/pop_culture), falling
+    back to the full eligible list if that category is empty right now (e.g.
+    every pop-culture topic is mid-no-repeat-window) — degrades gracefully
+    the same way _eligible_topics() falls back to the full pool rather than
+    ever raising."""
+    scoped = [t for t in eligible if t.category == category]
+    return scoped or eligible
+
+
 def select_topic(now: datetime | None = None) -> Topic:
     now = now or datetime.now(timezone.utc)
     state = _load_state()
     eligible = _eligible_topics(state, now)
+
+    # Pick the topic category first (a minority share goes to pop culture —
+    # see POP_CULTURE_TOPIC_WEIGHT), then run the existing under-used/EMA
+    # selection scoped to that category, so the mix ratio is explicit rather
+    # than an accident of relative pool sizes.
+    category = TOPIC_CATEGORY_POP_CULTURE if random.random() < POP_CULTURE_TOPIC_WEIGHT else TOPIC_CATEGORY_HISTORY
+    eligible = _scoped_to_category(eligible, category)
 
     times_used = [state["topics"].get(t.topic_id, {}).get("times_used", 0) for t in eligible]
     min_uses = min(times_used)
@@ -97,14 +122,18 @@ def select_hook(now: datetime | None = None) -> HookStyle:
 
 
 def select_country_fact_country(now: datetime | None = None) -> str:
-    """For the recurring country-fact Reel: rotate across TOPIC_POOL's
-    countries directly (a lighter draw than the full topic bandit, since
-    this format doesn't need a specific pre-written topic — just a country
-    seed for Claude to pick a fact from)."""
+    """For the recurring country-fact Reel: rotate across the *history*
+    pool's countries directly (a lighter draw than the full topic bandit,
+    since this format doesn't need a specific pre-written topic — just a
+    country seed for the generator to pick a fact from). Deliberately excludes
+    pop-culture topics — Reels are the majority-weight, reach-optimized
+    format, and stay pure history so the account's topic graph doesn't get
+    diluted there; pop culture is scoped to the minority quiz_carousel share
+    only (see config.POP_CULTURE_TOPIC_WEIGHT)."""
     now = now or datetime.now(timezone.utc)
     state = _load_state()
     cutoff = now - timedelta(days=TOPIC_NO_REPEAT_DAYS)
-    all_countries = sorted({t.country for t in TOPIC_POOL})
+    all_countries = sorted({t.country for t in TOPIC_POOL if t.category == TOPIC_CATEGORY_HISTORY})
     eligible = []
     for country in all_countries:
         entry = state["countries"].get(country)

@@ -1,9 +1,10 @@
 """Pydantic schemas shared across the pipeline.
 
-These are the `output_format=` targets passed to `client.messages.parse()`
-(see content/generator.py) and the on-disk record shapes appended to the
-JSONL stores in data/. Keeping them in one module means the generator, the
-renderer, the publisher, and the growth loop all agree on field names.
+These are the `response_schema=` targets passed to Gemini's structured
+output API (see content/generator.py) and the on-disk record shapes
+appended to the JSONL stores in data/. Keeping them in one module means the
+generator, the renderer, the publisher, and the growth loop all agree on
+field names.
 """
 
 from __future__ import annotations
@@ -32,7 +33,7 @@ class HookStyle(StrEnum):
 
 
 # ---------------------------------------------------------------------------
-# Claude generation targets (client.messages.parse(output_format=...))
+# Gemini generation targets (content/generator.py's response_schema=)
 # ---------------------------------------------------------------------------
 
 
@@ -41,6 +42,11 @@ class QuizCard(BaseModel):
 
     topic_id: str = Field(description="Stable slug identifying this topic, e.g. 'inca_quipu_records'")
     country: str = Field(description="Country or culture this fact is about, e.g. 'Peru'")
+    category: str = Field(
+        default="history",
+        description="'history' or 'pop_culture' — selects which system-prompt guardrails generated this card, "
+        "forced by the caller rather than model-chosen.",
+    )
     hook: HookStyle
     setup_slide: str = Field(description="Slide 1: the striking, well-documented fact that sets up the question")
     question_slide: str = Field(description="Slide 2: a question whose answer is a single noun (person/place/thing)")
@@ -89,7 +95,7 @@ class WinnerAnnouncement(BaseModel):
 
 
 class CommentAnswerJudgement(BaseModel):
-    """Haiku classification output: does this comment correctly answer the live quiz?"""
+    """flash-lite classification output: does this comment correctly answer the live quiz?"""
 
     is_correct: bool
     matched_answer_text: str | None = Field(

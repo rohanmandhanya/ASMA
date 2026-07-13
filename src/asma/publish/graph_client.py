@@ -1,15 +1,21 @@
-"""Instagram Graph API client. Every method funnels through `_request()` —
-the single low-level HTTP call — so DRY_RUN interception lives in exactly
-one place instead of being duplicated per method. Under DRY_RUN, `_request`
-logs the intended call and returns a structurally-valid fake response, so
-all the higher-level polling/logging/error-handling logic in this file
-still gets exercised without ever touching the network.
+"""Instagram Graph API client — Instagram Login flow (Business Login for
+Instagram), not the Facebook Page-linked flow. Deliberately chosen: this
+account only needs Instagram followers, not any Facebook Page presence, and
+this flow authenticates the Instagram account directly (no Facebook Page,
+no Facebook Login for Business/Messenger products in the Meta app). Every
+method funnels through `_request()` — the single low-level HTTP call — so
+DRY_RUN interception lives in exactly one place instead of being duplicated
+per method. Under DRY_RUN, `_request` logs the intended call and returns a
+structurally-valid fake response, so all the higher-level polling/logging/
+error-handling logic in this file still gets exercised without ever
+touching the network.
 
 Field names and endpoint shapes below reflect the Graph API's stable,
 well-documented content-publishing surface (image_url/video_url -> creation
-container -> media_publish). Graph API specifics do drift between doc
-versions — verify against current Meta docs before the first real
-(non-DRY_RUN) call, per the plan's phased rollout.
+container -> media_publish) — that part of the API surface is the same
+regardless of login flow, only the host and token type differ. Graph API
+specifics do drift between doc versions — verify against current Meta docs
+before the first real (non-DRY_RUN) call, per the plan's phased rollout.
 """
 
 from __future__ import annotations
@@ -26,7 +32,10 @@ from asma.config import DRY_RUN, IG_ACCESS_TOKEN, IG_BUSINESS_ACCOUNT_ID
 logger = logging.getLogger(__name__)
 
 GRAPH_API_VERSION = "v22.0"  # verify this is still current at deploy time
-GRAPH_API_BASE = f"https://graph.facebook.com/{GRAPH_API_VERSION}"
+# graph.instagram.com (not graph.facebook.com) — the Instagram Login flow's
+# host; container/publish/comments/insights endpoints share the same shape
+# across both login flows, so only this base URL differs.
+GRAPH_API_BASE = f"https://graph.instagram.com/{GRAPH_API_VERSION}"
 IG_TOKEN_REFRESH_URL = "https://graph.instagram.com/refresh_access_token"
 
 CONTAINER_POLL_INTERVAL_SECONDS = 5

@@ -11,16 +11,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-import anthropic  # noqa: E402
+from google import genai  # noqa: E402
 
-from asma.config import ANTHROPIC_API_KEY, DRY_RUN  # noqa: E402
+from asma.config import DRY_RUN, GEMINI_API_KEY  # noqa: E402
 from asma.content import generator, guardrails  # noqa: E402
 from asma.engagement.answer_tracker import current_leaderboard, reset_leaderboard  # noqa: E402
 from asma.models import ContentFormat, PostRecord  # noqa: E402
 from asma.publish import graph_client, media_host  # noqa: E402
 from asma.render.renderer import render_winner_announcement_cards  # noqa: E402
 from asma.store.jsonl_store import append_jsonl  # noqa: E402
-from asma.video.assembler import assemble_reel  # noqa: E402
+from asma.video.assembler import assemble_reel, select_background_bed  # noqa: E402
 from asma.video.tts import synthesize_voiceover  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -36,7 +36,7 @@ def main() -> int:
     winner_username, correct_count = max(leaderboard.items(), key=lambda kv: kv[1])
     week_of = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY) if ANTHROPIC_API_KEY else anthropic.Anthropic()
+    client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else genai.Client()
 
     try:
         script = generator.generate_winner_announcement(
@@ -53,7 +53,17 @@ def main() -> int:
 
     cards = render_winner_announcement_cards(script)
     voiceover = synthesize_voiceover(script.voiceover_script)
-    video_path = assemble_reel(cards, voiceover, Path("assets/rendered") / "winner.mp4")
+    # Same [hook_line, *beats] order render_winner_announcement_cards() used
+    # to build `cards` — see manual_post_once.py's identical comment.
+    beats = [script.hook_line, *script.beats]
+    duration_weights = [len(beat) for beat in beats]
+    video_path = assemble_reel(
+        cards,
+        voiceover,
+        Path("assets/rendered") / "winner.mp4",
+        background_audio_path=select_background_bed(),
+        duration_weights=duration_weights,
+    )
     video_url = media_host.upload_media(video_path.read_bytes(), extension=".mp4")
 
     container_id = graph_client.create_video_container(video_url, caption=script.caption, media_type="REELS")

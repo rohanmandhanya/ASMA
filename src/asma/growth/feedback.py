@@ -1,6 +1,6 @@
 """Turns metrics.jsonl into the two things generator.py actually consumes:
 an EMA score update per topic/hook (feeding topic_selector's bandit), and a
-short natural-language performance summary handed to Claude so the actual
+short natural-language performance summary handed to the generator so the actual
 writing is informed by real data, not just the mechanical picker. Simple,
 nameable heuristics — not ML.
 """

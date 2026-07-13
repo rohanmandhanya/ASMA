@@ -22,8 +22,8 @@ jobs:
     timeout-minutes: 20
     env:
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      TTS_API_KEY: ${{ secrets.TTS_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      POLLINATIONS_API_TOKEN: ${{ secrets.POLLINATIONS_API_TOKEN }}
       IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
       IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
       R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -42,6 +42,13 @@ jobs:
         run: uv run playwright install --with-deps chromium
       - name: Ensure ffmpeg is present
         run: ffmpeg -version || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: Cache Piper voice model
+        uses: actions/cache@v4
+        with:
+          path: assets/tts
+          key: piper-voice-en_GB-alan-medium
+      - name: Install Piper voice model
+        run: uv run python -m piper.download_voices en_GB-alan-medium --download-dir assets/tts
       - run: uv run python scripts/run_weekly_winner.py
       - name: Commit updated state
         if: always()

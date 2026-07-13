@@ -1,5 +1,5 @@
 """Orchestrates engage-comments.yml: find new comments on the live quiz
-post, judge each against the known correct answer via a Haiku
+post, judge each against the known correct answer via a cheap flash-lite
 classification call (robust to spelling/phrasing variance — never brittle
 string matching), tally correct answers per commenter for the weekly
 leaderboard, and generate+post a reply for each. Everything gets appended
@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 from datetime import datetime, timezone
 
-import anthropic
+from google import genai
 
 from asma.config import ENGAGE_REPLY_CAP_PER_RUN
 from asma.content.generator import GenerationError, judge_comment_answer
@@ -61,7 +61,7 @@ def reset_leaderboard() -> None:
     _save_leaderboard({"entries": {}, "credited_posts": {}})
 
 
-def process_comments_for_post(client: anthropic.Anthropic, post: PostRecord) -> list[CommentRecord]:
+def process_comments_for_post(client: genai.Client, post: PostRecord) -> list[CommentRecord]:
     if post.answer is None or post.ig_media_id is None:
         return []  # not a quiz post, or never actually published (e.g. a DRY_RUN record)
 

@@ -26,6 +26,20 @@ _SENSATIONAL_PHRASES = (
     "conspiracy",
 )
 
+# Defense-in-depth against pop-culture spoilers, on top of the pop-culture
+# system prompt's "never spoil a plot twist/ending" instruction — a small,
+# low-false-positive net (same philosophy as _SENSATIONAL_PHRASES: catches
+# obvious drift, not exhaustive; the real guardrail is prompt-level model
+# judgment, this just backstops it).
+_SPOILER_CUE_PHRASES = (
+    "spoiler alert",
+    "spoiler warning",
+    "dies at the end",
+    "the twist is that",
+    "plot twist:",
+    "turns out to be",
+)
+
 CAPTION_SIMILARITY_THRESHOLD = 0.82
 
 
@@ -53,6 +67,14 @@ def check_no_sensational_language(*texts: str) -> str | None:
     hits = [p for p in _SENSATIONAL_PHRASES if p in lowered]
     if hits:
         return f"sensationalized phrasing detected: {hits}"
+    return None
+
+
+def check_no_spoiler_cues(*texts: str) -> str | None:
+    lowered = " ".join(texts).lower()
+    hits = [p for p in _SPOILER_CUE_PHRASES if p in lowered]
+    if hits:
+        return f"spoiler-cue phrasing detected: {hits}"
     return None
 
 
@@ -93,6 +115,7 @@ def validate_quiz_card(
     issues = _issues_from_checks(
         check_hashtag_count(card.hashtags),
         check_no_sensational_language(card.setup_slide, card.question_slide, card.caption, *card.reveal_slides),
+        check_no_spoiler_cues(card.setup_slide, card.question_slide, card.caption, *card.reveal_slides),
         check_answer_is_noun_form(card.answer),
         check_topic_not_recently_used(card.topic_id, recent_topic_ids),
         check_caption_not_duplicate(card.caption, recent_captions),

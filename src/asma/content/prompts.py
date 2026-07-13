@@ -1,6 +1,6 @@
 """System prompts. All guardrails that are really 'use good judgment' calls
 (historian consensus, tone, no single-culture concentration) live here as
-instructions to Claude — mechanical/structural checks that can be verified
+instructions to the generation model — mechanical/structural checks that can be verified
 in code live in guardrails.py instead. Both layers run; neither substitutes
 for the other.
 """
@@ -28,9 +28,38 @@ fact and context are fine; contemporary political commentary is not.
 pick a safer, well-established fact than a punchier, shakier one.
 """
 
-QUIZ_CARD_SYSTEM_PROMPT = (
-    _NICHE_CORE
-    + """
+_POP_CULTURE_NICHE_CORE = """\
+You write for the same Instagram account's pop-culture trivia strand — movies, \
+television, and sports — run alongside its main history content. Same account, same \
+"forgotten/surprising" spirit, just a different subject: production trivia, records, \
+and real-world facts around the work, not the work's plot itself.
+
+The account is openly run by an autonomous AI agent. Never pretend otherwise if asked.
+
+Hard rules, no exceptions:
+- Only verifiable, well-documented facts: production trivia, records, dates, statistics. \
+Never a subjective ranking or opinion presented as fact (no "the greatest ever," no \
+"most overrated") — if it's a matter of taste, it is not a fact for this account.
+- Never spoil a plot twist, ending, or major reveal. Every fact here is about how \
+something was made, a record it set, or a real event around it — never what happens \
+in the story.
+- Never quote copyrighted dialogue, lyrics, or scripts verbatim beyond naming/describing \
+a line — describe it, don't reproduce it.
+- Respectful and specific, not graphic or sensationalized. Never mock an actor, athlete, \
+or creator.
+- Never concentrate on one franchise, sport, team, or studio as the account's identity. \
+Across posts, actively rotate.
+- If you are not confident a claim is accurate, do not include it.
+
+Name the movie/show/event openly in `setup_slide` (or a reveal slide) — that's good for \
+searchability, not a spoiler. The quiz mystery is a specific hidden DETAIL within that \
+story: a name, a number, a place, an object, a decision — never "which movie/show is \
+this." ("What sitcom is this couch from?" is a weak question because the title is the \
+whole answer; "What did the crew do with replica couches once the show blew up?" is a \
+strong one because the title is already known and the surprising detail is the mystery.)
+"""
+
+_QUIZ_CARD_STRUCTURE = """
 You are generating one trivia carousel post. Structure:
 1. `setup_slide`: a single striking, well-documented fact — this is the hook, it \
 must be true and specific (a real place, person, date, or number), not vague.
@@ -39,17 +68,22 @@ or thing) — never yes/no, never open-ended/subjective.
 3. `reveal_slides`: 1-3 slides that state the answer plainly and add context — why \
 it's surprising, what it means, one more specific detail.
 
-Caption: front-load the specific, searchable keywords (the country/era/topic) in \
+Caption: front-load the specific, searchable keywords (the topic/era) in \
 the FIRST LINE — over half of new followers on Instagram in 2026 find accounts via \
 search, not hashtag browsing, so the first line needs to be findable, not just catchy. \
-End the caption with the stump-the-bot invitation (a version of: "Know a wild detail \
-about this we didn't mention? Try to stump the bot" — keep it in that spirit, you can \
-vary the exact wording).
+Do not end the caption with a "stump the bot"-style invitation yourself — that's \
+appended separately from `stump_the_bot_prompt`, so adding one here would duplicate it.
 
 Hashtags: exactly 3-5, all genuinely relevant to this specific post. Never pad to a \
 higher count — that reads as spammy and dilutes ranking signal rather than helping it.
 """
-)
+
+QUIZ_CARD_SYSTEM_PROMPT_HISTORY = _NICHE_CORE + _QUIZ_CARD_STRUCTURE
+QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE = _POP_CULTURE_NICHE_CORE + _QUIZ_CARD_STRUCTURE
+
+
+def quiz_card_system_prompt(category: str) -> str:
+    return QUIZ_CARD_SYSTEM_PROMPT_POP_CULTURE if category == "pop_culture" else QUIZ_CARD_SYSTEM_PROMPT_HISTORY
 
 COUNTRY_FACT_REEL_SYSTEM_PROMPT = (
     _NICHE_CORE

@@ -92,6 +92,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1;
   }
 
   .dots { display: flex; gap: 10px; }
@@ -109,16 +110,78 @@
     opacity: 0.55;
     letter-spacing: 0.02em;
   }
+
+  /* Over a generated background image the theme's flat-bg-tuned footer
+     colors can't guarantee contrast against an arbitrary photo/illustration
+     — fix to a light color with a drop-shadow instead, regardless of theme. */
+  .footer-on-image .dot { background: rgba(243, 236, 220, 0.45); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
+  .footer-on-image .dot.active { background: #F3ECDC; }
+  .footer-on-image .handle {
+    color: #F3ECDC;
+    opacity: 0.92;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  }
+
+  .bubble {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+    border: 4px solid var(--rule);
+    border-radius: 28px;
+    padding: 40px 44px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  /* bg-image/bg-scrim need an explicit non-negative z-index so they land in
+     the same "positioned, stacked" paint group as .bubble/.footer/etc above
+     — negative z-index instead paints them BEHIND body's own opaque
+     background fill (a separate, easy-to-get-backwards CSS stacking-order
+     bug: static in-flow content like body's background paints before
+     negative-z-index descendants, but before positioned z-index:0+
+     descendants only in the other direction). Everything meant to sit on
+     top of the illustration must have z-index >= 1, both here and on any
+     future overlay element. */
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .bg-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.62) 100%);
+    z-index: 0;
+  }
 </style>
 </head>
 <body>
-  {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
-  <div class="rule"></div>
+  {% set kicker_in_bubble = background_image_data_uri %}
+
+  {% if background_image_data_uri %}
+  <div class="bg-image" style="background-image: url('{{ background_image_data_uri }}');"></div>
+  <div class="bg-scrim"></div>
+  {% endif %}
+
+  {% if kicker and not kicker_in_bubble %}<div class="kicker">{{ kicker }}</div>{% endif %}
+  {% if kicker and not kicker_in_bubble %}<div class="rule"></div>{% endif %}
+
+  {% if background_image_data_uri %}
+  <div class="bubble">
+    {% if kicker and kicker_in_bubble %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    {% if kicker and kicker_in_bubble %}<div class="rule"></div>{% endif %}
+    <div class="headline">{{ headline }}</div>
+    {% if subtext %}<div class="subtext">{{ subtext }}</div>{% endif %}
+  </div>
+  {% else %}
   <div class="headline">{{ headline }}</div>
   {% if subtext %}<div class="subtext">{{ subtext }}</div>{% endif %}
+  {% endif %}
 
   {% if total_slides and total_slides > 1 %}
-  <div class="footer">
+  <div class="footer{% if background_image_data_uri %} footer-on-image{% endif %}">
     <div class="dots">
       {% for i in range(total_slides) %}
       <div class="dot{% if i == slide_index %} active{% endif %}"></div>
@@ -127,7 +190,7 @@
     <div class="handle">{{ handle }}</div>
   </div>
   {% else %}
-  <div class="footer">
+  <div class="footer{% if background_image_data_uri %} footer-on-image{% endif %}">
     <div></div>
     <div class="handle">{{ handle }}</div>
   </div>

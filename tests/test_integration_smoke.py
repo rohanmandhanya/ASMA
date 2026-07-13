@@ -4,10 +4,10 @@ selection, generation, guardrails, real Playwright rendering, media
 hosting, and the Graph API client together correctly, in order, producing
 a valid committed PostRecord.
 
-Claude's response is mocked (no live ANTHROPIC_API_KEY in CI/this
+Gemini's response is mocked (no live GEMINI_API_KEY in CI/this
 environment) — everything else is real: real Playwright renders real PNGs,
 real DRY_RUN Graph API stub logic runs, real state files get written. This
-is the "run once against real Claude" step in the plan's phased rollout,
+is the "run once against real Gemini" step in the plan's phased rollout,
 minus the one piece that genuinely needs a live API key to verify (content
 quality) — see README's "What's genuinely unverified" section.
 """
@@ -28,7 +28,9 @@ from asma.store.jsonl_store import append_jsonl, read_jsonl  # noqa: E402
 
 def _fake_client(sample_quiz_card) -> MagicMock:
     client = MagicMock()
-    client.messages.parse.return_value = SimpleNamespace(stop_reason="end_turn", parsed_output=sample_quiz_card)
+    candidate = SimpleNamespace(finish_reason="STOP")
+    response = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=sample_quiz_card)
+    client.models.generate_content.return_value = response
     return client
 
 
@@ -56,28 +58,29 @@ def test_full_carousel_orchestration_end_to_end(sample_quiz_card):
     assert persisted[0].post_id == record.post_id
 
 
-def test_cadence_ramp_gate_blocks_second_post_same_day(sample_quiz_card, monkeypatch):
+def test_cadence_ramp_gate_blocks_post_once_day_0_target_is_met(sample_quiz_card, monkeypatch):
     """Proves the real (non-mocked) budget_allocator + rate_limiter chain
-    actually blocks a second publish once day 0's target of 1 is met —
-    the specific mechanism the plan relies on to avoid the spam-detection
-    pattern flagged in research."""
+    actually blocks a publish once day 0's target is met — the specific
+    mechanism the plan relies on to avoid the spam-detection pattern flagged
+    in research."""
     import manual_post_once
     from asma.content.topic_selector import mark_campaign_launched_if_needed
 
-    mark_campaign_launched_if_needed()  # day 0 -> target is CADENCE_RAMP[0][1] == 1
-    assert CADENCE_RAMP[0][1] == 1
+    mark_campaign_launched_if_needed()  # day 0
+    day_0_target = CADENCE_RAMP[0][1]
 
     # dry_run=True records deliberately don't count toward rate limits (see
-    # rate_limiter.py) — simulate a real publish by flipping just the flag
+    # rate_limiter.py) — simulate real publishes by flipping just the flag
     # manual_post_once stamps onto the record. Real network calls stay
     # stubbed regardless, via graph_client's own DRY_RUN (patched true by
     # the autouse fixture) — this only affects what gets written to disk.
     monkeypatch.setattr(manual_post_once, "DRY_RUN", False)
 
-    record = manual_post_once._publish_carousel(_fake_client(sample_quiz_card), will_attach_story=False)
-    assert record is not None
-    assert record.dry_run is False
-    append_jsonl("posts.jsonl", record)
+    for _ in range(day_0_target):
+        record = manual_post_once._publish_carousel(_fake_client(sample_quiz_card), will_attach_story=False)
+        assert record is not None
+        assert record.dry_run is False
+        append_jsonl("posts.jsonl", record)
 
     allowed, reason = manual_post_once.budget_allocator.should_publish_now()
     assert not allowed

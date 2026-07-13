@@ -31,8 +31,18 @@ def force_dry_run(monkeypatch):
     import asma.video.tts as tts
     import asma.content.trend_research as trend_research
     import asma.growth.milestone_notifier as milestone_notifier
+    import asma.render.background_client as background_client
 
-    for module in (config, graph_client, media_host, assembler, tts, trend_research, milestone_notifier):
+    for module in (
+        config,
+        graph_client,
+        media_host,
+        assembler,
+        tts,
+        trend_research,
+        milestone_notifier,
+        background_client,
+    ):
         monkeypatch.setattr(module, "DRY_RUN", True)
     yield
 

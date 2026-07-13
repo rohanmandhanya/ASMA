@@ -21,6 +21,20 @@ def test_sensational_language_flagged():
     assert guardrails.check_no_sensational_language("A well-documented historical fact") is None
 
 
+def test_spoiler_cue_flagged():
+    assert guardrails.check_no_spoiler_cues("Spoiler alert: the twist is that he was there all along") is not None
+    assert guardrails.check_no_spoiler_cues("The mechanical shark broke down constantly during filming") is None
+
+
+def test_pop_culture_card_with_spoiler_cue_fails_validation(sample_quiz_card):
+    spoiler_card = sample_quiz_card.model_copy(
+        update={"category": "pop_culture", "reveal_slides": ["Spoiler alert: it turns out to be the butler."]}
+    )
+    result = guardrails.validate_quiz_card(spoiler_card, recent_topic_ids=[], recent_captions=[])
+    assert not result.passed
+    assert any("spoiler" in issue for issue in result.issues)
+
+
 def test_answer_must_be_noun_form():
     assert guardrails.check_answer_is_noun_form("yes") is not None
     assert guardrails.check_answer_is_noun_form("") is not None
