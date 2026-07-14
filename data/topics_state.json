@@ -2,7 +2,22 @@
   "_meta": {
     "launched_at": "2026-07-08T08:45:03.177591+00:00"
   },
-  "countries": {},
-  "hooks": {},
-  "topics": {}
+  "countries": {
+    "Mongolia": {
+      "last_used_at": "2026-07-14T02:04:55.758648+00:00"
+    }
+  },
+  "hooks": {
+    "myth_bust": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-14T02:04:55.758648+00:00"
+    }
+  },
+  "topics": {
+    "mongolia_paiza_passport": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-14T02:04:55.758648+00:00",
+      "times_used": 1
+    }
+  }
 }
