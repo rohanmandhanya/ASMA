@@ -68,7 +68,7 @@ jobs:
         run: |
           git config user.name "asma-bot"
           git config user.email "actions@github.com"
-          git pull --rebase
+          git pull --rebase --autostash
           git add data/
           git diff --staged --quiet || git commit -m "chore: record post + updated state [skip ci]"
           git push
