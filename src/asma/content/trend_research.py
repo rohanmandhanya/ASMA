@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 
 from google import genai
-from google.genai import types
+from google.genai import errors, types
 
 from asma.config import CONTENT_MODEL, DRY_RUN
 from asma.content.prompts import trend_research_prompt
@@ -30,11 +30,19 @@ def research_trending_history_topics(client: genai.Client) -> str:
         logger.info("[DRY_RUN] trend_research: skipping real web-search call")
         return "[DRY_RUN] " + _FALLBACK_SUMMARY
 
-    response = client.models.generate_content(
-        model=CONTENT_MODEL,
-        contents=trend_research_prompt(),
-        config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())]),
-    )
+    try:
+        response = client.models.generate_content(
+            model=CONTENT_MODEL,
+            contents=trend_research_prompt(),
+            config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())]),
+        )
+    except errors.APIError as exc:
+        # Google Search grounding can be unavailable on some tiers/quotas
+        # (e.g. 429 RESOURCE_EXHAUSTED) even when plain generate_content
+        # calls work fine — this signal is a nice-to-have, never worth
+        # taking down the whole scheduled-content run over.
+        logger.warning("trend_research: Gemini API call failed (%s); falling back", exc)
+        return _FALLBACK_SUMMARY
 
     candidates = response.candidates or []
     finish_reason = getattr(candidates[0], "finish_reason", None) if candidates else None
