@@ -144,12 +144,18 @@ def poll_container_until_finished(container_id: str, *, is_video: bool = False) 
     timeout = CONTAINER_POLL_TIMEOUT_VIDEO_SECONDS if is_video else CONTAINER_POLL_TIMEOUT_IMAGE_SECONDS
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        resp = _request("GET", str(container_id), params={"fields": "status_code"})
-        status = resp.json().get("status_code")
-        if status == "FINISHED":
+        resp = _request("GET", str(container_id), params={"fields": "status_code,status"})
+        body = resp.json()
+        status_code = body.get("status_code")
+        if status_code == "FINISHED":
             return
-        if status == "ERROR":
-            raise GraphAPIError(f"container {container_id} entered ERROR state")
+        if status_code == "ERROR":
+            # status_code alone ("ERROR") never says why — `status` carries
+            # Meta's human-readable reason (e.g. a fetch failure vs. an
+            # unsupported video format), which is exactly what's needed to
+            # tell those failure modes apart after the fact.
+            detail = body.get("status", "no further detail returned")
+            raise GraphAPIError(f"container {container_id} entered ERROR state: {detail}")
         time.sleep(CONTAINER_POLL_INTERVAL_SECONDS)
     raise ContainerNotReadyError(f"container {container_id} did not finish within {timeout}s")
 

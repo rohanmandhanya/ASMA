@@ -103,3 +103,27 @@ def test_poll_container_raises_on_error_status(monkeypatch):
 
     with pytest.raises(graph_client.GraphAPIError):
         graph_client.poll_container_until_finished("c1", is_video=False)
+
+
+def test_poll_container_error_includes_meta_status_detail(monkeypatch):
+    """A bare 'ERROR' status_code never says why — the human-readable
+    `status` field is what actually lets a failure (e.g. media Meta
+    couldn't fetch vs. an unsupported format) get diagnosed after the
+    fact, instead of a dead-end 'entered ERROR state'."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+
+    class _FakeErrorStatusResponse:
+        status_code = 200
+
+        def json(self):
+            return {"status_code": "ERROR", "status": "Media could not be fetched from the provided URL."}
+
+        def raise_for_status(self):
+            return None
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", lambda *a, **k: _FakeErrorStatusResponse())
+
+    with pytest.raises(graph_client.GraphAPIError, match="Media could not be fetched"):
+        graph_client.poll_container_until_finished("c1", is_video=False)
