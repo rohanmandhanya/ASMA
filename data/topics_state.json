@@ -6,6 +6,9 @@
     "Mongolia": {
       "last_used_at": "2026-07-14T02:04:55.758648+00:00"
     },
+    "Portugal": {
+      "last_used_at": "2026-07-15T19:42:29.876244+00:00"
+    },
     "Television": {
       "last_used_at": "2026-07-14T08:31:47.071470+00:00"
     }
@@ -18,12 +21,21 @@
     "question_hook": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T08:31:47.071470+00:00"
+    },
+    "stat_led": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-15T19:42:29.876244+00:00"
     }
   },
   "topics": {
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T02:04:55.758648+00:00",
+      "times_used": 1
+    },
+    "portugal_navigation_techniques": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-15T19:42:29.876244+00:00",
       "times_used": 1
     },
     "tv_sesame_street_puppet_origin": {
