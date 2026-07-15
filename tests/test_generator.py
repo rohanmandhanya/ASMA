@@ -4,7 +4,9 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 import pytest
+from google.genai import errors
 
+from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS
 from asma.content import generator
 from asma.models import CommentAnswerJudgement, CommentReply, HookStyle, QuizCard
 
@@ -21,6 +23,17 @@ def _fake_client(*, finish_reason: str = "STOP", parsed=None, blocked: bool = Fa
         response = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=parsed)
     client.models.generate_content.return_value = response
     return client
+
+
+def _server_overloaded_error() -> errors.ServerError:
+    response_json = {
+        "error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Please try again later.",
+            "status": "UNAVAILABLE",
+        }
+    }
+    return errors.ServerError(503, response_json)
 
 
 def test_generate_quiz_card_success(sample_quiz_card):
@@ -91,6 +104,52 @@ def test_generate_quiz_card_raises_on_unparseable_response():
     client = _fake_client(finish_reason="STOP", parsed=None)
     with pytest.raises(generator.GenerationError, match="did not parse"):
         generator.generate_quiz_card(client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM)
+
+
+def test_generate_quiz_card_falls_back_to_next_model_on_503(sample_quiz_card):
+    """gemini-3.5-flash overloaded (503) shouldn't lose the whole run —
+    retry against the next configured fallback model before giving up."""
+    client = MagicMock()
+    candidate = SimpleNamespace(finish_reason="STOP")
+    success_response = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=sample_quiz_card)
+    client.models.generate_content.side_effect = [_server_overloaded_error(), success_response]
+
+    card = generator.generate_quiz_card(
+        client, topic_id=sample_quiz_card.topic_id, country=sample_quiz_card.country, seed_angle="s",
+        hook=HookStyle.STAT_LED,
+    )
+
+    assert card.answer == sample_quiz_card.answer
+    assert client.models.generate_content.call_count == 2
+    first_model = client.models.generate_content.call_args_list[0].kwargs["model"]
+    second_model = client.models.generate_content.call_args_list[1].kwargs["model"]
+    assert first_model == CONTENT_MODEL
+    assert second_model == CONTENT_MODEL_FALLBACKS[0]
+
+
+def test_generate_quiz_card_raises_when_every_model_is_overloaded(sample_quiz_card):
+    client = MagicMock()
+    client.models.generate_content.side_effect = _server_overloaded_error()
+
+    with pytest.raises(generator.GenerationError, match="unavailable"):
+        generator.generate_quiz_card(
+            client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM
+        )
+
+    # Primary model + every fallback, no more, no fewer.
+    assert client.models.generate_content.call_count == 1 + len(CONTENT_MODEL_FALLBACKS)
+
+
+def test_judge_comment_answer_raises_generation_error_on_503_with_no_fallback():
+    """REPLY_MODEL has no configured fallbacks (it's already the cheap
+    tier) — a 503 there should abort cleanly, not retry indefinitely."""
+    client = MagicMock()
+    client.models.generate_content.side_effect = _server_overloaded_error()
+
+    with pytest.raises(generator.GenerationError, match="unavailable"):
+        generator.judge_comment_answer(client, comment_text="x", correct_answer="y", question="q")
+
+    client.models.generate_content.assert_called_once()
 
 
 def test_generate_country_fact_script_success(sample_country_fact_script):

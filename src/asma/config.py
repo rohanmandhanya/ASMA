@@ -78,6 +78,11 @@ MILESTONE_EMAIL_TO = _env("MILESTONE_EMAIL_TO", "nate@kiloforge.com")
 # (content generation: ~5/day; replies/judging: capped at 20 per 4-hour run).
 # ---------------------------------------------------------------------------
 CONTENT_MODEL = "gemini-3.5-flash"
+# If CONTENT_MODEL comes back with a 503 (Google's servers overloaded — a
+# real, recurring issue, not something client-side retries fix), fall back
+# to older, less in-demand generations rather than losing the whole run.
+# Tried in order after the primary model.
+CONTENT_MODEL_FALLBACKS = ("gemini-3-flash", "gemini-2.5-flash")
 REPLY_MODEL = "gemini-3.1-flash-lite"
 
 # ---------------------------------------------------------------------------

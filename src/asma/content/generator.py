@@ -23,10 +23,10 @@ from __future__ import annotations
 import logging
 
 from google import genai
-from google.genai import types
+from google.genai import errors, types
 from pydantic import BaseModel, Field
 
-from asma.config import CONTENT_MODEL, REPLY_MODEL
+from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS, REPLY_MODEL
 from asma.content.prompts import (
     ANSWER_JUDGE_SYSTEM_PROMPT,
     COMMENT_REPLY_FACT_SHARE_SYSTEM_PROMPT,
@@ -121,15 +121,33 @@ class _CommentAnswerJudgementSchema(BaseModel):
 def _generate(
     client: genai.Client, *, model: str, system: str, user_content: str, schema: type[BaseModel]
 ) -> BaseModel:
-    response = client.models.generate_content(
-        model=model,
-        contents=user_content,
-        config=types.GenerateContentConfig(
-            system_instruction=system,
-            response_mime_type="application/json",
-            response_schema=schema,
-        ),
-    )
+    # Only CONTENT_MODEL has fallbacks configured — REPLY_MODEL is already
+    # the cheap/lite tier, not the one that's been seen overloaded.
+    candidate_models = [model] + (list(CONTENT_MODEL_FALLBACKS) if model == CONTENT_MODEL else [])
+
+    response = None
+    for i, candidate_model in enumerate(candidate_models):
+        try:
+            response = client.models.generate_content(
+                model=candidate_model,
+                contents=user_content,
+                config=types.GenerateContentConfig(
+                    system_instruction=system,
+                    response_mime_type="application/json",
+                    response_schema=schema,
+                ),
+            )
+            break
+        except errors.ServerError as exc:
+            is_last = i == len(candidate_models) - 1
+            if is_last:
+                raise GenerationError(f"model(s) unavailable: {exc}") from exc
+            logger.warning(
+                "generation on %s failed (%s); falling back to %s",
+                candidate_model,
+                exc,
+                candidate_models[i + 1],
+            )
 
     feedback = getattr(response, "prompt_feedback", None)
     block_reason = getattr(feedback, "block_reason", None) if feedback else None
