@@ -138,7 +138,15 @@ def _generate(
                 ),
             )
             break
-        except errors.ServerError as exc:
+        except (errors.ServerError, errors.ClientError) as exc:
+            # A 404 is exactly as fallback-worthy as a 503 — seen twice
+            # now: a typo'd model name, then a real model (gemini-2.5-flash-lite)
+            # that's simply sunset for new API keys despite still being
+            # listed in ListModels. Any other ClientError (bad request,
+            # safety block, quota) isn't something switching models fixes
+            # reliably, so it still raises immediately as before.
+            if isinstance(exc, errors.ClientError) and exc.code != 404:
+                raise
             is_last = i == len(candidate_models) - 1
             if is_last:
                 raise GenerationError(f"model(s) unavailable: {exc}") from exc

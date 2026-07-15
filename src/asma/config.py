@@ -78,16 +78,21 @@ MILESTONE_EMAIL_TO = _env("MILESTONE_EMAIL_TO", "nate@kiloforge.com")
 # (content generation: ~5/day; replies/judging: capped at 20 per 4-hour run).
 # ---------------------------------------------------------------------------
 CONTENT_MODEL = "gemini-3.5-flash"
-# If CONTENT_MODEL comes back with a 503 (Google's servers overloaded — a
-# real, recurring issue, not something client-side retries fix), fall back
-# to another model rather than losing the whole run. Tried in order after
-# the primary model. Verified by hitting the real API directly with this
-# project's key — gemini-2.5-flash/gemini-2.5-flash-lite/gemini-2.0-flash
-# are NOT usable candidates despite appearing in ListModels: the 2.x
-# generation is either 404 "no longer available to new users" or has a
-# hard 0 free-tier quota for keys created this recently. Only 3.x-line
-# models actually work on this key.
-CONTENT_MODEL_FALLBACKS = ("gemini-3-flash-preview", "gemini-3.1-flash-lite-preview")
+# If CONTENT_MODEL comes back with a 503 (Google's servers overloaded) or a
+# 404 (model invalid/sunset for this key), fall back rather than losing
+# the whole run — see generator._generate(). Tried in order after the
+# primary model. Every entry here is verified by hitting the real API
+# directly with this project's key (tests/test_gemini_model_validity.py
+# re-verifies this on every local run). gemini-2.5-flash-lite,
+# gemini-2.0-flash, and gemini-2.0-flash-lite are NOT usable despite
+# appearing in ListModels — 404 "no longer available to new users" or a
+# hard 0 free-tier quota — and are deliberately excluded.
+CONTENT_MODEL_FALLBACKS = (
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite-preview",
+    "gemini-3.1-flash-lite",
+)
 REPLY_MODEL = "gemini-3.1-flash-lite"
 
 # ---------------------------------------------------------------------------

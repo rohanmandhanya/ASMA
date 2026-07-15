@@ -36,6 +36,28 @@ def _server_overloaded_error() -> errors.ServerError:
     return errors.ServerError(503, response_json)
 
 
+def _model_not_found_error() -> errors.ClientError:
+    response_json = {
+        "error": {
+            "code": 404,
+            "message": "This model is no longer available to new users.",
+            "status": "NOT_FOUND",
+        }
+    }
+    return errors.ClientError(404, response_json)
+
+
+def _quota_exceeded_error() -> errors.ClientError:
+    response_json = {
+        "error": {
+            "code": 429,
+            "message": "You exceeded your current quota.",
+            "status": "RESOURCE_EXHAUSTED",
+        }
+    }
+    return errors.ClientError(429, response_json)
+
+
 def test_generate_quiz_card_success(sample_quiz_card):
     client = _fake_client(parsed=sample_quiz_card)
     card = generator.generate_quiz_card(
@@ -138,6 +160,36 @@ def test_generate_quiz_card_raises_when_every_model_is_overloaded(sample_quiz_ca
 
     # Primary model + every fallback, no more, no fewer.
     assert client.models.generate_content.call_count == 1 + len(CONTENT_MODEL_FALLBACKS)
+
+
+def test_generate_quiz_card_falls_back_on_404_invalid_or_sunset_model(sample_quiz_card):
+    """A 404 (typo'd model name, or a real model that's been sunset for
+    this key/tier — both seen in production) is exactly as fallback-worthy
+    as a 503, not an immediate crash."""
+    client = MagicMock()
+    candidate = SimpleNamespace(finish_reason="STOP")
+    success_response = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=sample_quiz_card)
+    client.models.generate_content.side_effect = [_model_not_found_error(), success_response]
+
+    card = generator.generate_quiz_card(
+        client, topic_id=sample_quiz_card.topic_id, country=sample_quiz_card.country, seed_angle="s",
+        hook=HookStyle.STAT_LED,
+    )
+
+    assert card.answer == sample_quiz_card.answer
+    assert client.models.generate_content.call_count == 2
+
+
+def test_generate_quiz_card_does_not_fall_back_on_non_404_client_error():
+    """A 429 (quota) or any other 4xx isn't reliably fixed by switching
+    models — must raise immediately, not burn through every fallback."""
+    client = MagicMock()
+    client.models.generate_content.side_effect = _quota_exceeded_error()
+
+    with pytest.raises(errors.ClientError):
+        generator.generate_quiz_card(client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM)
+
+    client.models.generate_content.assert_called_once()
 
 
 def test_judge_comment_answer_raises_generation_error_on_503_with_no_fallback():
