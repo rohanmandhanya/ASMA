@@ -26,6 +26,7 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 markers = [
     "slow: launches a real headless browser or ffmpeg subprocess (Playwright/ffmpeg install required)",
+    "live_gemini: hits the real Gemini API (requires a real GEMINI_API_KEY, not set in CI)",
 ]
 
 [tool.ruff]
