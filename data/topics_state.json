@@ -3,6 +3,9 @@
     "launched_at": "2026-07-08T08:45:03.177591+00:00"
   },
   "countries": {
+    "Mexico": {
+      "last_used_at": "2026-07-15T22:15:57.656670+00:00"
+    },
     "Mongolia": {
       "last_used_at": "2026-07-14T02:04:55.758648+00:00"
     },
@@ -24,10 +27,15 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-15T19:42:29.876244+00:00"
+      "last_used_at": "2026-07-15T22:15:57.656670+00:00"
     }
   },
   "topics": {
+    "mexico_maya_underground_reservoirs": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-15T22:15:57.656670+00:00",
+      "times_used": 1
+    },
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T02:04:55.758648+00:00",
