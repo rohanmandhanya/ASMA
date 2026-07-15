@@ -96,6 +96,40 @@ CONTENT_MODEL_FALLBACKS = (
 REPLY_MODEL = "gemini-3.1-flash-lite"
 
 # ---------------------------------------------------------------------------
+# HTTP resilience for every direct Gemini call (generator.py, trend_research.py).
+# The google-genai SDK has built-in tenacity retry+backoff (HttpRetryOptions)
+# but it's OFF by default (1 attempt, no timeout — HttpOptions.timeout=None
+# means httpx applies NO timeout at all). That's almost certainly why a real
+# run on 2026-07-15 hung the full 20-minute scheduled-content.yml job with
+# zero response. Fix: bound every attempt to GEMINI_HTTP_TIMEOUT_MS, and
+# enable retry with attempts deliberately far below the SDK's default of 5 —
+# _generate() already retries across up to 4 candidate models
+# (CONTENT_MODEL + CONTENT_MODEL_FALLBACKS), so stacking the SDK's full
+# 5-attempt/60s-max backoff independently on top of that cascade would
+# balloon worst-case time and crowd out the up-to-600s Instagram
+# video-container poll that still needs to run afterward in the same job.
+# ---------------------------------------------------------------------------
+GEMINI_HTTP_TIMEOUT_MS = 30_000
+GEMINI_RETRY_ATTEMPTS = 2
+GEMINI_RETRY_INITIAL_DELAY_SECONDS = 1.0
+GEMINI_RETRY_MAX_DELAY_SECONDS = 10.0
+
+# Guardrail: fail loudly at import time if a future edit pushes the worst
+# case (every candidate model, every attempt, all timing out) past a safe
+# ceiling — 600s leaves headroom under the 20-minute job budget for GH
+# Actions setup, rendering, and the video-container poll.
+_worst_case_gemini_seconds = (1 + len(CONTENT_MODEL_FALLBACKS)) * (
+    GEMINI_RETRY_ATTEMPTS * (GEMINI_HTTP_TIMEOUT_MS / 1000)
+    + (GEMINI_RETRY_ATTEMPTS - 1) * GEMINI_RETRY_MAX_DELAY_SECONDS
+)
+assert _worst_case_gemini_seconds <= 600, (
+    "worst-case Gemini time across the full model-fallback cascade must stay well under "
+    "the 20-minute scheduled-content.yml job budget, which also needs room for GH Actions "
+    "setup + rendering + up to 600s of Instagram video-container polling afterward -- "
+    "see the comment above before raising GEMINI_RETRY_ATTEMPTS/GEMINI_HTTP_TIMEOUT_MS"
+)
+
+# ---------------------------------------------------------------------------
 # Instagram Graph API limits (verify against current docs at deploy time —
 # these are the researched 2026 values, and Graph API specifics drift).
 # ---------------------------------------------------------------------------

@@ -60,6 +60,7 @@ jobs:
         run: ffmpeg -version || (sudo apt-get update && sudo apt-get install -y ffmpeg)
 
       - name: Generate and publish
+        timeout-minutes: 15
         run: |
           uv run python scripts/manual_post_once.py --format "${{ github.event_name == 'workflow_dispatch' && inputs.format || 'auto' }}"
 

@@ -3,8 +3,10 @@ from __future__ import annotations
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
+import httpx
 from google.genai import errors
 
+from asma.config import GEMINI_HTTP_TIMEOUT_MS, GEMINI_RETRY_ATTEMPTS
 from asma.content import trend_research
 
 
@@ -31,6 +33,30 @@ def test_research_trending_history_topics_success(monkeypatch):
     client = _fake_client(text="Mansa Musa content is trending this week.")
     summary = trend_research.research_trending_history_topics(client)
     assert summary == "Mansa Musa content is trending this week."
+
+
+def test_research_trending_history_topics_sets_bounded_timeout_and_retry_options(monkeypatch):
+    monkeypatch.setattr(trend_research, "DRY_RUN", False)
+    client = _fake_client()
+    trend_research.research_trending_history_topics(client)
+    used_config = client.models.generate_content.call_args.kwargs["config"]
+    assert used_config.http_options.timeout == GEMINI_HTTP_TIMEOUT_MS
+    assert used_config.http_options.retry_options.attempts == GEMINI_RETRY_ATTEMPTS
+
+
+def test_research_trending_history_topics_falls_back_on_connection_reset(monkeypatch):
+    """A mid-response connection reset gets the same graceful-fallback
+    treatment as a 429/refusal — never worth taking down the whole run
+    over a nice-to-have weekly signal."""
+    monkeypatch.setattr(trend_research, "DRY_RUN", False)
+    client = MagicMock()
+    client.models.generate_content.side_effect = httpx.RemoteProtocolError(
+        "Server disconnected without sending a response"
+    )
+
+    summary = trend_research.research_trending_history_topics(client)
+
+    assert summary == trend_research._FALLBACK_SUMMARY
 
 
 def test_research_trending_history_topics_falls_back_on_429(monkeypatch):

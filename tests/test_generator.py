@@ -3,10 +3,11 @@ from __future__ import annotations
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
+import httpx
 import pytest
 from google.genai import errors
 
-from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS
+from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS, GEMINI_HTTP_TIMEOUT_MS, GEMINI_RETRY_ATTEMPTS
 from asma.content import generator
 from asma.models import CommentAnswerJudgement, CommentReply, HookStyle, QuizCard
 
@@ -188,6 +189,67 @@ def test_generate_quiz_card_does_not_fall_back_on_non_404_client_error():
 
     with pytest.raises(errors.ClientError):
         generator.generate_quiz_card(client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM)
+
+    client.models.generate_content.assert_called_once()
+
+
+def test_generate_quiz_card_sets_bounded_timeout_and_retry_options(sample_quiz_card):
+    """Every Gemini call must carry a bounded timeout + the SDK's own
+    (off-by-default) retry — a real production run hung the full 20-minute
+    GH Actions job timeout with none of this configured."""
+    client = _fake_client(parsed=sample_quiz_card)
+    generator.generate_quiz_card(
+        client, topic_id=sample_quiz_card.topic_id, country=sample_quiz_card.country, seed_angle="s",
+        hook=HookStyle.STAT_LED,
+    )
+    used_config = client.models.generate_content.call_args.kwargs["config"]
+    assert used_config.http_options.timeout == GEMINI_HTTP_TIMEOUT_MS
+    assert used_config.http_options.retry_options.attempts == GEMINI_RETRY_ATTEMPTS
+
+
+def test_generate_quiz_card_falls_back_to_next_model_on_connection_reset(sample_quiz_card):
+    """A mid-response connection reset (seen twice in production logs) is
+    just as fallback-worthy as a 503 — it's a transport failure, never
+    evidence a specific model is broken."""
+    client = MagicMock()
+    candidate = SimpleNamespace(finish_reason="STOP")
+    success_response = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=sample_quiz_card)
+    client.models.generate_content.side_effect = [
+        httpx.RemoteProtocolError("Server disconnected without sending a response"),
+        success_response,
+    ]
+
+    card = generator.generate_quiz_card(
+        client, topic_id=sample_quiz_card.topic_id, country=sample_quiz_card.country, seed_angle="s",
+        hook=HookStyle.STAT_LED,
+    )
+
+    assert card.answer == sample_quiz_card.answer
+    assert client.models.generate_content.call_count == 2
+
+
+def test_generate_quiz_card_raises_when_every_model_hits_connection_reset():
+    client = MagicMock()
+    client.models.generate_content.side_effect = httpx.RemoteProtocolError(
+        "Server disconnected without sending a response"
+    )
+
+    with pytest.raises(generator.GenerationError, match="unavailable"):
+        generator.generate_quiz_card(client, topic_id="t", country="c", seed_angle="s", hook=HookStyle.BOLD_CLAIM)
+
+    assert client.models.generate_content.call_count == 1 + len(CONTENT_MODEL_FALLBACKS)
+
+
+def test_judge_comment_answer_raises_generation_error_on_connection_reset_with_no_fallback():
+    """REPLY_MODEL has no configured fallbacks — a connection reset there
+    should abort cleanly, same as the 503 case."""
+    client = MagicMock()
+    client.models.generate_content.side_effect = httpx.RemoteProtocolError(
+        "Server disconnected without sending a response"
+    )
+
+    with pytest.raises(generator.GenerationError, match="unavailable"):
+        generator.judge_comment_answer(client, comment_text="x", correct_answer="y", question="q")
 
     client.models.generate_content.assert_called_once()
 

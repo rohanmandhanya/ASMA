@@ -35,6 +35,7 @@ source = { editable = "." }
 dependencies = [
     { name = "boto3" },
     { name = "google-genai" },
+    { name = "httpx" },
     { name = "jinja2" },
     { name = "piper-tts" },
     { name = "playwright" },
@@ -54,6 +55,7 @@ dev = [
 requires-dist = [
     { name = "boto3", specifier = ">=1.43.42" },
     { name = "google-genai", specifier = ">=2.11.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "piper-tts", specifier = ">=1.4.2" },
     { name = "playwright", specifier = ">=1.61.0" },

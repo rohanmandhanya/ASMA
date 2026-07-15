@@ -11,10 +11,12 @@ from __future__ import annotations
 
 import logging
 
+import httpx
 from google import genai
 from google.genai import errors, types
 
 from asma.config import CONTENT_MODEL, DRY_RUN
+from asma.content.generator import gemini_http_options
 from asma.content.prompts import trend_research_prompt
 
 logger = logging.getLogger(__name__)
@@ -34,13 +36,18 @@ def research_trending_history_topics(client: genai.Client) -> str:
         response = client.models.generate_content(
             model=CONTENT_MODEL,
             contents=trend_research_prompt(),
-            config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())]),
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search=types.GoogleSearch())],
+                http_options=gemini_http_options(),
+            ),
         )
-    except errors.APIError as exc:
+    except (errors.APIError, httpx.TimeoutException, httpx.ConnectError, httpx.RemoteProtocolError) as exc:
         # Google Search grounding can be unavailable on some tiers/quotas
         # (e.g. 429 RESOURCE_EXHAUSTED) even when plain generate_content
         # calls work fine — this signal is a nice-to-have, never worth
-        # taking down the whole scheduled-content run over.
+        # taking down the whole scheduled-content run over. The httpx
+        # transport errors (timeout, connection drop, mid-response reset)
+        # get the same treatment for the same reason.
         logger.warning("trend_research: Gemini API call failed (%s); falling back", exc)
         return _FALLBACK_SUMMARY
 

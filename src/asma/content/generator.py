@@ -22,11 +22,20 @@ from __future__ import annotations
 
 import logging
 
+import httpx
 from google import genai
 from google.genai import errors, types
 from pydantic import BaseModel, Field
 
-from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS, REPLY_MODEL
+from asma.config import (
+    CONTENT_MODEL,
+    CONTENT_MODEL_FALLBACKS,
+    GEMINI_HTTP_TIMEOUT_MS,
+    GEMINI_RETRY_ATTEMPTS,
+    GEMINI_RETRY_INITIAL_DELAY_SECONDS,
+    GEMINI_RETRY_MAX_DELAY_SECONDS,
+    REPLY_MODEL,
+)
 from asma.content.prompts import (
     ANSWER_JUDGE_SYSTEM_PROMPT,
     COMMENT_REPLY_FACT_SHARE_SYSTEM_PROMPT,
@@ -118,6 +127,23 @@ class _CommentAnswerJudgementSchema(BaseModel):
     )
 
 
+def gemini_http_options() -> types.HttpOptions:
+    """Shared HTTP resilience config for every direct Gemini call in this
+    project — bounds a stalled connection to GEMINI_HTTP_TIMEOUT_MS instead
+    of hanging indefinitely (httpx's default with timeout=None — the cause
+    of the 2026-07-15 20-minute job hang), and enables the SDK's built-in
+    tenacity retry (off by default) with deliberately tight values — see
+    config.py's worst-case cascade math."""
+    return types.HttpOptions(
+        timeout=GEMINI_HTTP_TIMEOUT_MS,
+        retry_options=types.HttpRetryOptions(
+            attempts=GEMINI_RETRY_ATTEMPTS,
+            initial_delay=GEMINI_RETRY_INITIAL_DELAY_SECONDS,
+            max_delay=GEMINI_RETRY_MAX_DELAY_SECONDS,
+        ),
+    )
+
+
 def _generate(
     client: genai.Client, *, model: str, system: str, user_content: str, schema: type[BaseModel]
 ) -> BaseModel:
@@ -135,16 +161,20 @@ def _generate(
                     system_instruction=system,
                     response_mime_type="application/json",
                     response_schema=schema,
+                    http_options=gemini_http_options(),
                 ),
             )
             break
-        except (errors.ServerError, errors.ClientError) as exc:
+        except (errors.ServerError, errors.ClientError, httpx.TimeoutException, httpx.ConnectError, httpx.RemoteProtocolError) as exc:
             # A 404 is exactly as fallback-worthy as a 503 — seen twice
             # now: a typo'd model name, then a real model (gemini-2.5-flash-lite)
             # that's simply sunset for new API keys despite still being
             # listed in ListModels. Any other ClientError (bad request,
             # safety block, quota) isn't something switching models fixes
-            # reliably, so it still raises immediately as before.
+            # reliably, so it still raises immediately as before. The httpx
+            # transport errors (timeout, connection drop, mid-response
+            # reset) are never evidence a specific model is broken, so they
+            # always fall through to the fallback cascade below.
             if isinstance(exc, errors.ClientError) and exc.code != 404:
                 raise
             is_last = i == len(candidate_models) - 1

@@ -15,6 +15,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
+import httpx
 from google.genai import errors
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -73,6 +74,31 @@ def test_country_fact_reel_publishes_end_to_end_when_primary_model_is_overloaded
 
     assert record is not None
     assert record.format == ContentFormat.COUNTRY_FACT_REEL
+    assert record.ig_media_id == "DRYRUN_MEDIA_0000000000"
+    assert client.models.generate_content.call_count == 2
+
+
+def test_quiz_carousel_publishes_end_to_end_when_primary_model_hits_connection_reset(sample_quiz_card, monkeypatch):
+    """Same recovery path as the 503 case above, but for a mid-response
+    connection reset (httpx.RemoteProtocolError) — seen twice in production
+    logs and, unlike a 503, never covered by the SDK's own retry predicate,
+    so this project's own fallback cascade is the only thing that catches it."""
+    import manual_post_once
+
+    monkeypatch.setattr(manual_post_once, "is_trend_research_due", lambda: False)
+
+    client = MagicMock()
+    candidate = SimpleNamespace(finish_reason="STOP")
+    success = SimpleNamespace(candidates=[candidate], prompt_feedback=None, parsed=sample_quiz_card)
+    client.models.generate_content.side_effect = [
+        httpx.RemoteProtocolError("Server disconnected without sending a response"),
+        success,
+    ]
+
+    record = manual_post_once._publish_carousel(client, will_attach_story=False)
+
+    assert record is not None
+    assert record.format == ContentFormat.QUIZ_CAROUSEL
     assert record.ig_media_id == "DRYRUN_MEDIA_0000000000"
     assert client.models.generate_content.call_count == 2
 
