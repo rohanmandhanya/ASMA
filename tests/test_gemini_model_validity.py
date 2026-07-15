@@ -19,6 +19,7 @@ import os
 
 import pytest
 from google import genai
+from google.genai import errors
 
 from asma.config import CONTENT_MODEL, CONTENT_MODEL_FALLBACKS, REPLY_MODEL
 
@@ -38,5 +39,16 @@ def test_configured_model_exists_and_is_callable(real_client, model):
     """Not just "is in ListModels" — gemini-2.5-flash appears there too and
     still 404s as 'no longer available to new users'. A real generateContent
     call is the only thing that actually proves a model works on this key."""
-    response = real_client.models.generate_content(model=model, contents="Reply with exactly: OK")
+    try:
+        response = real_client.models.generate_content(model=model, contents="Reply with exactly: OK")
+    except errors.ServerError as exc:
+        # A 503 means Google recognized the model name and tried to route
+        # to it — it's just momentarily overloaded, which is a real,
+        # recurring condition (see config.py's CONTENT_MODEL_FALLBACKS
+        # comment) and not evidence of a config mistake. A 404 (invalid
+        # name, wrong tier) would raise ClientError instead and still
+        # fails this test for real — that's the actual bug class this
+        # test exists to catch, not transient capacity.
+        pytest.skip(f"{model} is temporarily overloaded, inconclusive: {exc}")
+        return
     assert response.text

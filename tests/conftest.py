@@ -1,10 +1,30 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import pytest
 
 os.environ.setdefault("DRY_RUN", "true")
+
+
+def _load_gemini_key_from_dotenv() -> None:
+    """So the live-Gemini tests (test_gemini_model_validity.py) can run
+    locally without manually `source .env` first. Never overrides a real
+    env var that's already set (e.g. a CI secret) — only fills the gap."""
+    if os.environ.get("GEMINI_API_KEY"):
+        return
+    env_file = Path(__file__).resolve().parent.parent / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if line.startswith("GEMINI_API_KEY="):
+            os.environ["GEMINI_API_KEY"] = line.split("=", 1)[1]
+            return
+
+
+_load_gemini_key_from_dotenv()
 
 
 @pytest.fixture(autouse=True)
