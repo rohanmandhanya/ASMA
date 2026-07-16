@@ -23,12 +23,15 @@
     },
     "Television": {
       "last_used_at": "2026-07-14T08:31:47.071470+00:00"
+    },
+    "Yemen": {
+      "last_used_at": "2026-07-16T22:19:00.635730+00:00"
     }
   },
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-16T11:16:33.554949+00:00"
+      "last_used_at": "2026-07-16T22:19:00.635730+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -77,6 +80,11 @@
     "tv_sesame_street_puppet_origin": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T08:31:47.071470+00:00",
+      "times_used": 1
+    },
+    "yemen_queen_of_sheba_legends": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-16T22:19:00.635730+00:00",
       "times_used": 1
     }
   }
