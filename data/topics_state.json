@@ -9,6 +9,9 @@
     "Mongolia": {
       "last_used_at": "2026-07-14T02:04:55.758648+00:00"
     },
+    "Morocco": {
+      "last_used_at": "2026-07-16T08:38:37.676978+00:00"
+    },
     "Movies": {
       "last_used_at": "2026-07-16T03:40:27.969259+00:00"
     },
@@ -22,7 +25,7 @@
   "hooks": {
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-16T03:40:27.969259+00:00"
+      "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -42,6 +45,11 @@
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T02:04:55.758648+00:00",
+      "times_used": 1
+    },
+    "morocco_fez_oldest_university": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-16T08:38:37.676978+00:00",
       "times_used": 1
     },
     "movie_lotr_new_zealand_shoot": {
