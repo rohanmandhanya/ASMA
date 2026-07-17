@@ -24,6 +24,9 @@
     "Sudan": {
       "last_used_at": "2026-07-16T11:16:33.554949+00:00"
     },
+    "Switzerland": {
+      "last_used_at": "2026-07-17T14:09:33.927697+00:00"
+    },
     "Television": {
       "last_used_at": "2026-07-17T03:38:39.524005+00:00"
     },
@@ -42,7 +45,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-14T08:31:47.071470+00:00"
+      "last_used_at": "2026-07-17T14:09:33.927697+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -83,6 +86,11 @@
     "sudan_nubian_pyramids": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T11:16:33.554949+00:00",
+      "times_used": 1
+    },
+    "switzerland_permanent_neutrality": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-17T14:09:33.927697+00:00",
       "times_used": 1
     },
     "tv_breaking_bad_pilot_rejections": {
