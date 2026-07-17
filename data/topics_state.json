@@ -18,6 +18,9 @@
     "Movies": {
       "last_used_at": "2026-07-16T03:40:27.969259+00:00"
     },
+    "Peru": {
+      "last_used_at": "2026-07-17T19:37:07.054082+00:00"
+    },
     "Portugal": {
       "last_used_at": "2026-07-15T19:42:29.876244+00:00"
     },
@@ -41,7 +44,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-16T08:38:37.676978+00:00"
+      "last_used_at": "2026-07-17T19:37:07.054082+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -76,6 +79,11 @@
     "movie_lotr_new_zealand_shoot": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T03:40:27.969259+00:00",
+      "times_used": 1
+    },
+    "peru_inca_quipu_records": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-17T19:37:07.054082+00:00",
       "times_used": 1
     },
     "portugal_navigation_techniques": {
