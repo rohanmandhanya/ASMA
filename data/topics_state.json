@@ -31,7 +31,7 @@
       "last_used_at": "2026-07-17T14:09:33.927697+00:00"
     },
     "Television": {
-      "last_used_at": "2026-07-17T03:38:39.524005+00:00"
+      "last_used_at": "2026-07-18T03:36:33.557920+00:00"
     },
     "Yemen": {
       "last_used_at": "2026-07-16T22:19:00.635730+00:00"
@@ -52,7 +52,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-15T22:15:57.656670+00:00"
+      "last_used_at": "2026-07-18T03:36:33.557920+00:00"
     }
   },
   "topics": {
@@ -104,6 +104,11 @@
     "tv_breaking_bad_pilot_rejections": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-17T03:38:39.524005+00:00",
+      "times_used": 1
+    },
+    "tv_i_love_lucy_multicam_invention": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-18T03:36:33.557920+00:00",
       "times_used": 1
     },
     "tv_sesame_street_puppet_origin": {
