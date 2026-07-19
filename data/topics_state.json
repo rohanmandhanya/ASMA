@@ -24,6 +24,9 @@
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
     },
+    "Norway": {
+      "last_used_at": "2026-07-19T19:36:04.529869+00:00"
+    },
     "Peru": {
       "last_used_at": "2026-07-17T19:37:07.054082+00:00"
     },
@@ -53,7 +56,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-19T13:57:10.404086+00:00"
+      "last_used_at": "2026-07-19T19:36:04.529869+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -98,6 +101,11 @@
     "movie_lotr_new_zealand_shoot": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T03:40:27.969259+00:00",
+      "times_used": 1
+    },
+    "norway_viking_navigation": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-19T19:36:04.529869+00:00",
       "times_used": 1
     },
     "peru_inca_quipu_records": {
