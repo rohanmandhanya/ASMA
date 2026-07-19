@@ -19,7 +19,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-07-16T03:40:27.969259+00:00"
+      "last_used_at": "2026-07-19T22:15:02.778275+00:00"
     },
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
@@ -64,7 +64,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-18T19:35:59.167802+00:00"
+      "last_used_at": "2026-07-19T22:15:02.778275+00:00"
     }
   },
   "topics": {
@@ -101,6 +101,11 @@
     "movie_lotr_new_zealand_shoot": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T03:40:27.969259+00:00",
+      "times_used": 1
+    },
+    "movie_psycho_shower_scene_takes": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-19T22:15:02.778275+00:00",
       "times_used": 1
     },
     "norway_viking_navigation": {
