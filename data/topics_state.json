@@ -30,6 +30,9 @@
     "Portugal": {
       "last_used_at": "2026-07-15T19:42:29.876244+00:00"
     },
+    "Sports": {
+      "last_used_at": "2026-07-19T13:57:10.404086+00:00"
+    },
     "Sudan": {
       "last_used_at": "2026-07-16T11:16:33.554949+00:00"
     },
@@ -50,7 +53,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-18T16:14:58.317918+00:00"
+      "last_used_at": "2026-07-19T13:57:10.404086+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -105,6 +108,11 @@
     "portugal_navigation_techniques": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-15T19:42:29.876244+00:00",
+      "times_used": 1
+    },
+    "sport_first_modern_olympics_1896": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-19T13:57:10.404086+00:00",
       "times_used": 1
     },
     "sudan_nubian_pyramids": {
