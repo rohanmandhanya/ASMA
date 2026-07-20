@@ -6,6 +6,9 @@
     "Guatemala": {
       "last_used_at": "2026-07-18T08:12:55.277528+00:00"
     },
+    "Haiti": {
+      "last_used_at": "2026-07-20T04:08:28.425989+00:00"
+    },
     "Italy": {
       "last_used_at": "2026-07-17T08:32:36.919260+00:00"
     },
@@ -52,7 +55,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-18T08:12:55.277528+00:00"
+      "last_used_at": "2026-07-20T04:08:28.425989+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -76,6 +79,11 @@
     "guatemala_maya_calendar_precision": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-18T08:12:55.277528+00:00",
+      "times_used": 1
+    },
+    "haiti_first_slave_revolt_nation": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-20T04:08:28.425989+00:00",
       "times_used": 1
     },
     "italy_roman_concrete_durability": {
