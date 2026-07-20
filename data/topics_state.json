@@ -16,7 +16,7 @@
       "last_used_at": "2026-07-15T22:15:57.656670+00:00"
     },
     "Mongolia": {
-      "last_used_at": "2026-07-14T02:04:55.758648+00:00"
+      "last_used_at": "2026-07-20T09:37:59.113746+00:00"
     },
     "Morocco": {
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
@@ -59,7 +59,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-19T19:36:04.529869+00:00"
+      "last_used_at": "2026-07-20T09:37:59.113746+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -99,6 +99,11 @@
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-14T02:04:55.758648+00:00",
+      "times_used": 1
+    },
+    "mongolia_yam_relay": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-20T09:37:59.113746+00:00",
       "times_used": 1
     },
     "morocco_fez_oldest_university": {
