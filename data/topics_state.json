@@ -9,6 +9,9 @@
     "Haiti": {
       "last_used_at": "2026-07-20T04:08:28.425989+00:00"
     },
+    "Iran": {
+      "last_used_at": "2026-07-20T14:36:06.598115+00:00"
+    },
     "Italy": {
       "last_used_at": "2026-07-17T08:32:36.919260+00:00"
     },
@@ -67,7 +70,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-19T22:15:02.778275+00:00"
+      "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     }
   },
   "topics": {
@@ -84,6 +87,11 @@
     "haiti_first_slave_revolt_nation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T04:08:28.425989+00:00",
+      "times_used": 1
+    },
+    "iran_cyrus_cylinder": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-20T14:36:06.598115+00:00",
       "times_used": 1
     },
     "italy_roman_concrete_durability": {
