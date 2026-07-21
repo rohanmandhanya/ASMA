@@ -31,7 +31,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-07-19T22:15:02.778275+00:00"
+      "last_used_at": "2026-07-21T14:23:56.125382+00:00"
     },
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
@@ -67,7 +67,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-20T22:14:55.454584+00:00"
+      "last_used_at": "2026-07-21T14:23:56.125382+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -146,6 +146,11 @@
     "movie_psycho_shower_scene_takes": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-19T22:15:02.778275+00:00",
+      "times_used": 1
+    },
+    "movie_star_wars_practical_models": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-21T14:23:56.125382+00:00",
       "times_used": 1
     },
     "norway_viking_navigation": {
