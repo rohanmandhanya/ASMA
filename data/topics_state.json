@@ -36,6 +36,9 @@
     "Norway": {
       "last_used_at": "2026-07-19T19:36:04.529869+00:00"
     },
+    "Papua New Guinea": {
+      "last_used_at": "2026-07-21T03:46:31.805377+00:00"
+    },
     "Peru": {
       "last_used_at": "2026-07-17T19:37:07.054082+00:00"
     },
@@ -69,7 +72,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-17T14:09:33.927697+00:00"
+      "last_used_at": "2026-07-21T03:46:31.805377+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -140,6 +143,11 @@
     "norway_viking_navigation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-19T19:36:04.529869+00:00",
+      "times_used": 1
+    },
+    "papua_new_guinea_language_diversity": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-21T03:46:31.805377+00:00",
       "times_used": 1
     },
     "peru_inca_quipu_records": {
