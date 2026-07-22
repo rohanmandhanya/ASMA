@@ -15,6 +15,9 @@
     "Haiti": {
       "last_used_at": "2026-07-20T04:08:28.425989+00:00"
     },
+    "Hungary": {
+      "last_used_at": "2026-07-22T14:24:46.690977+00:00"
+    },
     "Iran": {
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
@@ -81,7 +84,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-21T03:46:31.805377+00:00"
+      "last_used_at": "2026-07-22T14:24:46.690977+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -112,6 +115,11 @@
     "haiti_first_slave_revolt_nation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T04:08:28.425989+00:00",
+      "times_used": 1
+    },
+    "hungary_thermal_bath_history": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-22T14:24:46.690977+00:00",
       "times_used": 1
     },
     "iran_cyrus_cylinder": {
