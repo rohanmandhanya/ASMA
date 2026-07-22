@@ -24,6 +24,9 @@
     "Lebanon": {
       "last_used_at": "2026-07-20T22:14:55.454584+00:00"
     },
+    "Malta": {
+      "last_used_at": "2026-07-22T11:24:24.407235+00:00"
+    },
     "Mexico": {
       "last_used_at": "2026-07-15T22:15:57.656670+00:00"
     },
@@ -82,7 +85,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-21T19:54:24.536187+00:00"
+      "last_used_at": "2026-07-22T11:24:24.407235+00:00"
     }
   },
   "topics": {
@@ -124,6 +127,11 @@
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T22:14:55.454584+00:00",
+      "times_used": 1
+    },
+    "malta_hypogeum_underground": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-22T11:24:24.407235+00:00",
       "times_used": 1
     },
     "mexico_maya_underground_reservoirs": {
