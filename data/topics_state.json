@@ -43,7 +43,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-07-21T14:23:56.125382+00:00"
+      "last_used_at": "2026-07-23T03:47:51.197052+00:00"
     },
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
@@ -87,7 +87,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-22T14:24:46.690977+00:00"
+      "last_used_at": "2026-07-23T03:47:51.197052+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -168,6 +168,11 @@
     "morocco_fez_oldest_university": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T08:38:37.676978+00:00",
+      "times_used": 1
+    },
+    "movie_jaws_mechanical_shark": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-23T03:47:51.197052+00:00",
       "times_used": 1
     },
     "movie_lotr_new_zealand_shoot": {
