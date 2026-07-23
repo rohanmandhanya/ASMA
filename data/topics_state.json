@@ -57,6 +57,9 @@
     "Peru": {
       "last_used_at": "2026-07-17T19:37:07.054082+00:00"
     },
+    "Philippines": {
+      "last_used_at": "2026-07-23T11:26:17.720282+00:00"
+    },
     "Portugal": {
       "last_used_at": "2026-07-15T19:42:29.876244+00:00"
     },
@@ -91,7 +94,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-22T11:24:24.407235+00:00"
+      "last_used_at": "2026-07-23T11:26:17.720282+00:00"
     }
   },
   "topics": {
@@ -203,6 +206,11 @@
     "peru_inca_quipu_records": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-17T19:37:07.054082+00:00",
+      "times_used": 1
+    },
+    "philippines_precolonial_trade": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-23T11:26:17.720282+00:00",
       "times_used": 1
     },
     "portugal_navigation_techniques": {
