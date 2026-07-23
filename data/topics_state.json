@@ -73,7 +73,7 @@
       "last_used_at": "2026-07-17T14:09:33.927697+00:00"
     },
     "Television": {
-      "last_used_at": "2026-07-18T19:35:59.167802+00:00"
+      "last_used_at": "2026-07-23T14:38:55.633097+00:00"
     },
     "Yemen": {
       "last_used_at": "2026-07-16T22:19:00.635730+00:00"
@@ -86,7 +86,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-22T19:53:53.403177+00:00"
+      "last_used_at": "2026-07-23T14:38:55.633097+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -246,6 +246,11 @@
     "tv_friends_central_perk_couch": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-18T19:35:59.167802+00:00",
+      "times_used": 1
+    },
+    "tv_got_battle_of_winterfell_production": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-23T14:38:55.633097+00:00",
       "times_used": 1
     },
     "tv_i_love_lucy_multicam_invention": {
