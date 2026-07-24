@@ -43,7 +43,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-07-23T22:18:19.007605+00:00"
+      "last_used_at": "2026-07-24T03:47:50.000937+00:00"
     },
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
@@ -94,7 +94,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-23T11:26:17.720282+00:00"
+      "last_used_at": "2026-07-24T03:47:50.000937+00:00"
     }
   },
   "topics": {
@@ -196,6 +196,11 @@
     "movie_titanic_budget_overrun": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-23T22:18:19.007605+00:00",
+      "times_used": 1
+    },
+    "movie_wizard_of_oz_ruby_slippers": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-24T03:47:50.000937+00:00",
       "times_used": 1
     },
     "norway_viking_navigation": {
