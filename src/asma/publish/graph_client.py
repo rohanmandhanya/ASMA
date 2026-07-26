@@ -67,6 +67,12 @@ class ContainerNotReadyError(RuntimeError):
 
 _RATE_LIMIT_ERROR_CODE = 4
 _PHANTOM_POST_LOOKBACK_SECONDS = 180  # generous vs. the ~40-60s the retry loop above already spent
+# Meta's write (the publish) and read (the media list) endpoints aren't
+# guaranteed instantly consistent. This only matters on error paths that
+# _request() never retried (e.g. the code -1 "Fatal" case) -- those reach
+# the reconciliation check with zero elapsed delay, unlike the rate-limit
+# path which already spent ~40-60s across its own retries first.
+_PHANTOM_POST_RECONCILE_DELAY_SECONDS = 5
 
 
 @dataclass
@@ -210,6 +216,7 @@ def _find_recently_published_media() -> str | None:
     within seconds of our own attempt, so Meta not exposing a stronger
     correlation key here isn't a real problem in practice."""
     try:
+        time.sleep(_PHANTOM_POST_RECONCILE_DELAY_SECONDS)
         resp = requests.request(
             "GET",
             f"{GRAPH_API_BASE}/{IG_BUSINESS_ACCOUNT_ID}/media",

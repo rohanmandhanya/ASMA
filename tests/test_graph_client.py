@@ -126,6 +126,7 @@ def test_request_raises_rate_limit_error_after_exhausting_retries(monkeypatch):
     monkeypatch.setattr(graph_client, "DRY_RUN", False)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+    monkeypatch.setattr(graph_client, "_PHANTOM_POST_RECONCILE_DELAY_SECONDS", 0)
 
     rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
     call_count = 0
@@ -157,6 +158,7 @@ def test_publish_container_recovers_phantom_success(monkeypatch):
     monkeypatch.setattr(graph_client, "DRY_RUN", False)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+    monkeypatch.setattr(graph_client, "_PHANTOM_POST_RECONCILE_DELAY_SECONDS", 0)
 
     rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
     recent_media = _FakeResponse(
@@ -182,6 +184,7 @@ def test_publish_container_recovers_from_non_rate_limit_error_too(monkeypatch):
     tight recency window in _find_recently_published_media is what keeps
     this safe, not which error code triggered it."""
     monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    monkeypatch.setattr(graph_client, "_PHANTOM_POST_RECONCILE_DELAY_SECONDS", 0)
 
     generic_error = _FakeResponse(
         400, {"error": {"code": -1, "message": "Fatal", "error_subcode": 2207085, "error_user_title": "Generic Internal Error"}}
@@ -207,6 +210,7 @@ def test_publish_container_raises_when_no_recent_post_found(monkeypatch):
     monkeypatch.setattr(graph_client, "DRY_RUN", False)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
     monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+    monkeypatch.setattr(graph_client, "_PHANTOM_POST_RECONCILE_DELAY_SECONDS", 0)
 
     rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
     old_media = _FakeResponse(
