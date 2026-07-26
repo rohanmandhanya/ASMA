@@ -174,6 +174,33 @@ def test_publish_container_recovers_phantom_success(monkeypatch):
     assert media_id == "recovered_media_id"
 
 
+def test_publish_container_recovers_from_non_rate_limit_error_too(monkeypatch):
+    """The reconciliation net is deliberately not limited to the rate-limit
+    error type -- media_publish's response has been seen lying about the
+    outcome under a completely different Meta error too (code -1, generic
+    'Fatal'/internal error), still after the post actually published. The
+    tight recency window in _find_recently_published_media is what keeps
+    this safe, not which error code triggered it."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+
+    generic_error = _FakeResponse(
+        400, {"error": {"code": -1, "message": "Fatal", "error_subcode": 2207085, "error_user_title": "Generic Internal Error"}}
+    )
+    recent_media = _FakeResponse(
+        200, {"data": [{"id": "recovered_media_id", "timestamp": datetime.now(timezone.utc).isoformat()}]}
+    )
+
+    def _fake_request(method, url, **kwargs):
+        return generic_error if "media_publish" in url else recent_media
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", _fake_request)
+
+    media_id = graph_client.publish_container("container1")
+    assert media_id == "recovered_media_id"
+
+
 def test_publish_container_raises_when_no_recent_post_found(monkeypatch):
     """If reconciliation finds nothing recently published, this is a
     genuine failure -- must not silently swallow it."""

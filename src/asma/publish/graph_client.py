@@ -232,12 +232,21 @@ def _find_recently_published_media() -> str | None:
 def publish_container(container_id: str) -> str:
     try:
         resp = _request("POST", f"{IG_BUSINESS_ACCOUNT_ID}/media_publish", params={"creation_id": container_id})
-    except GraphAPIRateLimitError:
+    except GraphAPIError as exc:
+        # Deliberately catches ANY GraphAPIError here, not just
+        # GraphAPIRateLimitError -- media_publish's response has now been
+        # seen lying about the outcome under two different Meta error
+        # codes (4 "Application request limit reached", and -1 "Fatal"/
+        # generic internal error), both after the post actually published.
+        # _find_recently_published_media()'s tight recency window is what
+        # keeps this safe, not the specific error type: if nothing new
+        # actually went out, it correctly finds nothing and this re-raises.
         recovered_id = _find_recently_published_media()
         if recovered_id is not None:
             logger.warning(
-                "publish_container: media_publish kept hitting Meta's rate limit, but a matching "
-                "recent post exists (%s) -- recovering instead of losing tracking of a live post",
+                "publish_container: media_publish returned an error (%s), but a matching recent post "
+                "exists (%s) -- recovering instead of losing tracking of a live post",
+                exc,
                 recovered_id,
             )
             return recovered_id
