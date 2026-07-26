@@ -136,6 +136,19 @@ assert _worst_case_gemini_seconds <= 600, (
 GRAPH_API_ROLLING_24H_POST_CAP = 25  # carousels + Stories + Reels share this bucket
 GRAPH_API_HOURLY_CALL_CAP = 200
 
+# Meta's generic app-level API call-volume throttle (OAuthException code 4,
+# "Application request limit reached") -- distinct from the 25-posts/24h
+# content cap above, and not the same thing as GRAPH_API_HOURLY_CALL_CAP
+# (a documented budget that nothing in this codebase actually enforces).
+# Observed repeatedly in production starting 2026-07-24, always at
+# publish_container()'s media_publish call. Meta's own response for that
+# call is unreliable under this throttle: the post has repeatedly been
+# confirmed live server-side even though the response was a 403 -- see
+# graph_client.GraphAPIRateLimitError and _find_recently_published_media,
+# which recovers those instead of losing tracking of a real, live post.
+GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS = 3
+GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS = 20
+
 # ---------------------------------------------------------------------------
 # Cadence ramp — compressed to hit target cadence by day 1, for a 7-day
 # 100-follower push (the original 13-day ramp was designed for an open-ended

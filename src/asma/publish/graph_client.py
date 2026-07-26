@@ -23,11 +23,18 @@ from __future__ import annotations
 import logging
 import time
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import requests
 
-from asma.config import DRY_RUN, IG_ACCESS_TOKEN, IG_BUSINESS_ACCOUNT_ID
+from asma.config import (
+    DRY_RUN,
+    GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS,
+    GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS,
+    IG_ACCESS_TOKEN,
+    IG_BUSINESS_ACCOUNT_ID,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -47,8 +54,19 @@ class GraphAPIError(RuntimeError):
     pass
 
 
+class GraphAPIRateLimitError(GraphAPIError):
+    """Meta's generic app-level rate limit (OAuthException code 4,
+    'Application request limit reached') survived every retry in
+    _request(). Distinct from GraphAPIError because publish_container()
+    treats it specially -- see _find_recently_published_media."""
+
+
 class ContainerNotReadyError(RuntimeError):
     """Raised if a container never reaches FINISHED within the poll timeout."""
+
+
+_RATE_LIMIT_ERROR_CODE = 4
+_PHANTOM_POST_LOOKBACK_SECONDS = 180  # generous vs. the ~40-60s the retry loop above already spent
 
 
 @dataclass
@@ -66,6 +84,13 @@ class _FakeResponse:
         return None
 
 
+def _is_app_rate_limit_error(resp: requests.Response) -> bool:
+    try:
+        return resp.json().get("error", {}).get("code") == _RATE_LIMIT_ERROR_CODE
+    except ValueError:
+        return False
+
+
 def _request(method: str, path: str, *, params: dict | None = None, json: dict | None = None) -> Any:
     params = dict(params or {})
     params.setdefault("access_token", IG_ACCESS_TOKEN)
@@ -75,10 +100,26 @@ def _request(method: str, path: str, *, params: dict | None = None, json: dict |
         return _FakeResponse(_json=_fake_response_for(path))
 
     url = path if path.startswith("http") else f"{GRAPH_API_BASE}/{path}"
-    resp = requests.request(method, url, params=params, json=json, timeout=30)
-    if resp.status_code >= 400:
+    for attempt in range(1, GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS + 1):
+        resp = requests.request(method, url, params=params, json=json, timeout=30)
+        if resp.status_code < 400:
+            return resp
+        is_rate_limit = _is_app_rate_limit_error(resp)
+        if is_rate_limit and attempt < GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS:
+            logger.warning(
+                "graph_client: %s %s hit Meta's app-level rate limit (attempt %d/%d); the action may "
+                "have already succeeded server-side despite the error response -- retrying in %ds",
+                method,
+                path,
+                attempt,
+                GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS,
+                GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS,
+            )
+            time.sleep(GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS)
+            continue
+        if is_rate_limit:
+            raise GraphAPIRateLimitError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
         raise GraphAPIError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
-    return resp
 
 
 def _redact(params: dict) -> dict:
@@ -160,8 +201,47 @@ def poll_container_until_finished(container_id: str, *, is_video: bool = False) 
     raise ContainerNotReadyError(f"container {container_id} did not finish within {timeout}s")
 
 
+def _find_recently_published_media() -> str | None:
+    """Called only after every retry in _request() has also hit Meta's
+    app-level rate limit -- checks whether the post went out anyway
+    (repeatedly confirmed in production) rather than losing tracking of a
+    real, live post. Matches on recency only: this is a single-purpose bot
+    account with no other concurrent posting source, and this check runs
+    within seconds of our own attempt, so Meta not exposing a stronger
+    correlation key here isn't a real problem in practice."""
+    try:
+        resp = requests.request(
+            "GET",
+            f"{GRAPH_API_BASE}/{IG_BUSINESS_ACCOUNT_ID}/media",
+            params={"fields": "id,timestamp", "limit": 1, "access_token": IG_ACCESS_TOKEN},
+            timeout=30,
+        )
+        if resp.status_code >= 400:
+            return None
+        data = resp.json().get("data", [])
+        if not data:
+            return None
+        published_at = datetime.fromisoformat(data[0]["timestamp"])
+        if datetime.now(timezone.utc) - published_at <= timedelta(seconds=_PHANTOM_POST_LOOKBACK_SECONDS):
+            return data[0]["id"]
+        return None
+    except Exception:  # noqa: BLE001 -- best-effort recovery; any failure here just means "can't confirm", fall through to the original error
+        return None
+
+
 def publish_container(container_id: str) -> str:
-    resp = _request("POST", f"{IG_BUSINESS_ACCOUNT_ID}/media_publish", params={"creation_id": container_id})
+    try:
+        resp = _request("POST", f"{IG_BUSINESS_ACCOUNT_ID}/media_publish", params={"creation_id": container_id})
+    except GraphAPIRateLimitError:
+        recovered_id = _find_recently_published_media()
+        if recovered_id is not None:
+            logger.warning(
+                "publish_container: media_publish kept hitting Meta's rate limit, but a matching "
+                "recent post exists (%s) -- recovering instead of losing tracking of a live post",
+                recovered_id,
+            )
+            return recovered_id
+        raise
     return resp.json()["id"]
 
 

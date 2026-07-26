@@ -1,8 +1,27 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
+
 import pytest
 
 from asma.publish import graph_client
+
+
+class _FakeResponse:
+    """Minimal stand-in for requests.Response covering everything
+    graph_client's own code touches: status_code, .json(), and .text
+    (used in error messages)."""
+
+    def __init__(self, status_code: int, body: dict) -> None:
+        self.status_code = status_code
+        self._body = body
+        self.text = str(body)
+
+    def json(self) -> dict:
+        return self._body
+
+    def raise_for_status(self) -> None:
+        return None
 
 
 def test_dry_run_never_makes_a_real_http_call(monkeypatch):
@@ -51,16 +70,131 @@ def test_dry_run_responses_are_structurally_valid(monkeypatch):
 def test_live_request_raises_on_http_error(monkeypatch):
     monkeypatch.setattr(graph_client, "DRY_RUN", False)
 
-    class _FakeErrorResponse:
-        status_code = 400
-        text = '{"error": {"message": "Invalid parameter"}}'
+    response = _FakeResponse(400, {"error": {"code": 100, "message": "Invalid parameter"}})
 
     import requests
 
-    monkeypatch.setattr(requests, "request", lambda *a, **k: _FakeErrorResponse())
+    monkeypatch.setattr(requests, "request", lambda *a, **k: response)
 
     with pytest.raises(graph_client.GraphAPIError):
         graph_client.create_image_container("https://example.invalid/x.png")
+
+
+def test_request_does_not_retry_non_rate_limit_errors(monkeypatch):
+    """Only Meta's specific app-level rate limit (code 4) is worth
+    retrying -- any other error (bad request, safety block, expired
+    token) should fail on the first attempt, not burn through retries
+    for something a retry can't fix."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    call_count = 0
+
+    def _fake_request(*args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        return _FakeResponse(400, {"error": {"code": 100, "message": "Invalid parameter"}})
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", _fake_request)
+
+    with pytest.raises(graph_client.GraphAPIError):
+        graph_client.create_image_container("https://example.invalid/x.png")
+
+    assert call_count == 1
+
+
+def test_request_retries_app_rate_limit_and_recovers(monkeypatch):
+    """Meta's app-level rate limit (code 4, 'Application request limit
+    reached') is often transient -- a retry should get a clean response
+    once it clears, rather than losing the whole run."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+
+    rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
+    success = _FakeResponse(200, {"id": "media123"})
+    responses = iter([rate_limited, success])
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", lambda *a, **k: next(responses))
+
+    media_id = graph_client.publish_container("container1")
+    assert media_id == "media123"
+
+
+def test_request_raises_rate_limit_error_after_exhausting_retries(monkeypatch):
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+
+    rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
+    call_count = 0
+
+    def _fake_request(*args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        return rate_limited
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", _fake_request)
+
+    with pytest.raises(graph_client.GraphAPIRateLimitError):
+        graph_client.publish_container("container1")
+
+    # 2 retry attempts in _request(), + 1 for publish_container()'s own
+    # reconciliation lookup (which also gets the same fake 403 here, so it
+    # correctly finds nothing to recover and re-raises).
+    assert call_count == 3
+
+
+def test_publish_container_recovers_phantom_success(monkeypatch):
+    """Meta has repeatedly been observed to actually publish successfully
+    server-side while still returning the app-rate-limit error on the
+    response -- once retries are exhausted, this must recover the real
+    media id from the account's recent media instead of losing tracking
+    of a live post."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+
+    rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
+    recent_media = _FakeResponse(
+        200, {"data": [{"id": "recovered_media_id", "timestamp": datetime.now(timezone.utc).isoformat()}]}
+    )
+
+    def _fake_request(method, url, **kwargs):
+        return rate_limited if "media_publish" in url else recent_media
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", _fake_request)
+
+    media_id = graph_client.publish_container("container1")
+    assert media_id == "recovered_media_id"
+
+
+def test_publish_container_raises_when_no_recent_post_found(monkeypatch):
+    """If reconciliation finds nothing recently published, this is a
+    genuine failure -- must not silently swallow it."""
+    monkeypatch.setattr(graph_client, "DRY_RUN", False)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS", 2)
+    monkeypatch.setattr(graph_client, "GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS", 0)
+
+    rate_limited = _FakeResponse(403, {"error": {"code": 4, "message": "Application request limit reached"}})
+    old_media = _FakeResponse(
+        200, {"data": [{"id": "old_media_id", "timestamp": (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()}]}
+    )
+
+    def _fake_request(method, url, **kwargs):
+        return rate_limited if "media_publish" in url else old_media
+
+    import requests
+
+    monkeypatch.setattr(requests, "request", _fake_request)
+
+    with pytest.raises(graph_client.GraphAPIRateLimitError):
+        graph_client.publish_container("container1")
 
 
 def test_poll_container_raises_when_never_finished(monkeypatch):
