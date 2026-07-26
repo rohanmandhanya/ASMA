@@ -81,6 +81,9 @@
     "Switzerland": {
       "last_used_at": "2026-07-17T14:09:33.927697+00:00"
     },
+    "Tanzania": {
+      "last_used_at": "2026-07-26T08:43:36.756810+00:00"
+    },
     "Television": {
       "last_used_at": "2026-07-25T14:06:27.423054+00:00"
     },
@@ -106,7 +109,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-24T03:47:50.000937+00:00"
+      "last_used_at": "2026-07-26T08:43:36.756810+00:00"
     }
   },
   "topics": {
@@ -273,6 +276,11 @@
     "switzerland_permanent_neutrality": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-17T14:09:33.927697+00:00",
+      "times_used": 1
+    },
+    "tanzania_zanzibar_spice_routes": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-26T08:43:36.756810+00:00",
       "times_used": 1
     },
     "tv_breaking_bad_pilot_rejections": {
