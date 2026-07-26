@@ -97,7 +97,13 @@ def _is_app_rate_limit_error(resp: requests.Response) -> bool:
         return False
 
 
-def _request(method: str, path: str, *, params: dict | None = None, json: dict | None = None) -> Any:
+def _request_once(method: str, path: str, *, params: dict | None = None, json: dict | None = None) -> Any:
+    """A single HTTP attempt (or the DRY_RUN fake) -- no retry. Raises
+    GraphAPIRateLimitError specifically for Meta's app-level rate limit
+    (code 4), GraphAPIError for anything else non-2xx. publish_container()
+    calls this directly instead of _request() below, since it needs its
+    own sequencing (check for a phantom success before ever retrying) --
+    everything else goes through _request()'s automatic retry."""
     params = dict(params or {})
     params.setdefault("access_token", IG_ACCESS_TOKEN)
 
@@ -106,26 +112,35 @@ def _request(method: str, path: str, *, params: dict | None = None, json: dict |
         return _FakeResponse(_json=_fake_response_for(path))
 
     url = path if path.startswith("http") else f"{GRAPH_API_BASE}/{path}"
+    resp = requests.request(method, url, params=params, json=json, timeout=30)
+    if resp.status_code < 400:
+        return resp
+    if _is_app_rate_limit_error(resp):
+        raise GraphAPIRateLimitError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
+    raise GraphAPIError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
+
+
+def _request(method: str, path: str, *, params: dict | None = None, json: dict | None = None) -> Any:
+    """Adds automatic retry-with-backoff on top of _request_once, scoped
+    to Meta's app-level rate limit (see GraphAPIRateLimitError) -- used by
+    every Graph API call except publish_container."""
     for attempt in range(1, GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS + 1):
-        resp = requests.request(method, url, params=params, json=json, timeout=30)
-        if resp.status_code < 400:
-            return resp
-        is_rate_limit = _is_app_rate_limit_error(resp)
-        if is_rate_limit and attempt < GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS:
-            logger.warning(
-                "graph_client: %s %s hit Meta's app-level rate limit (attempt %d/%d); the action may "
-                "have already succeeded server-side despite the error response -- retrying in %ds",
-                method,
-                path,
-                attempt,
-                GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS,
-                GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS,
-            )
-            time.sleep(GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS)
-            continue
-        if is_rate_limit:
-            raise GraphAPIRateLimitError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
-        raise GraphAPIError(f"{method} {path} -> {resp.status_code}: {resp.text[:500]}")
+        try:
+            return _request_once(method, path, params=params, json=json)
+        except GraphAPIRateLimitError:
+            if attempt < GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS:
+                logger.warning(
+                    "graph_client: %s %s hit Meta's app-level rate limit (attempt %d/%d); the action may "
+                    "have already succeeded server-side despite the error response -- retrying in %ds",
+                    method,
+                    path,
+                    attempt,
+                    GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS,
+                    GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS,
+                )
+                time.sleep(GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS)
+                continue
+            raise
 
 
 def _redact(params: dict) -> dict:
@@ -237,28 +252,45 @@ def _find_recently_published_media() -> str | None:
 
 
 def publish_container(container_id: str) -> str:
-    try:
-        resp = _request("POST", f"{IG_BUSINESS_ACCOUNT_ID}/media_publish", params={"creation_id": container_id})
-    except GraphAPIError as exc:
-        # Deliberately catches ANY GraphAPIError here, not just
-        # GraphAPIRateLimitError -- media_publish's response has now been
-        # seen lying about the outcome under two different Meta error
-        # codes (4 "Application request limit reached", and -1 "Fatal"/
-        # generic internal error), both after the post actually published.
-        # _find_recently_published_media()'s tight recency window is what
-        # keeps this safe, not the specific error type: if nothing new
-        # actually went out, it correctly finds nothing and this re-raises.
-        recovered_id = _find_recently_published_media()
-        if recovered_id is not None:
-            logger.warning(
-                "publish_container: media_publish returned an error (%s), but a matching recent post "
-                "exists (%s) -- recovering instead of losing tracking of a live post",
-                exc,
-                recovered_id,
-            )
-            return recovered_id
-        raise
-    return resp.json()["id"]
+    """Deliberately bypasses _request()'s automatic retry (calls
+    _request_once directly) -- media_publish's response has been observed,
+    repeatedly in production, to lie about the outcome (the post actually
+    already published server-side) under multiple different Meta error
+    codes (4 "Application request limit reached", -1 "Fatal"/generic
+    internal error). Retrying blindly risks re-submitting a container
+    that's already been consumed, so every error checks for a phantom
+    success FIRST, before ever deciding to retry -- not just once, after
+    every attempt, since a retry's own response can lie the same way."""
+    path = f"{IG_BUSINESS_ACCOUNT_ID}/media_publish"
+    params = {"creation_id": container_id}
+
+    for attempt in range(1, GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS + 1):
+        try:
+            resp = _request_once("POST", path, params=params)
+        except GraphAPIError as exc:
+            recovered_id = _find_recently_published_media()
+            if recovered_id is not None:
+                logger.warning(
+                    "publish_container: media_publish returned an error (%s), but a matching recent "
+                    "post exists (%s) -- recovering instead of retrying an already-published container",
+                    exc,
+                    recovered_id,
+                )
+                return recovered_id
+            is_rate_limit = isinstance(exc, GraphAPIRateLimitError)
+            if is_rate_limit and attempt < GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS:
+                logger.warning(
+                    "publish_container: no matching recent post found; retrying media_publish "
+                    "(attempt %d/%d) in %ds",
+                    attempt,
+                    GRAPH_API_RATE_LIMIT_RETRY_ATTEMPTS,
+                    GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS,
+                )
+                time.sleep(GRAPH_API_RATE_LIMIT_RETRY_DELAY_SECONDS)
+                continue
+            raise
+        else:
+            return resp.json()["id"]
 
 
 # ---------------------------------------------------------------------------
