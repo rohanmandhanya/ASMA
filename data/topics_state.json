@@ -76,7 +76,7 @@
       "last_used_at": "2026-07-25T19:37:57.707128+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-07-21T19:54:24.536187+00:00"
+      "last_used_at": "2026-07-27T10:14:09.975006+00:00"
     },
     "Sudan": {
       "last_used_at": "2026-07-16T11:16:33.554949+00:00"
@@ -115,7 +115,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-27T04:06:19.261827+00:00"
+      "last_used_at": "2026-07-27T10:14:09.975006+00:00"
     }
   },
   "topics": {
@@ -282,6 +282,11 @@
     "sport_first_modern_olympics_1896": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-19T13:57:10.404086+00:00",
+      "times_used": 1
+    },
+    "sport_jules_rimet_trophy_theft": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-27T10:14:09.975006+00:00",
       "times_used": 1
     },
     "sport_marathon_distance_origin": {
