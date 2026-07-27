@@ -36,6 +36,9 @@
     "Lebanon": {
       "last_used_at": "2026-07-20T22:14:55.454584+00:00"
     },
+    "Mali": {
+      "last_used_at": "2026-07-27T15:20:14.517373+00:00"
+    },
     "Malta": {
       "last_used_at": "2026-07-22T11:24:24.407235+00:00"
     },
@@ -107,7 +110,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-25T14:06:27.423054+00:00"
+      "last_used_at": "2026-07-27T15:20:14.517373+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -177,6 +180,11 @@
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T22:14:55.454584+00:00",
+      "times_used": 1
+    },
+    "mali_timbuktu_manuscripts": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-27T15:20:14.517373+00:00",
       "times_used": 1
     },
     "malta_hypogeum_underground": {
