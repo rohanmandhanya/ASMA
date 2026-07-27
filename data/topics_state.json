@@ -90,6 +90,9 @@
     "Television": {
       "last_used_at": "2026-07-25T14:06:27.423054+00:00"
     },
+    "United Kingdom": {
+      "last_used_at": "2026-07-27T04:06:19.261827+00:00"
+    },
     "Yemen": {
       "last_used_at": "2026-07-16T22:19:00.635730+00:00"
     },
@@ -112,7 +115,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-26T08:43:36.756810+00:00"
+      "last_used_at": "2026-07-27T04:06:19.261827+00:00"
     }
   },
   "topics": {
@@ -264,6 +267,11 @@
     "portugal_navigation_techniques": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-15T19:42:29.876244+00:00",
+      "times_used": 1
+    },
+    "scotland_skara_brae_age": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-27T04:06:19.261827+00:00",
       "times_used": 1
     },
     "south_africa_blombos_art": {
