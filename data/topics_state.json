@@ -88,7 +88,7 @@
       "last_used_at": "2026-07-25T19:37:57.707128+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-07-28T09:08:21.636202+00:00"
+      "last_used_at": "2026-07-29T09:13:08.261846+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-07-27T19:56:48.891881+00:00"
@@ -118,7 +118,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-28T03:38:51.748508+00:00"
+      "last_used_at": "2026-07-29T09:13:08.261846+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -312,6 +312,11 @@
     "south_africa_blombos_art": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-25T19:37:57.707128+00:00",
+      "times_used": 1
+    },
+    "sport_basketball_peach_basket_origin": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-29T09:13:08.261846+00:00",
       "times_used": 1
     },
     "sport_cricket_timeless_test_1939": {
