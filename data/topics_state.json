@@ -63,6 +63,9 @@
     "Movies": {
       "last_used_at": "2026-07-24T03:47:50.000937+00:00"
     },
+    "New Zealand": {
+      "last_used_at": "2026-07-29T14:35:27.035674+00:00"
+    },
     "Nigeria": {
       "last_used_at": "2026-07-18T16:14:58.317918+00:00"
     },
@@ -118,7 +121,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-29T09:13:08.261846+00:00"
+      "last_used_at": "2026-07-29T14:35:27.035674+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -272,6 +275,11 @@
     "movie_wizard_of_oz_ruby_slippers": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-24T03:47:50.000937+00:00",
+      "times_used": 1
+    },
+    "new_zealand_maori_navigation": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-29T14:35:27.035674+00:00",
       "times_used": 1
     },
     "norway_viking_navigation": {
