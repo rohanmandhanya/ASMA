@@ -45,6 +45,9 @@
     "Italy": {
       "last_used_at": "2026-07-17T08:32:36.919260+00:00"
     },
+    "Japan": {
+      "last_used_at": "2026-07-30T14:37:44.204159+00:00"
+    },
     "Lebanon": {
       "last_used_at": "2026-07-20T22:14:55.454584+00:00"
     },
@@ -128,7 +131,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-30T11:22:54.108743+00:00"
+      "last_used_at": "2026-07-30T14:37:44.204159+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -213,6 +216,11 @@
     "italy_roman_concrete_durability": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-17T08:32:36.919260+00:00",
+      "times_used": 1
+    },
+    "japan_edo_recycling": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-30T14:37:44.204159+00:00",
       "times_used": 1
     },
     "lebanon_phoenician_alphabet": {
