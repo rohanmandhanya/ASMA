@@ -64,7 +64,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-07-24T03:47:50.000937+00:00"
+      "last_used_at": "2026-07-30T11:22:54.108743+00:00"
     },
     "New Zealand": {
       "last_used_at": "2026-07-29T14:35:27.035674+00:00"
@@ -128,7 +128,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-30T03:31:53.521994+00:00"
+      "last_used_at": "2026-07-30T11:22:54.108743+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -262,8 +262,8 @@
     },
     "movie_lotr_new_zealand_shoot": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-16T03:40:27.969259+00:00",
-      "times_used": 1
+      "last_used_at": "2026-07-30T11:22:54.108743+00:00",
+      "times_used": 2
     },
     "movie_psycho_shower_scene_takes": {
       "ema_score": 0.5,
