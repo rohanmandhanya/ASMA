@@ -82,7 +82,7 @@
       "last_used_at": "2026-07-21T03:46:31.805377+00:00"
     },
     "Peru": {
-      "last_used_at": "2026-07-17T19:37:07.054082+00:00"
+      "last_used_at": "2026-07-30T19:54:00.688516+00:00"
     },
     "Philippines": {
       "last_used_at": "2026-07-23T11:26:17.720282+00:00"
@@ -139,7 +139,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-29T19:45:43.917373+00:00"
+      "last_used_at": "2026-07-30T19:54:00.688516+00:00"
     }
   },
   "topics": {
@@ -311,6 +311,11 @@
     "peru_inca_quipu_records": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-17T19:37:07.054082+00:00",
+      "times_used": 1
+    },
+    "peru_machu_picchu_engineering": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-30T19:54:00.688516+00:00",
       "times_used": 1
     },
     "philippines_precolonial_trade": {
