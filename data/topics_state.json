@@ -58,7 +58,7 @@
       "last_used_at": "2026-07-22T11:24:24.407235+00:00"
     },
     "Mexico": {
-      "last_used_at": "2026-07-15T22:15:57.656670+00:00"
+      "last_used_at": "2026-07-31T03:53:45.221136+00:00"
     },
     "Mongolia": {
       "last_used_at": "2026-07-26T14:01:10.575350+00:00"
@@ -127,7 +127,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-29T14:35:27.035674+00:00"
+      "last_used_at": "2026-07-31T03:53:45.221136+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -236,6 +236,11 @@
     "malta_hypogeum_underground": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-22T11:24:24.407235+00:00",
+      "times_used": 1
+    },
+    "mexico_aztec_chinampas": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-31T03:53:45.221136+00:00",
       "times_used": 1
     },
     "mexico_maya_underground_reservoirs": {
