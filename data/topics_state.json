@@ -73,7 +73,7 @@
       "last_used_at": "2026-07-29T14:35:27.035674+00:00"
     },
     "Nigeria": {
-      "last_used_at": "2026-07-18T16:14:58.317918+00:00"
+      "last_used_at": "2026-07-31T11:39:54.902546+00:00"
     },
     "Norway": {
       "last_used_at": "2026-07-19T19:36:04.529869+00:00"
@@ -131,7 +131,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-30T14:37:44.204159+00:00"
+      "last_used_at": "2026-07-31T11:39:54.902546+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -301,6 +301,11 @@
     "new_zealand_maori_navigation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-29T14:35:27.035674+00:00",
+      "times_used": 1
+    },
+    "nigeria_ife_bronze_naturalism": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-07-31T11:39:54.902546+00:00",
       "times_used": 1
     },
     "norway_viking_navigation": {
