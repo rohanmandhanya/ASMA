@@ -19,7 +19,7 @@
       "last_used_at": "2026-07-28T14:41:28.236547+00:00"
     },
     "Egypt": {
-      "last_used_at": "2026-07-22T08:46:11.957938+00:00"
+      "last_used_at": "2026-08-01T03:51:37.208862+00:00"
     },
     "Fiji": {
       "last_used_at": "2026-07-28T19:57:51.514235+00:00"
@@ -134,7 +134,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-31T11:39:54.902546+00:00"
+      "last_used_at": "2026-08-01T03:51:37.208862+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -179,6 +179,11 @@
     "egypt_rosetta_stone_decoding": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-22T08:46:11.957938+00:00",
+      "times_used": 1
+    },
+    "egypt_womens_legal_rights": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-01T03:51:37.208862+00:00",
       "times_used": 1
     },
     "fiji_pacific_star_navigation": {
