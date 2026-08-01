@@ -121,7 +121,7 @@
       "last_used_at": "2026-07-26T08:43:36.756810+00:00"
     },
     "Television": {
-      "last_used_at": "2026-08-01T08:37:33.323533+00:00"
+      "last_used_at": "2026-08-01T22:13:29.488423+00:00"
     },
     "United Kingdom": {
       "last_used_at": "2026-07-27T04:06:19.261827+00:00"
@@ -148,7 +148,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-01T19:37:15.803988+00:00"
+      "last_used_at": "2026-08-01T22:13:29.488423+00:00"
     }
   },
   "topics": {
@@ -439,8 +439,8 @@
     },
     "tv_friends_central_perk_couch": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-18T19:35:59.167802+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-01T22:13:29.488423+00:00",
+      "times_used": 2
     },
     "tv_got_battle_of_winterfell_production": {
       "ema_score": 0.5,
