@@ -108,6 +108,9 @@
     "Sudan": {
       "last_used_at": "2026-07-16T11:16:33.554949+00:00"
     },
+    "Sweden": {
+      "last_used_at": "2026-08-01T13:56:36.154257+00:00"
+    },
     "Switzerland": {
       "last_used_at": "2026-07-17T14:09:33.927697+00:00"
     },
@@ -130,7 +133,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-31T03:53:45.221136+00:00"
+      "last_used_at": "2026-08-01T13:56:36.154257+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -404,6 +407,11 @@
     "sudan_nubian_pyramids": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-16T11:16:33.554949+00:00",
+      "times_used": 1
+    },
+    "sweden_vasa_ship_disaster": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-01T13:56:36.154257+00:00",
       "times_used": 1
     },
     "switzerland_permanent_neutrality": {
