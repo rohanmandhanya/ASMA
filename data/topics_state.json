@@ -105,6 +105,9 @@
     "Portugal": {
       "last_used_at": "2026-07-15T19:42:29.876244+00:00"
     },
+    "Senegal": {
+      "last_used_at": "2026-08-02T16:16:21.287269+00:00"
+    },
     "South Africa": {
       "last_used_at": "2026-07-25T19:37:57.707128+00:00"
     },
@@ -154,7 +157,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-01T22:13:29.488423+00:00"
+      "last_used_at": "2026-08-02T16:16:21.287269+00:00"
     }
   },
   "topics": {
@@ -386,6 +389,11 @@
     "scotland_skara_brae_age": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-27T04:06:19.261827+00:00",
+      "times_used": 1
+    },
+    "senegal_goree_island_history": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-02T16:16:21.287269+00:00",
       "times_used": 1
     },
     "south_africa_blombos_art": {
