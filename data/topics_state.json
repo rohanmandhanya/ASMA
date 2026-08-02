@@ -51,6 +51,9 @@
     "Japan": {
       "last_used_at": "2026-07-30T14:37:44.204159+00:00"
     },
+    "Jordan": {
+      "last_used_at": "2026-08-02T03:55:07.686545+00:00"
+    },
     "Laos": {
       "last_used_at": "2026-07-31T19:58:43.071832+00:00"
     },
@@ -140,7 +143,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-01T03:51:37.208862+00:00"
+      "last_used_at": "2026-08-02T03:55:07.686545+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -240,6 +243,11 @@
     "japan_edo_recycling": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-30T14:37:44.204159+00:00",
+      "times_used": 1
+    },
+    "jordan_petra_water_system": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-02T03:55:07.686545+00:00",
       "times_used": 1
     },
     "laos_plain_of_jars": {
