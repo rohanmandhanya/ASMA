@@ -42,6 +42,9 @@
     "Hungary": {
       "last_used_at": "2026-07-22T14:24:46.690977+00:00"
     },
+    "Iceland": {
+      "last_used_at": "2026-08-02T10:54:29.740640+00:00"
+    },
     "Iran": {
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
@@ -143,7 +146,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-02T03:55:07.686545+00:00"
+      "last_used_at": "2026-08-02T10:54:29.740640+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -228,6 +231,11 @@
     "hungary_thermal_bath_history": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-22T14:24:46.690977+00:00",
+      "times_used": 1
+    },
+    "iceland_althing_parliament": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-02T10:54:29.740640+00:00",
       "times_used": 1
     },
     "iran_cyrus_cylinder": {
