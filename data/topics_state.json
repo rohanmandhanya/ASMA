@@ -138,6 +138,9 @@
     "United Kingdom": {
       "last_used_at": "2026-07-27T04:06:19.261827+00:00"
     },
+    "Vietnam": {
+      "last_used_at": "2026-08-03T10:09:32.437980+00:00"
+    },
     "Yemen": {
       "last_used_at": "2026-07-16T22:19:00.635730+00:00"
     },
@@ -152,7 +155,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-02T22:13:39.463710+00:00"
+      "last_used_at": "2026-08-03T10:09:32.437980+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -493,6 +496,11 @@
       "ema_score": 0.5,
       "last_used_at": "2026-07-29T19:45:43.917373+00:00",
       "times_used": 2
+    },
+    "vietnam_trung_sisters": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-03T10:09:32.437980+00:00",
+      "times_used": 1
     },
     "yemen_queen_of_sheba_legends": {
       "ema_score": 0.5,
