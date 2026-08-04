@@ -12,6 +12,9 @@
     "Azerbaijan": {
       "last_used_at": "2026-08-01T19:37:15.803988+00:00"
     },
+    "Bolivia": {
+      "last_used_at": "2026-08-04T22:32:09.686277+00:00"
+    },
     "Canada": {
       "last_used_at": "2026-07-29T03:43:09.784766+00:00"
     },
@@ -165,7 +168,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-31T19:58:43.071832+00:00"
+      "last_used_at": "2026-08-04T22:32:09.686277+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -191,6 +194,11 @@
     "benin_bronze_craftsmanship": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-18T16:14:58.317918+00:00",
+      "times_used": 1
+    },
+    "bolivia_tiwanaku_agriculture": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-04T22:32:09.686277+00:00",
       "times_used": 1
     },
     "canada_vinland_norse_settlement": {
