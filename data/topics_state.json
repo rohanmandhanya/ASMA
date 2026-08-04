@@ -51,6 +51,9 @@
     "Iran": {
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
+    "Israel": {
+      "last_used_at": "2026-08-04T09:08:24.942867+00:00"
+    },
     "Italy": {
       "last_used_at": "2026-07-17T08:32:36.919260+00:00"
     },
@@ -154,7 +157,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T03:39:42.601282+00:00"
+      "last_used_at": "2026-08-04T09:08:24.942867+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -258,6 +261,11 @@
     "iran_cyrus_cylinder": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T14:36:06.598115+00:00",
+      "times_used": 1
+    },
+    "israel_ancient_aqueduct_engineering": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-04T09:08:24.942867+00:00",
       "times_used": 1
     },
     "italy_roman_concrete_durability": {
