@@ -66,6 +66,9 @@
     "Jordan": {
       "last_used_at": "2026-08-02T03:55:07.686545+00:00"
     },
+    "Kenya": {
+      "last_used_at": "2026-08-05T14:38:23.089673+00:00"
+    },
     "Laos": {
       "last_used_at": "2026-07-31T19:58:43.071832+00:00"
     },
@@ -171,7 +174,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-05T09:06:24.541580+00:00"
+      "last_used_at": "2026-08-05T14:38:23.089673+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -292,6 +295,11 @@
     "jordan_petra_water_system": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-02T03:55:07.686545+00:00",
+      "times_used": 1
+    },
+    "kenya_rift_valley_origins": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-05T14:38:23.089673+00:00",
       "times_used": 1
     },
     "laos_plain_of_jars": {
