@@ -144,6 +144,9 @@
     "Television": {
       "last_used_at": "2026-08-01T22:13:29.488423+00:00"
     },
+    "Thailand": {
+      "last_used_at": "2026-08-05T09:06:24.541580+00:00"
+    },
     "United Kingdom": {
       "last_used_at": "2026-07-27T04:06:19.261827+00:00"
     },
@@ -168,7 +171,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T22:32:09.686277+00:00"
+      "last_used_at": "2026-08-05T09:06:24.541580+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -489,6 +492,11 @@
     "tanzania_zanzibar_spice_routes": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-26T08:43:36.756810+00:00",
+      "times_used": 1
+    },
+    "thailand_ayutthaya_trade_hub": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-05T09:06:24.541580+00:00",
       "times_used": 1
     },
     "tv_breaking_bad_pilot_rejections": {
