@@ -39,6 +39,9 @@
     "Ghana": {
       "last_used_at": "2026-07-21T08:48:59.426201+00:00"
     },
+    "Greece": {
+      "last_used_at": "2026-08-06T03:40:10.830160+00:00"
+    },
     "Guatemala": {
       "last_used_at": "2026-07-18T08:12:55.277528+00:00"
     },
@@ -169,7 +172,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T09:08:24.942867+00:00"
+      "last_used_at": "2026-08-06T03:40:10.830160+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -253,6 +256,11 @@
     "ghana_akan_gold_weights": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-21T08:48:59.426201+00:00",
+      "times_used": 1
+    },
+    "greece_antikythera_mechanism": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-06T03:40:10.830160+00:00",
       "times_used": 1
     },
     "guatemala_maya_calendar_precision": {
