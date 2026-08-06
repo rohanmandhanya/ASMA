@@ -6,6 +6,9 @@
     "Argentina": {
       "last_used_at": "2026-07-24T22:22:21.475174+00:00"
     },
+    "Armenia": {
+      "last_used_at": "2026-08-06T09:19:18.409272+00:00"
+    },
     "Australia": {
       "last_used_at": "2026-07-25T10:48:15.783988+00:00"
     },
@@ -180,7 +183,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-05T19:57:23.320655+00:00"
+      "last_used_at": "2026-08-06T09:19:18.409272+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -191,6 +194,11 @@
     "argentina_patagonia_early_settlement": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-24T22:22:21.475174+00:00",
+      "times_used": 1
+    },
+    "armenia_state_christianity": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-06T09:19:18.409272+00:00",
       "times_used": 1
     },
     "australia_firestick_farming": {
