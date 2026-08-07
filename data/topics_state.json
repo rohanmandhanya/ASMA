@@ -157,7 +157,7 @@
       "last_used_at": "2026-07-26T08:43:36.756810+00:00"
     },
     "Television": {
-      "last_used_at": "2026-08-01T22:13:29.488423+00:00"
+      "last_used_at": "2026-08-07T07:42:40.648660+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-08-05T09:06:24.541580+00:00"
@@ -189,7 +189,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T00:20:42.818288+00:00"
+      "last_used_at": "2026-08-07T07:42:40.648660+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -564,8 +564,8 @@
     },
     "tv_got_battle_of_winterfell_production": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-23T14:38:55.633097+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-07T07:42:40.648660+00:00",
+      "times_used": 2
     },
     "tv_i_love_lucy_multicam_invention": {
       "ema_score": 0.5,
