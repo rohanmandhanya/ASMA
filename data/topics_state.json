@@ -85,7 +85,7 @@
       "last_used_at": "2026-07-20T22:14:55.454584+00:00"
     },
     "Mali": {
-      "last_used_at": "2026-07-27T15:20:14.517373+00:00"
+      "last_used_at": "2026-08-07T00:20:42.818288+00:00"
     },
     "Malta": {
       "last_used_at": "2026-07-22T11:24:24.407235+00:00"
@@ -186,7 +186,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-06T09:19:18.409272+00:00"
+      "last_used_at": "2026-08-07T00:20:42.818288+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -337,6 +337,11 @@
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T22:14:55.454584+00:00",
+      "times_used": 1
+    },
+    "mali_mansa_musa_wealth": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-07T00:20:42.818288+00:00",
       "times_used": 1
     },
     "mali_timbuktu_manuscripts": {
