@@ -78,6 +78,9 @@
     "Kenya": {
       "last_used_at": "2026-08-05T14:38:23.089673+00:00"
     },
+    "Korea": {
+      "last_used_at": "2026-08-07T03:19:27.733764+00:00"
+    },
     "Laos": {
       "last_used_at": "2026-07-31T19:58:43.071832+00:00"
     },
@@ -182,7 +185,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T14:44:38.547587+00:00"
+      "last_used_at": "2026-08-07T03:19:27.733764+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -327,6 +330,11 @@
     "kenya_rift_valley_origins": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-05T14:38:23.089673+00:00",
+      "times_used": 1
+    },
+    "korea_hangul_invention": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-07T03:19:27.733764+00:00",
       "times_used": 1
     },
     "laos_plain_of_jars": {
