@@ -108,6 +108,9 @@
     "Movies": {
       "last_used_at": "2026-08-08T07:18:39.575891+00:00"
     },
+    "Nepal": {
+      "last_used_at": "2026-08-08T15:49:02.796370+00:00"
+    },
     "New Zealand": {
       "last_used_at": "2026-07-29T14:35:27.035674+00:00"
     },
@@ -194,7 +197,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T03:19:27.733764+00:00"
+      "last_used_at": "2026-08-08T15:49:02.796370+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -435,6 +438,11 @@
       "ema_score": 0.5,
       "last_used_at": "2026-08-07T13:40:45.972017+00:00",
       "times_used": 2
+    },
+    "nepal_kathmandu_urban_planning": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-08T15:49:02.796370+00:00",
+      "times_used": 1
     },
     "new_zealand_maori_navigation": {
       "ema_score": 0.5,
