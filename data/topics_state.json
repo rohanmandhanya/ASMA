@@ -120,6 +120,9 @@
     "Norway": {
       "last_used_at": "2026-07-19T19:36:04.529869+00:00"
     },
+    "Oman": {
+      "last_used_at": "2026-08-09T02:30:03.442303+00:00"
+    },
     "Papua New Guinea": {
       "last_used_at": "2026-07-21T03:46:31.805377+00:00"
     },
@@ -197,7 +200,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-08T21:49:51.430226+00:00"
+      "last_used_at": "2026-08-09T02:30:03.442303+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -457,6 +460,11 @@
     "norway_viking_navigation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-19T19:36:04.529869+00:00",
+      "times_used": 1
+    },
+    "oman_frankincense_trade": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-09T02:30:03.442303+00:00",
       "times_used": 1
     },
     "papua_new_guinea_language_diversity": {
