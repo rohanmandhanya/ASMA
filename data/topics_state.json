@@ -30,6 +30,9 @@
     "Egypt": {
       "last_used_at": "2026-08-01T03:51:37.208862+00:00"
     },
+    "Ethiopia": {
+      "last_used_at": "2026-08-09T13:20:07.742700+00:00"
+    },
     "Fiji": {
       "last_used_at": "2026-07-28T19:57:51.514235+00:00"
     },
@@ -208,7 +211,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T13:40:45.972017+00:00"
+      "last_used_at": "2026-08-09T13:20:07.742700+00:00"
     }
   },
   "topics": {
@@ -265,6 +268,11 @@
     "egypt_womens_legal_rights": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-01T03:51:37.208862+00:00",
+      "times_used": 1
+    },
+    "ethiopia_lalibela_churches": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-09T13:20:07.742700+00:00",
       "times_used": 1
     },
     "fiji_pacific_star_navigation": {
