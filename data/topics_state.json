@@ -163,7 +163,7 @@
       "last_used_at": "2026-08-08T09:58:04.869459+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-08-04T19:58:04.616468+00:00"
+      "last_used_at": "2026-08-10T13:48:01.808311+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-07-27T19:56:48.891881+00:00"
@@ -220,7 +220,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-09T13:20:07.742700+00:00"
+      "last_used_at": "2026-08-10T13:48:01.808311+00:00"
     }
   },
   "topics": {
@@ -576,8 +576,8 @@
     },
     "sport_jules_rimet_trophy_theft": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-27T10:14:09.975006+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-10T13:48:01.808311+00:00",
+      "times_used": 2
     },
     "sport_marathon_distance_origin": {
       "ema_score": 0.5,
