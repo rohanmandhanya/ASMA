@@ -3,6 +3,9 @@
     "launched_at": "2026-07-08T08:45:03.177591+00:00"
   },
   "countries": {
+    "Algeria": {
+      "last_used_at": "2026-08-10T10:39:35.486085+00:00"
+    },
     "Argentina": {
       "last_used_at": "2026-07-24T22:22:21.475174+00:00"
     },
@@ -213,7 +216,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T08:05:31.432134+00:00"
+      "last_used_at": "2026-08-10T10:39:35.486085+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -221,6 +224,11 @@
     }
   },
   "topics": {
+    "algeria_timgad_roman_grid": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-10T10:39:35.486085+00:00",
+      "times_used": 1
+    },
     "argentina_patagonia_early_settlement": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-24T22:22:21.475174+00:00",
