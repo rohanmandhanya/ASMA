@@ -36,6 +36,9 @@
     "Fiji": {
       "last_used_at": "2026-07-28T19:57:51.514235+00:00"
     },
+    "Finland": {
+      "last_used_at": "2026-08-10T08:05:31.432134+00:00"
+    },
     "France": {
       "last_used_at": "2026-08-08T02:25:53.232585+00:00"
     },
@@ -210,7 +213,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-08T07:18:39.575891+00:00"
+      "last_used_at": "2026-08-10T08:05:31.432134+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -286,6 +289,11 @@
     "fiji_pacific_star_navigation": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-28T19:57:51.514235+00:00",
+      "times_used": 1
+    },
+    "finland_sauna_culture_history": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-10T08:05:31.432134+00:00",
       "times_used": 1
     },
     "france_lascaux_cave_paintings": {
