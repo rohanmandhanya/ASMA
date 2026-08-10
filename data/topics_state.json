@@ -69,6 +69,9 @@
     "Iceland": {
       "last_used_at": "2026-08-02T10:54:29.740640+00:00"
     },
+    "India": {
+      "last_used_at": "2026-08-10T19:18:43.882117+00:00"
+    },
     "Iran": {
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
@@ -212,7 +215,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T02:38:25.789165+00:00"
+      "last_used_at": "2026-08-10T19:18:43.882117+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -347,6 +350,11 @@
     "iceland_althing_parliament": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-02T10:54:29.740640+00:00",
+      "times_used": 1
+    },
+    "india_nalanda_university": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-10T19:18:43.882117+00:00",
       "times_used": 1
     },
     "iran_cyrus_cylinder": {
