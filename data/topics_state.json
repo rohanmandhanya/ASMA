@@ -30,6 +30,9 @@
     "Czechia": {
       "last_used_at": "2026-07-28T14:41:28.236547+00:00"
     },
+    "Denmark": {
+      "last_used_at": "2026-08-11T10:11:51.249307+00:00"
+    },
     "Egypt": {
       "last_used_at": "2026-08-01T03:51:37.208862+00:00"
     },
@@ -214,7 +217,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-09T09:57:32.522875+00:00"
+      "last_used_at": "2026-08-11T10:11:51.249307+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -278,6 +281,11 @@
     "czechia_astronomical_clock": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-28T14:41:28.236547+00:00",
+      "times_used": 1
+    },
+    "denmark_jelling_stones": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-11T10:11:51.249307+00:00",
       "times_used": 1
     },
     "egypt_rosetta_stone_decoding": {
