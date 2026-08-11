@@ -126,6 +126,9 @@
     "Nepal": {
       "last_used_at": "2026-08-08T15:49:02.796370+00:00"
     },
+    "Netherlands": {
+      "last_used_at": "2026-08-11T13:46:31.293875+00:00"
+    },
     "New Zealand": {
       "last_used_at": "2026-07-29T14:35:27.035674+00:00"
     },
@@ -229,7 +232,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T04:43:51.509825+00:00"
+      "last_used_at": "2026-08-11T13:46:31.293875+00:00"
     }
   },
   "topics": {
@@ -496,6 +499,11 @@
     "nepal_kathmandu_urban_planning": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-08T15:49:02.796370+00:00",
+      "times_used": 1
+    },
+    "netherlands_tulip_mania": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-11T13:46:31.293875+00:00",
       "times_used": 1
     },
     "new_zealand_maori_navigation": {
