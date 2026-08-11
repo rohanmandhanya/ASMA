@@ -24,6 +24,9 @@
     "Canada": {
       "last_used_at": "2026-07-29T03:43:09.784766+00:00"
     },
+    "Chile": {
+      "last_used_at": "2026-08-11T19:24:47.142465+00:00"
+    },
     "Colombia": {
       "last_used_at": "2026-07-22T19:53:53.403177+00:00"
     },
@@ -228,7 +231,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T10:39:35.486085+00:00"
+      "last_used_at": "2026-08-11T19:24:47.142465+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -274,6 +277,11 @@
     "canada_vinland_norse_settlement": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-29T03:43:09.784766+00:00",
+      "times_used": 1
+    },
+    "chile_moai_transport_theories": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-11T19:24:47.142465+00:00",
       "times_used": 1
     },
     "colombia_el_dorado_origins": {
