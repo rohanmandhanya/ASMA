@@ -178,7 +178,7 @@
       "last_used_at": "2026-08-08T09:58:04.869459+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-08-10T13:48:01.808311+00:00"
+      "last_used_at": "2026-08-12T05:04:01.413850+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-07-27T19:56:48.891881+00:00"
@@ -226,7 +226,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T10:11:51.249307+00:00"
+      "last_used_at": "2026-08-12T05:04:01.413850+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -629,8 +629,8 @@
     },
     "sport_wimbledon_all_white_rule_origin": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-28T09:08:21.636202+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-12T05:04:01.413850+00:00",
+      "times_used": 2
     },
     "sri_lanka_ancient_tanks": {
       "ema_score": 0.5,
