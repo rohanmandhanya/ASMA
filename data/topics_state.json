@@ -114,6 +114,9 @@
     "Lebanon": {
       "last_used_at": "2026-07-20T22:14:55.454584+00:00"
     },
+    "Madagascar": {
+      "last_used_at": "2026-08-12T13:50:34.759761+00:00"
+    },
     "Mali": {
       "last_used_at": "2026-08-07T00:20:42.818288+00:00"
     },
@@ -241,7 +244,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-12T10:24:54.965639+00:00"
+      "last_used_at": "2026-08-12T13:50:34.759761+00:00"
     }
   },
   "topics": {
@@ -443,6 +446,11 @@
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-20T22:14:55.454584+00:00",
+      "times_used": 1
+    },
+    "madagascar_austronesian_migration": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-12T13:50:34.759761+00:00",
       "times_used": 1
     },
     "mali_mansa_musa_wealth": {
