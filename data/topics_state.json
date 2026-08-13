@@ -13,7 +13,7 @@
       "last_used_at": "2026-08-06T09:19:18.409272+00:00"
     },
     "Australia": {
-      "last_used_at": "2026-07-25T10:48:15.783988+00:00"
+      "last_used_at": "2026-08-13T13:48:57.804386+00:00"
     },
     "Azerbaijan": {
       "last_used_at": "2026-08-01T19:37:15.803988+00:00"
@@ -242,7 +242,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T19:18:43.882117+00:00"
+      "last_used_at": "2026-08-13T13:48:57.804386+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -272,6 +272,11 @@
     "australia_firestick_farming": {
       "ema_score": 0.5,
       "last_used_at": "2026-07-25T10:48:15.783988+00:00",
+      "times_used": 1
+    },
+    "australia_oldest_continuous_culture": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-13T13:48:57.804386+00:00",
       "times_used": 1
     },
     "azerbaijan_fire_temples": {
