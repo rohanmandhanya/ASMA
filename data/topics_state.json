@@ -187,7 +187,7 @@
       "last_used_at": "2026-08-08T09:58:04.869459+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-08-12T05:04:01.413850+00:00"
+      "last_used_at": "2026-08-13T10:31:18.400705+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-07-27T19:56:48.891881+00:00"
@@ -238,7 +238,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-13T02:52:33.800956+00:00"
+      "last_used_at": "2026-08-13T10:31:18.400705+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -636,8 +636,8 @@
     },
     "sport_cricket_timeless_test_1939": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-28T03:38:51.748508+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-13T10:31:18.400705+00:00",
+      "times_used": 2
     },
     "sport_first_modern_olympics_1896": {
       "ema_score": 0.5,
