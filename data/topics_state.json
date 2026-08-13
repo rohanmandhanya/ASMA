@@ -21,6 +21,9 @@
     "Bolivia": {
       "last_used_at": "2026-08-04T22:32:09.686277+00:00"
     },
+    "Brazil": {
+      "last_used_at": "2026-08-13T19:24:09.048370+00:00"
+    },
     "Cambodia": {
       "last_used_at": "2026-08-12T10:24:54.965639+00:00"
     },
@@ -242,7 +245,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-13T13:48:57.804386+00:00"
+      "last_used_at": "2026-08-13T19:24:09.048370+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -292,6 +295,11 @@
     "bolivia_tiwanaku_agriculture": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-04T22:32:09.686277+00:00",
+      "times_used": 1
+    },
+    "brazil_amazonian_terra_preta": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-13T19:24:09.048370+00:00",
       "times_used": 1
     },
     "cambodia_angkor_hydraulics": {
