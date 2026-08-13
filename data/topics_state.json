@@ -81,6 +81,9 @@
     "India": {
       "last_used_at": "2026-08-10T19:18:43.882117+00:00"
     },
+    "Indonesia": {
+      "last_used_at": "2026-08-13T07:56:43.234716+00:00"
+    },
     "Iran": {
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
@@ -243,7 +246,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T19:24:47.142465+00:00"
+      "last_used_at": "2026-08-13T07:56:43.234716+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -394,6 +397,11 @@
     "india_nalanda_university": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-10T19:18:43.882117+00:00",
+      "times_used": 1
+    },
+    "indonesia_borobudur": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-13T07:56:43.234716+00:00",
       "times_used": 1
     },
     "iran_cyrus_cylinder": {
