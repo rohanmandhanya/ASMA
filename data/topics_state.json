@@ -93,6 +93,9 @@
     "Iraq": {
       "last_used_at": "2026-08-11T22:07:55.182455+00:00"
     },
+    "Ireland": {
+      "last_used_at": "2026-08-14T05:07:21.451954+00:00"
+    },
     "Israel": {
       "last_used_at": "2026-08-04T09:08:24.942867+00:00"
     },
@@ -241,7 +244,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-13T10:31:18.400705+00:00"
+      "last_used_at": "2026-08-14T05:07:21.451954+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -425,6 +428,11 @@
     "iraq_house_of_wisdom": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-11T22:07:55.182455+00:00",
+      "times_used": 1
+    },
+    "ireland_monks_preserving_texts": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-14T05:07:21.451954+00:00",
       "times_used": 1
     },
     "israel_ancient_aqueduct_engineering": {
