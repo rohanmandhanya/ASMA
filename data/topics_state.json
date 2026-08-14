@@ -33,6 +33,9 @@
     "Chile": {
       "last_used_at": "2026-08-11T19:24:47.142465+00:00"
     },
+    "China": {
+      "last_used_at": "2026-08-14T10:21:51.890335+00:00"
+    },
     "Colombia": {
       "last_used_at": "2026-07-22T19:53:53.403177+00:00"
     },
@@ -244,7 +247,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-14T05:07:21.451954+00:00"
+      "last_used_at": "2026-08-14T10:21:51.890335+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -318,6 +321,11 @@
     "chile_moai_transport_theories": {
       "ema_score": 0.5,
       "last_used_at": "2026-08-11T19:24:47.142465+00:00",
+      "times_used": 1
+    },
+    "china_zheng_he_fleet": {
+      "ema_score": 0.5,
+      "last_used_at": "2026-08-14T10:21:51.890335+00:00",
       "times_used": 1
     },
     "colombia_el_dorado_origins": {
