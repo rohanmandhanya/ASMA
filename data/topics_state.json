@@ -169,7 +169,7 @@
       "last_used_at": "2026-08-09T02:30:03.442303+00:00"
     },
     "Papua New Guinea": {
-      "last_used_at": "2026-07-21T03:46:31.805377+00:00"
+      "last_used_at": "2026-08-15T01:53:28.177216+00:00"
     },
     "Peru": {
       "last_used_at": "2026-07-30T19:54:00.688516+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-14T10:21:51.890335+00:00"
+      "last_used_at": "2026-08-15T01:53:28.177216+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -608,8 +608,8 @@
     },
     "papua_new_guinea_language_diversity": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-21T03:46:31.805377+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-15T01:53:28.177216+00:00",
+      "times_used": 2
     },
     "peru_inca_quipu_records": {
       "ema_score": 0.5,
