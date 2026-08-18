@@ -160,7 +160,7 @@
       "last_used_at": "2026-07-29T14:35:27.035674+00:00"
     },
     "Nigeria": {
-      "last_used_at": "2026-08-15T07:00:56.939410+00:00"
+      "last_used_at": "2026-08-18T21:52:35.400187+00:00"
     },
     "Norway": {
       "last_used_at": "2026-07-19T19:36:04.529869+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-18T19:11:34.881771+00:00"
+      "last_used_at": "2026-08-18T21:52:35.400187+00:00"
     }
   },
   "topics": {
@@ -593,8 +593,8 @@
     },
     "nigeria_ife_bronze_naturalism": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-31T11:39:54.902546+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-18T21:52:35.400187+00:00",
+      "times_used": 2
     },
     "norway_viking_navigation": {
       "ema_score": 0.5,
