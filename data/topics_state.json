@@ -199,7 +199,7 @@
       "last_used_at": "2026-08-08T09:58:04.869459+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-08-15T13:02:43.640111+00:00"
+      "last_used_at": "2026-08-19T07:10:00.407211+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-07-27T19:56:48.891881+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-18T21:52:35.400187+00:00"
+      "last_used_at": "2026-08-19T07:10:00.407211+00:00"
     }
   },
   "topics": {
@@ -678,8 +678,8 @@
     },
     "sport_first_modern_olympics_1896": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-03T03:57:58.175401+00:00",
-      "times_used": 2
+      "last_used_at": "2026-08-19T07:10:00.407211+00:00",
+      "times_used": 3
     },
     "sport_jules_rimet_trophy_theft": {
       "ema_score": 0.5,
