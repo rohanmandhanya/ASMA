@@ -148,7 +148,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-08-15T15:39:35.549195+00:00"
+      "last_used_at": "2026-08-19T13:09:40.678219+00:00"
     },
     "Nepal": {
       "last_used_at": "2026-08-08T15:49:02.796370+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-18T13:09:19.538242+00:00"
+      "last_used_at": "2026-08-19T13:09:40.678219+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -563,8 +563,8 @@
     },
     "movie_star_wars_practical_models": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T14:44:38.547587+00:00",
-      "times_used": 2
+      "last_used_at": "2026-08-19T13:09:40.678219+00:00",
+      "times_used": 3
     },
     "movie_titanic_budget_overrun": {
       "ema_score": 0.5,
