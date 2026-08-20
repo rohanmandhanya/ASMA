@@ -103,7 +103,7 @@
       "last_used_at": "2026-08-14T05:07:21.451954+00:00"
     },
     "Israel": {
-      "last_used_at": "2026-08-04T09:08:24.942867+00:00"
+      "last_used_at": "2026-08-20T01:55:23.506120+00:00"
     },
     "Italy": {
       "last_used_at": "2026-07-17T08:32:36.919260+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-18T04:02:00.325320+00:00"
+      "last_used_at": "2026-08-20T01:55:23.506120+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -453,8 +453,8 @@
     },
     "israel_ancient_aqueduct_engineering": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T09:08:24.942867+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-20T01:55:23.506120+00:00",
+      "times_used": 2
     },
     "italy_roman_concrete_durability": {
       "ema_score": 0.5,
