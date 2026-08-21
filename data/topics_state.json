@@ -142,7 +142,7 @@
       "last_used_at": "2026-07-31T03:53:45.221136+00:00"
     },
     "Mongolia": {
-      "last_used_at": "2026-08-17T10:01:03.900845+00:00"
+      "last_used_at": "2026-08-21T13:16:31.933810+00:00"
     },
     "Morocco": {
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-21T09:55:01.193403+00:00"
+      "last_used_at": "2026-08-21T13:16:31.933810+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -528,8 +528,8 @@
     },
     "mongolia_genghis_law_code": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-26T14:01:10.575350+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-21T13:16:31.933810+00:00",
+      "times_used": 2
     },
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
