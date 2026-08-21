@@ -85,7 +85,7 @@
       "last_used_at": "2026-07-22T14:24:46.690977+00:00"
     },
     "Iceland": {
-      "last_used_at": "2026-08-02T10:54:29.740640+00:00"
+      "last_used_at": "2026-08-21T09:55:01.193403+00:00"
     },
     "India": {
       "last_used_at": "2026-08-10T19:18:43.882117+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-19T13:09:40.678219+00:00"
+      "last_used_at": "2026-08-21T09:55:01.193403+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -423,8 +423,8 @@
     },
     "iceland_althing_parliament": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-02T10:54:29.740640+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-21T09:55:01.193403+00:00",
+      "times_used": 2
     },
     "india_nalanda_university": {
       "ema_score": 0.5,
