@@ -163,7 +163,7 @@
       "last_used_at": "2026-08-18T21:52:35.400187+00:00"
     },
     "Norway": {
-      "last_used_at": "2026-07-19T19:36:04.529869+00:00"
+      "last_used_at": "2026-08-21T15:53:01.340682+00:00"
     },
     "Oman": {
       "last_used_at": "2026-08-09T02:30:03.442303+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-21T02:01:31.693530+00:00"
+      "last_used_at": "2026-08-21T15:53:01.340682+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -598,8 +598,8 @@
     },
     "norway_viking_navigation": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-19T19:36:04.529869+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-21T15:53:01.340682+00:00",
+      "times_used": 2
     },
     "oman_frankincense_trade": {
       "ema_score": 0.5,
