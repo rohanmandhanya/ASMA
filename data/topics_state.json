@@ -106,7 +106,7 @@
       "last_used_at": "2026-08-20T01:55:23.506120+00:00"
     },
     "Italy": {
-      "last_used_at": "2026-07-17T08:32:36.919260+00:00"
+      "last_used_at": "2026-08-21T18:59:43.910640+00:00"
     },
     "Japan": {
       "last_used_at": "2026-08-18T09:52:56.529325+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-21T15:53:01.340682+00:00"
+      "last_used_at": "2026-08-21T18:59:43.910640+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -458,8 +458,8 @@
     },
     "italy_roman_concrete_durability": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-17T08:32:36.919260+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-21T18:59:43.910640+00:00",
+      "times_used": 2
     },
     "japan_edo_recycling": {
       "ema_score": 0.5,
