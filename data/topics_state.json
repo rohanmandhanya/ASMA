@@ -139,7 +139,7 @@
       "last_used_at": "2026-08-15T21:38:58.051733+00:00"
     },
     "Mexico": {
-      "last_used_at": "2026-07-31T03:53:45.221136+00:00"
+      "last_used_at": "2026-08-22T13:02:11.764425+00:00"
     },
     "Mongolia": {
       "last_used_at": "2026-08-21T13:16:31.933810+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-20T13:15:06.643612+00:00"
+      "last_used_at": "2026-08-22T13:02:11.764425+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -518,8 +518,8 @@
     },
     "mexico_aztec_chinampas": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-31T03:53:45.221136+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-22T13:02:11.764425+00:00",
+      "times_used": 2
     },
     "mexico_maya_underground_reservoirs": {
       "ema_score": 0.5,
