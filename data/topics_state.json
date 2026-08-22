@@ -10,7 +10,7 @@
       "last_used_at": "2026-08-20T07:09:02.667576+00:00"
     },
     "Armenia": {
-      "last_used_at": "2026-08-06T09:19:18.409272+00:00"
+      "last_used_at": "2026-08-22T03:59:41.644874+00:00"
     },
     "Australia": {
       "last_used_at": "2026-08-13T13:48:57.804386+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-21T18:59:43.910640+00:00"
+      "last_used_at": "2026-08-22T03:59:41.644874+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -278,8 +278,8 @@
     },
     "armenia_state_christianity": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-06T09:19:18.409272+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-22T03:59:41.644874+00:00",
+      "times_used": 2
     },
     "australia_firestick_farming": {
       "ema_score": 0.5,
