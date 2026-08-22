@@ -121,7 +121,7 @@
       "last_used_at": "2026-08-05T14:38:23.089673+00:00"
     },
     "Korea": {
-      "last_used_at": "2026-08-07T03:19:27.733764+00:00"
+      "last_used_at": "2026-08-22T15:39:01.307615+00:00"
     },
     "Laos": {
       "last_used_at": "2026-08-16T02:01:08.150728+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-21T13:16:31.933810+00:00"
+      "last_used_at": "2026-08-22T15:39:01.307615+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -483,8 +483,8 @@
     },
     "korea_hangul_invention": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T03:19:27.733764+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-22T15:39:01.307615+00:00",
+      "times_used": 2
     },
     "laos_plain_of_jars": {
       "ema_score": 0.5,
