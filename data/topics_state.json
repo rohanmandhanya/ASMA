@@ -226,7 +226,7 @@
       "last_used_at": "2026-08-07T19:19:55.103733+00:00"
     },
     "Turkey": {
-      "last_used_at": "2026-08-06T14:39:03.676365+00:00"
+      "last_used_at": "2026-08-24T21:47:44.823429+00:00"
     },
     "United Kingdom": {
       "last_used_at": "2026-07-27T04:06:19.261827+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-23T13:06:24.447284+00:00"
+      "last_used_at": "2026-08-24T21:47:44.823429+00:00"
     }
   },
   "topics": {
@@ -733,8 +733,8 @@
     },
     "turkey_hagia_sophia_dome": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-06T14:39:03.676365+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-24T21:47:44.823429+00:00",
+      "times_used": 2
     },
     "tv_breaking_bad_pilot_rejections": {
       "ema_score": 0.5,
