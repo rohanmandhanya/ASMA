@@ -148,7 +148,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-08-22T21:36:38.923598+00:00"
+      "last_used_at": "2026-08-24T02:01:14.758987+00:00"
     },
     "Nepal": {
       "last_used_at": "2026-08-08T15:49:02.796370+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-23T04:04:46.515379+00:00"
+      "last_used_at": "2026-08-24T02:01:14.758987+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -568,8 +568,8 @@
     },
     "movie_titanic_budget_overrun": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-08T07:18:39.575891+00:00",
-      "times_used": 2
+      "last_used_at": "2026-08-24T02:01:14.758987+00:00",
+      "times_used": 3
     },
     "movie_wizard_of_oz_ruby_slippers": {
       "ema_score": 0.5,
