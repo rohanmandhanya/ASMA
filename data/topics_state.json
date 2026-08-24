@@ -4,7 +4,7 @@
   },
   "countries": {
     "Algeria": {
-      "last_used_at": "2026-08-10T10:39:35.486085+00:00"
+      "last_used_at": "2026-08-24T19:02:21.506511+00:00"
     },
     "Argentina": {
       "last_used_at": "2026-08-20T07:09:02.667576+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-24T02:01:14.758987+00:00"
+      "last_used_at": "2026-08-24T19:02:21.506511+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -268,8 +268,8 @@
   "topics": {
     "algeria_timgad_roman_grid": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T10:39:35.486085+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-24T19:02:21.506511+00:00",
+      "times_used": 2
     },
     "argentina_patagonia_early_settlement": {
       "ema_score": 0.5,
