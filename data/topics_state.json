@@ -148,7 +148,7 @@
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-08-24T02:01:14.758987+00:00"
+      "last_used_at": "2026-08-24T07:24:23.919453+00:00"
     },
     "Nepal": {
       "last_used_at": "2026-08-08T15:49:02.796370+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-23T21:40:37.070530+00:00"
+      "last_used_at": "2026-08-24T07:24:23.919453+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -548,8 +548,8 @@
     },
     "movie_jaws_mechanical_shark": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-09T09:57:32.522875+00:00",
-      "times_used": 2
+      "last_used_at": "2026-08-24T07:24:23.919453+00:00",
+      "times_used": 3
     },
     "movie_lotr_new_zealand_shoot": {
       "ema_score": 0.5,
