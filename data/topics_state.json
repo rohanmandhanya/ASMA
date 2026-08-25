@@ -181,7 +181,7 @@
       "last_used_at": "2026-07-26T19:39:13.779564+00:00"
     },
     "Portugal": {
-      "last_used_at": "2026-07-15T19:42:29.876244+00:00"
+      "last_used_at": "2026-08-25T21:50:02.211084+00:00"
     },
     "Rwanda": {
       "last_used_at": "2026-08-24T13:17:39.876301+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-24T13:17:39.876301+00:00"
+      "last_used_at": "2026-08-25T21:50:02.211084+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -633,8 +633,8 @@
     },
     "portugal_navigation_techniques": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-15T19:42:29.876244+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-25T21:50:02.211084+00:00",
+      "times_used": 2
     },
     "rwanda_precolonial_governance": {
       "ema_score": 0.5,
