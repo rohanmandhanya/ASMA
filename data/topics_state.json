@@ -187,7 +187,7 @@
       "last_used_at": "2026-08-24T13:17:39.876301+00:00"
     },
     "Saudi Arabia": {
-      "last_used_at": "2026-08-02T22:13:39.463710+00:00"
+      "last_used_at": "2026-08-25T16:05:40.662013+00:00"
     },
     "Senegal": {
       "last_used_at": "2026-08-23T13:06:24.447284+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-25T09:53:45.037667+00:00"
+      "last_used_at": "2026-08-25T16:05:40.662013+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -643,8 +643,8 @@
     },
     "saudi_arabia_nabatean_trade_routes": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-02T22:13:39.463710+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-25T16:05:40.662013+00:00",
+      "times_used": 2
     },
     "scotland_skara_brae_age": {
       "ema_score": 0.5,
