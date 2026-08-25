@@ -22,7 +22,7 @@
       "last_used_at": "2026-08-14T19:18:39.848322+00:00"
     },
     "Bolivia": {
-      "last_used_at": "2026-08-04T22:32:09.686277+00:00"
+      "last_used_at": "2026-08-25T04:04:46.664855+00:00"
     },
     "Brazil": {
       "last_used_at": "2026-08-13T19:24:09.048370+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-24T19:02:21.506511+00:00"
+      "last_used_at": "2026-08-25T04:04:46.664855+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -308,8 +308,8 @@
     },
     "bolivia_tiwanaku_agriculture": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-04T22:32:09.686277+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-25T04:04:46.664855+00:00",
+      "times_used": 2
     },
     "brazil_amazonian_terra_preta": {
       "ema_score": 0.5,
