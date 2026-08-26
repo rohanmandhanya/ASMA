@@ -229,7 +229,7 @@
       "last_used_at": "2026-08-24T21:47:44.823429+00:00"
     },
     "United Kingdom": {
-      "last_used_at": "2026-07-27T04:06:19.261827+00:00"
+      "last_used_at": "2026-08-26T16:38:19.619795+00:00"
     },
     "United States": {
       "last_used_at": "2026-08-14T13:47:20.180787+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-26T10:00:39.852392+00:00"
+      "last_used_at": "2026-08-26T16:38:19.619795+00:00"
     }
   },
   "topics": {
@@ -648,8 +648,8 @@
     },
     "scotland_skara_brae_age": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-27T04:06:19.261827+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-26T16:38:19.619795+00:00",
+      "times_used": 2
     },
     "senegal_goree_island_history": {
       "ema_score": 0.5,
