@@ -52,7 +52,7 @@
       "last_used_at": "2026-08-01T03:51:37.208862+00:00"
     },
     "Ethiopia": {
-      "last_used_at": "2026-08-10T02:38:25.789165+00:00"
+      "last_used_at": "2026-08-26T10:00:39.852392+00:00"
     },
     "Fiji": {
       "last_used_at": "2026-08-18T19:11:34.881771+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-24T21:47:44.823429+00:00"
+      "last_used_at": "2026-08-26T10:00:39.852392+00:00"
     }
   },
   "topics": {
@@ -363,8 +363,8 @@
     },
     "ethiopia_aksum_stelae": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T02:38:25.789165+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-26T10:00:39.852392+00:00",
+      "times_used": 2
     },
     "ethiopia_lalibela_churches": {
       "ema_score": 0.5,
