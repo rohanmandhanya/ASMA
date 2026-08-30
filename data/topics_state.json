@@ -49,7 +49,7 @@
       "last_used_at": "2026-08-11T10:11:51.249307+00:00"
     },
     "Egypt": {
-      "last_used_at": "2026-08-01T03:51:37.208862+00:00"
+      "last_used_at": "2026-08-30T16:45:12.628791+00:00"
     },
     "Ethiopia": {
       "last_used_at": "2026-08-26T10:00:39.852392+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-30T05:28:41.599391+00:00"
+      "last_used_at": "2026-08-30T16:45:12.628791+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -353,8 +353,8 @@
     },
     "egypt_rosetta_stone_decoding": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-22T08:46:11.957938+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-30T16:45:12.628791+00:00",
+      "times_used": 2
     },
     "egypt_womens_legal_rights": {
       "ema_score": 0.5,
