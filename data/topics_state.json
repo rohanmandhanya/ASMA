@@ -202,7 +202,7 @@
       "last_used_at": "2026-08-29T16:45:06.841132+00:00"
     },
     "Sri Lanka": {
-      "last_used_at": "2026-07-27T19:56:48.891881+00:00"
+      "last_used_at": "2026-08-30T21:10:16.301012+00:00"
     },
     "Sudan": {
       "last_used_at": "2026-07-16T11:16:33.554949+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-27T14:14:06.959236+00:00"
+      "last_used_at": "2026-08-30T21:10:16.301012+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -698,8 +698,8 @@
     },
     "sri_lanka_ancient_tanks": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-27T19:56:48.891881+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-30T21:10:16.301012+00:00",
+      "times_used": 2
     },
     "sudan_nubian_pyramids": {
       "ema_score": 0.5,
