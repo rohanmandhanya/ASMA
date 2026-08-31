@@ -88,7 +88,7 @@
       "last_used_at": "2026-08-21T09:55:01.193403+00:00"
     },
     "India": {
-      "last_used_at": "2026-08-10T19:18:43.882117+00:00"
+      "last_used_at": "2026-08-31T05:38:46.506001+00:00"
     },
     "Indonesia": {
       "last_used_at": "2026-08-13T07:56:43.234716+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-30T21:10:16.301012+00:00"
+      "last_used_at": "2026-08-31T05:38:46.506001+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -428,8 +428,8 @@
     },
     "india_nalanda_university": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T19:18:43.882117+00:00",
-      "times_used": 1
+      "last_used_at": "2026-08-31T05:38:46.506001+00:00",
+      "times_used": 2
     },
     "indonesia_borobudur": {
       "ema_score": 0.5,
