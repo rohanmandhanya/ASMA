@@ -136,7 +136,7 @@
       "last_used_at": "2026-08-16T15:41:01.659166+00:00"
     },
     "Malta": {
-      "last_used_at": "2026-08-15T21:38:58.051733+00:00"
+      "last_used_at": "2026-08-31T20:55:32.027801+00:00"
     },
     "Mexico": {
       "last_used_at": "2026-08-22T13:02:11.764425+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-29T20:57:06.552688+00:00"
+      "last_used_at": "2026-08-31T20:55:32.027801+00:00"
     }
   },
   "topics": {
@@ -513,8 +513,8 @@
     },
     "malta_hypogeum_underground": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-15T21:38:58.051733+00:00",
-      "times_used": 2
+      "last_used_at": "2026-08-31T20:55:32.027801+00:00",
+      "times_used": 3
     },
     "mexico_aztec_chinampas": {
       "ema_score": 0.5,
