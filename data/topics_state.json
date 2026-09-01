@@ -46,7 +46,7 @@
       "last_used_at": "2026-07-28T14:41:28.236547+00:00"
     },
     "Denmark": {
-      "last_used_at": "2026-08-11T10:11:51.249307+00:00"
+      "last_used_at": "2026-09-01T14:14:27.427002+00:00"
     },
     "Egypt": {
       "last_used_at": "2026-08-30T16:45:12.628791+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-30T11:58:27.934749+00:00"
+      "last_used_at": "2026-09-01T14:14:27.427002+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -348,8 +348,8 @@
     },
     "denmark_jelling_stones": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T10:11:51.249307+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-01T14:14:27.427002+00:00",
+      "times_used": 2
     },
     "egypt_rosetta_stone_decoding": {
       "ema_score": 0.5,
