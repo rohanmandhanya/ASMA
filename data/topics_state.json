@@ -118,7 +118,7 @@
       "last_used_at": "2026-08-05T19:57:23.320655+00:00"
     },
     "Kenya": {
-      "last_used_at": "2026-08-05T14:38:23.089673+00:00"
+      "last_used_at": "2026-09-01T23:22:45.408876+00:00"
     },
     "Korea": {
       "last_used_at": "2026-08-22T15:39:01.307615+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-01T18:36:48.936348+00:00"
+      "last_used_at": "2026-09-01T23:22:45.408876+00:00"
     }
   },
   "topics": {
@@ -478,8 +478,8 @@
     },
     "kenya_rift_valley_origins": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-05T14:38:23.089673+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-01T23:22:45.408876+00:00",
+      "times_used": 2
     },
     "korea_hangul_invention": {
       "ema_score": 0.5,
