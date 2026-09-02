@@ -139,7 +139,7 @@
       "last_used_at": "2026-08-31T20:55:32.027801+00:00"
     },
     "Mexico": {
-      "last_used_at": "2026-08-22T13:02:11.764425+00:00"
+      "last_used_at": "2026-09-02T21:07:25.464026+00:00"
     },
     "Mongolia": {
       "last_used_at": "2026-08-21T13:16:31.933810+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-02T11:19:58.236922+00:00"
+      "last_used_at": "2026-09-02T21:07:25.464026+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -523,8 +523,8 @@
     },
     "mexico_maya_underground_reservoirs": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-15T22:15:57.656670+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-02T21:07:25.464026+00:00",
+      "times_used": 2
     },
     "mongolia_genghis_law_code": {
       "ema_score": 0.5,
