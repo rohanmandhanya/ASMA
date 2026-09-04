@@ -25,7 +25,7 @@
       "last_used_at": "2026-08-25T04:04:46.664855+00:00"
     },
     "Brazil": {
-      "last_used_at": "2026-08-13T19:24:09.048370+00:00"
+      "last_used_at": "2026-09-04T16:25:55.662614+00:00"
     },
     "Cambodia": {
       "last_used_at": "2026-08-12T10:24:54.965639+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-04T04:34:37.396642+00:00"
+      "last_used_at": "2026-09-04T16:25:55.662614+00:00"
     }
   },
   "topics": {
@@ -313,8 +313,8 @@
     },
     "brazil_amazonian_terra_preta": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-13T19:24:09.048370+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-04T16:25:55.662614+00:00",
+      "times_used": 2
     },
     "cambodia_angkor_hydraulics": {
       "ema_score": 0.5,
