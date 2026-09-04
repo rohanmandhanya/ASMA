@@ -142,7 +142,7 @@
       "last_used_at": "2026-09-02T21:07:25.464026+00:00"
     },
     "Mongolia": {
-      "last_used_at": "2026-08-21T13:16:31.933810+00:00"
+      "last_used_at": "2026-09-04T04:34:37.396642+00:00"
     },
     "Morocco": {
       "last_used_at": "2026-07-16T08:38:37.676978+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-03T16:27:04.938791+00:00"
+      "last_used_at": "2026-09-04T04:34:37.396642+00:00"
     }
   },
   "topics": {
@@ -533,8 +533,8 @@
     },
     "mongolia_paiza_passport": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-17T10:01:03.900845+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-04T04:34:37.396642+00:00",
+      "times_used": 3
     },
     "mongolia_yam_relay": {
       "ema_score": 0.5,
