@@ -13,7 +13,7 @@
       "last_used_at": "2026-08-22T03:59:41.644874+00:00"
     },
     "Australia": {
-      "last_used_at": "2026-08-28T00:27:09.065340+00:00"
+      "last_used_at": "2026-09-05T20:26:04.671706+00:00"
     },
     "Azerbaijan": {
       "last_used_at": "2026-08-01T19:37:15.803988+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-05T04:32:45.988736+00:00"
+      "last_used_at": "2026-09-05T20:26:04.671706+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -288,8 +288,8 @@
     },
     "australia_oldest_continuous_culture": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-13T13:48:57.804386+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-05T20:26:04.671706+00:00",
+      "times_used": 2
     },
     "azerbaijan_fire_temples": {
       "ema_score": 0.5,
