@@ -31,7 +31,7 @@
       "last_used_at": "2026-08-12T10:24:54.965639+00:00"
     },
     "Canada": {
-      "last_used_at": "2026-08-18T04:02:00.325320+00:00"
+      "last_used_at": "2026-09-08T16:40:11.360632+00:00"
     },
     "Chile": {
       "last_used_at": "2026-08-11T19:24:47.142465+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-08T11:22:21.539094+00:00"
+      "last_used_at": "2026-09-08T16:40:11.360632+00:00"
     }
   },
   "topics": {
@@ -323,8 +323,8 @@
     },
     "canada_vinland_norse_settlement": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-18T04:02:00.325320+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-08T16:40:11.360632+00:00",
+      "times_used": 3
     },
     "chile_moai_transport_theories": {
       "ema_score": 0.5,
