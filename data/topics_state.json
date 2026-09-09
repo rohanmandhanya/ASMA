@@ -97,7 +97,7 @@
       "last_used_at": "2026-07-20T14:36:06.598115+00:00"
     },
     "Iraq": {
-      "last_used_at": "2026-08-11T22:07:55.182455+00:00"
+      "last_used_at": "2026-09-09T11:28:35.662190+00:00"
     },
     "Ireland": {
       "last_used_at": "2026-08-14T05:07:21.451954+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-08T16:40:11.360632+00:00"
+      "last_used_at": "2026-09-09T11:28:35.662190+00:00"
     }
   },
   "topics": {
@@ -443,8 +443,8 @@
     },
     "iraq_house_of_wisdom": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T22:07:55.182455+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-09T11:28:35.662190+00:00",
+      "times_used": 2
     },
     "ireland_monks_preserving_texts": {
       "ema_score": 0.5,
