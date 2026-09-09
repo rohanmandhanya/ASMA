@@ -49,7 +49,7 @@
       "last_used_at": "2026-09-01T14:14:27.427002+00:00"
     },
     "Egypt": {
-      "last_used_at": "2026-08-30T16:45:12.628791+00:00"
+      "last_used_at": "2026-09-09T16:42:29.998661+00:00"
     },
     "Ethiopia": {
       "last_used_at": "2026-08-26T10:00:39.852392+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-08T21:13:51.534845+00:00"
+      "last_used_at": "2026-09-09T16:42:29.998661+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -358,8 +358,8 @@
     },
     "egypt_womens_legal_rights": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-01T03:51:37.208862+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-09T16:42:29.998661+00:00",
+      "times_used": 2
     },
     "ethiopia_aksum_stelae": {
       "ema_score": 0.5,
