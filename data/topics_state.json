@@ -199,7 +199,7 @@
       "last_used_at": "2026-09-03T11:18:37.039239+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-09-03T04:36:59.446627+00:00"
+      "last_used_at": "2026-09-10T20:58:54.414116+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-08-30T21:10:16.301012+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-10T16:28:26.597479+00:00"
+      "last_used_at": "2026-09-10T20:58:54.414116+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -683,8 +683,8 @@
     },
     "sport_jules_rimet_trophy_theft": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-26T02:02:55.716088+00:00",
-      "times_used": 3
+      "last_used_at": "2026-09-10T20:58:54.414116+00:00",
+      "times_used": 4
     },
     "sport_marathon_distance_origin": {
       "ema_score": 0.5,
