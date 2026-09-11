@@ -70,7 +70,7 @@
       "last_used_at": "2026-08-04T03:39:42.601282+00:00"
     },
     "Ghana": {
-      "last_used_at": "2026-07-21T08:48:59.426201+00:00"
+      "last_used_at": "2026-09-11T21:02:29.046756+00:00"
     },
     "Greece": {
       "last_used_at": "2026-08-22T18:52:19.720462+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-10T20:58:54.414116+00:00"
+      "last_used_at": "2026-09-11T21:02:29.046756+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -398,8 +398,8 @@
     },
     "ghana_akan_gold_weights": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-21T08:48:59.426201+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-11T21:02:29.046756+00:00",
+      "times_used": 2
     },
     "greece_antikythera_mechanism": {
       "ema_score": 0.5,
