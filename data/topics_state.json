@@ -100,7 +100,7 @@
       "last_used_at": "2026-09-09T11:28:35.662190+00:00"
     },
     "Ireland": {
-      "last_used_at": "2026-08-14T05:07:21.451954+00:00"
+      "last_used_at": "2026-09-11T16:32:52.651779+00:00"
     },
     "Israel": {
       "last_used_at": "2026-08-20T01:55:23.506120+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-11T11:27:17.967253+00:00"
+      "last_used_at": "2026-09-11T16:32:52.651779+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -448,8 +448,8 @@
     },
     "ireland_monks_preserving_texts": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-14T05:07:21.451954+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-11T16:32:52.651779+00:00",
+      "times_used": 2
     },
     "israel_ancient_aqueduct_engineering": {
       "ema_score": 0.5,
