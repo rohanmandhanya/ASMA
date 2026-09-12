@@ -94,7 +94,7 @@
       "last_used_at": "2026-09-04T20:47:02.490423+00:00"
     },
     "Iran": {
-      "last_used_at": "2026-07-20T14:36:06.598115+00:00"
+      "last_used_at": "2026-09-12T20:36:56.895644+00:00"
     },
     "Iraq": {
       "last_used_at": "2026-09-09T11:28:35.662190+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-09T16:42:29.998661+00:00"
+      "last_used_at": "2026-09-12T20:36:56.895644+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -438,8 +438,8 @@
     },
     "iran_cyrus_cylinder": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-20T14:36:06.598115+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-12T20:36:56.895644+00:00",
+      "times_used": 2
     },
     "iraq_house_of_wisdom": {
       "ema_score": 0.5,
