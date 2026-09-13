@@ -211,7 +211,7 @@
       "last_used_at": "2026-08-17T19:01:40.496134+00:00"
     },
     "Switzerland": {
-      "last_used_at": "2026-07-17T14:09:33.927697+00:00"
+      "last_used_at": "2026-09-13T11:53:53.000066+00:00"
     },
     "Tanzania": {
       "last_used_at": "2026-09-12T15:36:05.253596+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-13T04:52:27.333799+00:00"
+      "last_used_at": "2026-09-13T11:53:53.000066+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -713,8 +713,8 @@
     },
     "switzerland_permanent_neutrality": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-17T14:09:33.927697+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-13T11:53:53.000066+00:00",
+      "times_used": 2
     },
     "tanzania_zanzibar_spice_routes": {
       "ema_score": 0.5,
