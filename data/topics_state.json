@@ -133,7 +133,7 @@
       "last_used_at": "2026-09-04T11:22:24.105888+00:00"
     },
     "Mali": {
-      "last_used_at": "2026-08-16T15:41:01.659166+00:00"
+      "last_used_at": "2026-09-13T20:53:42.265978+00:00"
     },
     "Malta": {
       "last_used_at": "2026-08-31T20:55:32.027801+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-11T21:02:29.046756+00:00"
+      "last_used_at": "2026-09-13T20:53:42.265978+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -508,8 +508,8 @@
     },
     "mali_timbuktu_manuscripts": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-16T15:41:01.659166+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-13T20:53:42.265978+00:00",
+      "times_used": 3
     },
     "malta_hypogeum_underground": {
       "ema_score": 0.5,
