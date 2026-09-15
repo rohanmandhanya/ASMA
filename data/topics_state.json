@@ -64,7 +64,7 @@
       "last_used_at": "2026-08-08T02:25:53.232585+00:00"
     },
     "Georgia": {
-      "last_used_at": "2026-07-30T03:31:53.521994+00:00"
+      "last_used_at": "2026-09-15T21:24:55.384965+00:00"
     },
     "Germany": {
       "last_used_at": "2026-08-04T03:39:42.601282+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-14T19:54:26.950152+00:00"
+      "last_used_at": "2026-09-15T21:24:55.384965+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -388,8 +388,8 @@
     },
     "georgia_birthplace_of_wine": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-30T03:31:53.521994+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-15T21:24:55.384965+00:00",
+      "times_used": 2
     },
     "germany_gutenberg_press_mechanics": {
       "ema_score": 0.5,
