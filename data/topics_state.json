@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-12T15:36:05.253596+00:00"
     },
     "Television": {
-      "last_used_at": "2026-09-16T04:52:50.296575+00:00"
+      "last_used_at": "2026-09-16T16:56:38.387815+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-08-20T09:55:10.988991+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-15T21:24:55.384965+00:00"
+      "last_used_at": "2026-09-16T16:56:38.387815+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -763,8 +763,8 @@
     },
     "tv_sesame_street_puppet_origin": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-30T11:58:27.934749+00:00",
-      "times_used": 4
+      "last_used_at": "2026-09-16T16:56:38.387815+00:00",
+      "times_used": 5
     },
     "usa_cahokia_ancient_city": {
       "ema_score": 0.5,
