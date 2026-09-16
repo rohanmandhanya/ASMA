@@ -58,7 +58,7 @@
       "last_used_at": "2026-08-18T19:11:34.881771+00:00"
     },
     "Finland": {
-      "last_used_at": "2026-08-10T08:05:31.432134+00:00"
+      "last_used_at": "2026-09-16T11:35:58.265206+00:00"
     },
     "France": {
       "last_used_at": "2026-08-08T02:25:53.232585+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-13T20:53:42.265978+00:00"
+      "last_used_at": "2026-09-16T11:35:58.265206+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -378,8 +378,8 @@
     },
     "finland_sauna_culture_history": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-10T08:05:31.432134+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-16T11:35:58.265206+00:00",
+      "times_used": 2
     },
     "france_lascaux_cave_paintings": {
       "ema_score": 0.5,
