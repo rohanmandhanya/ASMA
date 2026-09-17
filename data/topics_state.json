@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-12T15:36:05.253596+00:00"
     },
     "Television": {
-      "last_used_at": "2026-09-16T16:56:38.387815+00:00"
+      "last_used_at": "2026-09-17T21:25:54.331269+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-08-20T09:55:10.988991+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-16T21:19:33.130073+00:00"
+      "last_used_at": "2026-09-17T21:25:54.331269+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -738,8 +738,8 @@
     },
     "tv_breaking_bad_pilot_rejections": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-31T13:54:12.589206+00:00",
-      "times_used": 4
+      "last_used_at": "2026-09-17T21:25:54.331269+00:00",
+      "times_used": 5
     },
     "tv_friends_central_perk_couch": {
       "ema_score": 0.5,
