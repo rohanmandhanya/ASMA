@@ -76,7 +76,7 @@
       "last_used_at": "2026-08-22T18:52:19.720462+00:00"
     },
     "Guatemala": {
-      "last_used_at": "2026-07-18T08:12:55.277528+00:00"
+      "last_used_at": "2026-09-17T04:56:35.933526+00:00"
     },
     "Haiti": {
       "last_used_at": "2026-08-23T21:40:37.070530+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-16T11:35:58.265206+00:00"
+      "last_used_at": "2026-09-17T04:56:35.933526+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -408,8 +408,8 @@
     },
     "guatemala_maya_calendar_precision": {
       "ema_score": 0.5,
-      "last_used_at": "2026-07-18T08:12:55.277528+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-17T04:56:35.933526+00:00",
+      "times_used": 2
     },
     "haiti_first_slave_revolt_nation": {
       "ema_score": 0.5,
