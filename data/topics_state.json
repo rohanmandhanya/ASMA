@@ -223,7 +223,7 @@
       "last_used_at": "2026-08-20T09:55:10.988991+00:00"
     },
     "Tunisia": {
-      "last_used_at": "2026-08-07T19:19:55.103733+00:00"
+      "last_used_at": "2026-09-18T20:58:21.173822+00:00"
     },
     "Turkey": {
       "last_used_at": "2026-08-24T21:47:44.823429+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-17T17:03:45.270518+00:00"
+      "last_used_at": "2026-09-18T20:58:21.173822+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -728,8 +728,8 @@
     },
     "tunisia_carthage_naval_innovation": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T19:19:55.103733+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-18T20:58:21.173822+00:00",
+      "times_used": 2
     },
     "turkey_hagia_sophia_dome": {
       "ema_score": 0.5,
