@@ -19,7 +19,7 @@
       "last_used_at": "2026-08-01T19:37:15.803988+00:00"
     },
     "Bhutan": {
-      "last_used_at": "2026-08-14T19:18:39.848322+00:00"
+      "last_used_at": "2026-09-18T11:16:30.966611+00:00"
     },
     "Bolivia": {
       "last_used_at": "2026-09-10T16:28:26.597479+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-17T11:46:35.692140+00:00"
+      "last_used_at": "2026-09-18T11:16:30.966611+00:00"
     }
   },
   "topics": {
@@ -303,8 +303,8 @@
     },
     "bhutan_isolation_choice": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-14T19:18:39.848322+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-18T11:16:30.966611+00:00",
+      "times_used": 2
     },
     "bolivia_tiwanaku_agriculture": {
       "ema_score": 0.5,
