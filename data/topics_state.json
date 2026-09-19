@@ -133,7 +133,7 @@
       "last_used_at": "2026-09-04T11:22:24.105888+00:00"
     },
     "Mali": {
-      "last_used_at": "2026-09-13T20:53:42.265978+00:00"
+      "last_used_at": "2026-09-19T04:41:21.679522+00:00"
     },
     "Malta": {
       "last_used_at": "2026-08-31T20:55:32.027801+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-18T16:27:57.575956+00:00"
+      "last_used_at": "2026-09-19T04:41:21.679522+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -503,8 +503,8 @@
     },
     "mali_mansa_musa_wealth": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-07T00:20:42.818288+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-19T04:41:21.679522+00:00",
+      "times_used": 2
     },
     "mali_timbuktu_manuscripts": {
       "ema_score": 0.5,
