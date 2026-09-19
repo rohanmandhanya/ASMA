@@ -166,7 +166,7 @@
       "last_used_at": "2026-08-21T15:53:01.340682+00:00"
     },
     "Oman": {
-      "last_used_at": "2026-08-09T02:30:03.442303+00:00"
+      "last_used_at": "2026-09-19T20:43:29.376369+00:00"
     },
     "Papua New Guinea": {
       "last_used_at": "2026-08-15T01:53:28.177216+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-18T20:58:21.173822+00:00"
+      "last_used_at": "2026-09-19T20:43:29.376369+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -603,8 +603,8 @@
     },
     "oman_frankincense_trade": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-09T02:30:03.442303+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-19T20:43:29.376369+00:00",
+      "times_used": 2
     },
     "papua_new_guinea_language_diversity": {
       "ema_score": 0.5,
