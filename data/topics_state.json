@@ -34,7 +34,7 @@
       "last_used_at": "2026-09-08T16:40:11.360632+00:00"
     },
     "Chile": {
-      "last_used_at": "2026-08-11T19:24:47.142465+00:00"
+      "last_used_at": "2026-09-20T16:09:46.023582+00:00"
     },
     "China": {
       "last_used_at": "2026-09-02T11:19:58.236922+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-19T20:43:29.376369+00:00"
+      "last_used_at": "2026-09-20T16:09:46.023582+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -328,8 +328,8 @@
     },
     "chile_moai_transport_theories": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-11T19:24:47.142465+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-20T16:09:46.023582+00:00",
+      "times_used": 2
     },
     "china_zheng_he_fleet": {
       "ema_score": 0.5,
