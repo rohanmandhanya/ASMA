@@ -232,7 +232,7 @@
       "last_used_at": "2026-08-26T16:38:19.619795+00:00"
     },
     "United States": {
-      "last_used_at": "2026-08-27T14:14:06.959236+00:00"
+      "last_used_at": "2026-09-22T17:02:29.136548+00:00"
     },
     "Uzbekistan": {
       "last_used_at": "2026-09-21T20:04:03.808392+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-22T04:58:01.501866+00:00"
+      "last_used_at": "2026-09-22T17:02:29.136548+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -768,8 +768,8 @@
     },
     "usa_cahokia_ancient_city": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-14T13:47:20.180787+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-22T17:02:29.136548+00:00",
+      "times_used": 2
     },
     "usa_transcontinental_railroad_labor": {
       "ema_score": 0.5,
