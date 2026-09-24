@@ -157,7 +157,7 @@
       "last_used_at": "2026-09-08T21:13:51.534845+00:00"
     },
     "New Zealand": {
-      "last_used_at": "2026-09-03T21:06:24.635392+00:00"
+      "last_used_at": "2026-09-24T11:49:25.991297+00:00"
     },
     "Nigeria": {
       "last_used_at": "2026-09-11T11:27:17.967253+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-20T04:55:40.015458+00:00"
+      "last_used_at": "2026-09-24T11:49:25.991297+00:00"
     }
   },
   "topics": {
@@ -588,8 +588,8 @@
     },
     "new_zealand_maori_navigation": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-03T21:06:24.635392+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-24T11:49:25.991297+00:00",
+      "times_used": 3
     },
     "nigeria_ife_bronze_naturalism": {
       "ema_score": 0.5,
