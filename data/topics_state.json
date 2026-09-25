@@ -160,7 +160,7 @@
       "last_used_at": "2026-09-24T11:49:25.991297+00:00"
     },
     "Nigeria": {
-      "last_used_at": "2026-09-11T11:27:17.967253+00:00"
+      "last_used_at": "2026-09-25T11:55:06.630177+00:00"
     },
     "Norway": {
       "last_used_at": "2026-08-21T15:53:01.340682+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-24T17:15:31.375268+00:00"
+      "last_used_at": "2026-09-25T11:55:06.630177+00:00"
     }
   },
   "topics": {
@@ -298,8 +298,8 @@
     },
     "benin_bronze_craftsmanship": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-15T07:00:56.939410+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-25T11:55:06.630177+00:00",
+      "times_used": 3
     },
     "bhutan_isolation_choice": {
       "ema_score": 0.5,
