@@ -52,7 +52,7 @@
       "last_used_at": "2026-09-09T16:42:29.998661+00:00"
     },
     "Ethiopia": {
-      "last_used_at": "2026-08-26T10:00:39.852392+00:00"
+      "last_used_at": "2026-09-25T17:13:22.433118+00:00"
     },
     "Fiji": {
       "last_used_at": "2026-08-18T19:11:34.881771+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-25T04:59:14.367286+00:00"
+      "last_used_at": "2026-09-25T17:13:22.433118+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -363,8 +363,8 @@
     },
     "ethiopia_aksum_stelae": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-26T10:00:39.852392+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-25T17:13:22.433118+00:00",
+      "times_used": 3
     },
     "ethiopia_lalibela_churches": {
       "ema_score": 0.5,
