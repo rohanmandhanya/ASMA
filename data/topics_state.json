@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-12T15:36:05.253596+00:00"
     },
     "Television": {
-      "last_used_at": "2026-09-21T04:59:32.685208+00:00"
+      "last_used_at": "2026-09-26T05:01:46.209315+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-09-22T11:41:58.459084+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-25T17:13:22.433118+00:00"
+      "last_used_at": "2026-09-26T05:01:46.209315+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -758,8 +758,8 @@
     },
     "tv_seinfeld_show_about_nothing_pitch": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-12T04:35:43.328267+00:00",
-      "times_used": 4
+      "last_used_at": "2026-09-26T05:01:46.209315+00:00",
+      "times_used": 5
     },
     "tv_sesame_street_puppet_origin": {
       "ema_score": 0.5,
