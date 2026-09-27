@@ -145,7 +145,7 @@
       "last_used_at": "2026-09-18T04:47:14.794414+00:00"
     },
     "Morocco": {
-      "last_used_at": "2026-09-08T04:39:55.864728+00:00"
+      "last_used_at": "2026-09-27T21:25:36.795341+00:00"
     },
     "Movies": {
       "last_used_at": "2026-09-24T17:15:31.375268+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-26T05:01:46.209315+00:00"
+      "last_used_at": "2026-09-27T21:25:36.795341+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -543,8 +543,8 @@
     },
     "morocco_fez_oldest_university": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-08T04:39:55.864728+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-27T21:25:36.795341+00:00",
+      "times_used": 3
     },
     "movie_jaws_mechanical_shark": {
       "ema_score": 0.5,
