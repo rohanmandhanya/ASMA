@@ -214,7 +214,7 @@
       "last_used_at": "2026-09-13T11:53:53.000066+00:00"
     },
     "Tanzania": {
-      "last_used_at": "2026-09-12T15:36:05.253596+00:00"
+      "last_used_at": "2026-09-27T16:59:49.849641+00:00"
     },
     "Television": {
       "last_used_at": "2026-09-26T05:01:46.209315+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-26T16:25:15.486451+00:00"
+      "last_used_at": "2026-09-27T16:59:49.849641+00:00"
     }
   },
   "topics": {
@@ -718,8 +718,8 @@
     },
     "tanzania_zanzibar_spice_routes": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-12T15:36:05.253596+00:00",
-      "times_used": 2
+      "last_used_at": "2026-09-27T16:59:49.849641+00:00",
+      "times_used": 3
     },
     "thailand_ayutthaya_trade_hub": {
       "ema_score": 0.5,
