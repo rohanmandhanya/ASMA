@@ -112,7 +112,7 @@
       "last_used_at": "2026-08-18T09:52:56.529325+00:00"
     },
     "Jordan": {
-      "last_used_at": "2026-09-14T19:54:26.950152+00:00"
+      "last_used_at": "2026-09-29T01:04:12.947240+00:00"
     },
     "Kazakhstan": {
       "last_used_at": "2026-09-02T04:37:47.886459+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-28T21:16:12.324777+00:00"
+      "last_used_at": "2026-09-29T01:04:12.947240+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -468,8 +468,8 @@
     },
     "jordan_petra_water_system": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-14T19:54:26.950152+00:00",
-      "times_used": 3
+      "last_used_at": "2026-09-29T01:04:12.947240+00:00",
+      "times_used": 4
     },
     "kazakhstan_horse_domestication": {
       "ema_score": 0.5,
