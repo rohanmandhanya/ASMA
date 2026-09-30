@@ -28,7 +28,7 @@
       "last_used_at": "2026-09-21T12:52:01.649914+00:00"
     },
     "Cambodia": {
-      "last_used_at": "2026-08-12T10:24:54.965639+00:00"
+      "last_used_at": "2026-09-30T12:41:05.302647+00:00"
     },
     "Canada": {
       "last_used_at": "2026-09-08T16:40:11.360632+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-30T05:36:07.308227+00:00"
+      "last_used_at": "2026-09-30T12:41:05.302647+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -318,8 +318,8 @@
     },
     "cambodia_angkor_hydraulics": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-12T10:24:54.965639+00:00",
-      "times_used": 1
+      "last_used_at": "2026-09-30T12:41:05.302647+00:00",
+      "times_used": 2
     },
     "canada_vinland_norse_settlement": {
       "ema_score": 0.5,
