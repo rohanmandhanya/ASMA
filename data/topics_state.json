@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-27T16:59:49.849641+00:00"
     },
     "Television": {
-      "last_used_at": "2026-09-26T05:01:46.209315+00:00"
+      "last_used_at": "2026-09-30T05:36:07.308227+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-09-22T11:41:58.459084+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-29T01:04:12.947240+00:00"
+      "last_used_at": "2026-09-30T05:36:07.308227+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -743,8 +743,8 @@
     },
     "tv_friends_central_perk_couch": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-16T04:52:50.296575+00:00",
-      "times_used": 5
+      "last_used_at": "2026-09-30T05:36:07.308227+00:00",
+      "times_used": 6
     },
     "tv_got_battle_of_winterfell_production": {
       "ema_score": 0.5,
