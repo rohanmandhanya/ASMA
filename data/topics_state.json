@@ -175,7 +175,7 @@
       "last_used_at": "2026-09-22T21:23:29.134895+00:00"
     },
     "Philippines": {
-      "last_used_at": "2026-09-01T08:42:56.303962+00:00"
+      "last_used_at": "2026-10-01T00:37:11.275661+00:00"
     },
     "Poland": {
       "last_used_at": "2026-08-27T00:51:34.845439+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-29T18:08:54.218519+00:00"
+      "last_used_at": "2026-10-01T00:37:11.275661+00:00"
     }
   },
   "topics": {
@@ -623,8 +623,8 @@
     },
     "philippines_precolonial_trade": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-01T08:42:56.303962+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-01T00:37:11.275661+00:00",
+      "times_used": 3
     },
     "poland_warsaw_reconstruction": {
       "ema_score": 0.5,
