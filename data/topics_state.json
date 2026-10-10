@@ -16,7 +16,7 @@
       "last_used_at": "2026-09-05T20:26:04.671706+00:00"
     },
     "Azerbaijan": {
-      "last_used_at": "2026-09-20T11:28:10.684215+00:00"
+      "last_used_at": "2026-10-10T00:54:43.455603+00:00"
     },
     "Bhutan": {
       "last_used_at": "2026-10-08T18:54:57.816719+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-06T22:45:23.553475+00:00"
+      "last_used_at": "2026-10-10T00:54:43.455603+00:00"
     }
   },
   "topics": {
@@ -293,8 +293,8 @@
     },
     "azerbaijan_fire_temples": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-20T11:28:10.684215+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-10T00:54:43.455603+00:00",
+      "times_used": 3
     },
     "benin_bronze_craftsmanship": {
       "ema_score": 0.5,
