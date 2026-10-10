@@ -127,7 +127,7 @@
       "last_used_at": "2026-09-24T04:54:14.691646+00:00"
     },
     "Lebanon": {
-      "last_used_at": "2026-09-11T04:43:24.600448+00:00"
+      "last_used_at": "2026-10-10T17:24:44.595931+00:00"
     },
     "Madagascar": {
       "last_used_at": "2026-09-04T11:22:24.105888+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-09T01:17:22.854668+00:00"
+      "last_used_at": "2026-10-10T17:24:44.595931+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -493,8 +493,8 @@
     },
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-11T04:43:24.600448+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-10T17:24:44.595931+00:00",
+      "times_used": 4
     },
     "madagascar_austronesian_migration": {
       "ema_score": 0.5,
