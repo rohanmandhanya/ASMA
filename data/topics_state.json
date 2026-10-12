@@ -130,7 +130,7 @@
       "last_used_at": "2026-10-10T17:24:44.595931+00:00"
     },
     "Madagascar": {
-      "last_used_at": "2026-09-04T11:22:24.105888+00:00"
+      "last_used_at": "2026-10-12T11:09:01.271733+00:00"
     },
     "Mali": {
       "last_used_at": "2026-10-07T20:49:16.336794+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-11T05:49:56.683282+00:00"
+      "last_used_at": "2026-10-12T11:09:01.271733+00:00"
     }
   },
   "topics": {
@@ -498,8 +498,8 @@
     },
     "madagascar_austronesian_migration": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-04T11:22:24.105888+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-12T11:09:01.271733+00:00",
+      "times_used": 3
     },
     "mali_mansa_musa_wealth": {
       "ema_score": 0.5,
