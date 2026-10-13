@@ -148,7 +148,7 @@
       "last_used_at": "2026-09-27T21:25:36.795341+00:00"
     },
     "Movies": {
-      "last_used_at": "2026-10-13T10:39:46.297198+00:00"
+      "last_used_at": "2026-10-13T19:18:39.890514+00:00"
     },
     "Nepal": {
       "last_used_at": "2026-09-29T22:19:38.782986+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-11T12:54:20.096182+00:00"
+      "last_used_at": "2026-10-13T19:18:39.890514+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -558,8 +558,8 @@
     },
     "movie_psycho_shower_scene_takes": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-23T11:38:33.384601+00:00",
-      "times_used": 5
+      "last_used_at": "2026-10-13T19:18:39.890514+00:00",
+      "times_used": 6
     },
     "movie_star_wars_practical_models": {
       "ema_score": 0.5,
