@@ -79,7 +79,7 @@
       "last_used_at": "2026-09-17T04:56:35.933526+00:00"
     },
     "Haiti": {
-      "last_used_at": "2026-08-23T21:40:37.070530+00:00"
+      "last_used_at": "2026-10-14T00:20:12.790688+00:00"
     },
     "Hungary": {
       "last_used_at": "2026-10-07T06:03:26.264237+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-12T21:17:44.506689+00:00"
+      "last_used_at": "2026-10-14T00:20:12.790688+00:00"
     }
   },
   "topics": {
@@ -413,8 +413,8 @@
     },
     "haiti_first_slave_revolt_nation": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-23T21:40:37.070530+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-14T00:20:12.790688+00:00",
+      "times_used": 3
     },
     "hungary_thermal_bath_history": {
       "ema_score": 0.5,
