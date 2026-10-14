@@ -199,7 +199,7 @@
       "last_used_at": "2026-09-26T16:25:15.486451+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-10-05T14:44:18.627042+00:00"
+      "last_used_at": "2026-10-14T14:35:30.806143+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-08-30T21:10:16.301012+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-13T19:18:39.890514+00:00"
+      "last_used_at": "2026-10-14T14:35:30.806143+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -668,8 +668,8 @@
     },
     "sport_basketball_peach_basket_origin": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-28T21:16:12.324777+00:00",
-      "times_used": 5
+      "last_used_at": "2026-10-14T14:35:30.806143+00:00",
+      "times_used": 6
     },
     "sport_cricket_timeless_test_1939": {
       "ema_score": 0.5,
