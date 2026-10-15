@@ -13,7 +13,7 @@
       "last_used_at": "2026-09-16T21:19:33.130073+00:00"
     },
     "Australia": {
-      "last_used_at": "2026-09-05T20:26:04.671706+00:00"
+      "last_used_at": "2026-10-15T17:02:32.405563+00:00"
     },
     "Azerbaijan": {
       "last_used_at": "2026-10-10T00:54:43.455603+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-15T11:30:26.901211+00:00"
+      "last_used_at": "2026-10-15T17:02:32.405563+00:00"
     }
   },
   "topics": {
@@ -283,8 +283,8 @@
     },
     "australia_firestick_farming": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-28T00:27:09.065340+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-15T17:02:32.405563+00:00",
+      "times_used": 3
     },
     "australia_oldest_continuous_culture": {
       "ema_score": 0.5,
