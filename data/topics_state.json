@@ -124,7 +124,7 @@
       "last_used_at": "2026-09-28T13:59:59.458559+00:00"
     },
     "Laos": {
-      "last_used_at": "2026-09-24T04:54:14.691646+00:00"
+      "last_used_at": "2026-10-16T16:44:25.539812+00:00"
     },
     "Lebanon": {
       "last_used_at": "2026-10-10T17:24:44.595931+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-16T11:25:49.087476+00:00"
+      "last_used_at": "2026-10-16T16:44:25.539812+00:00"
     }
   },
   "topics": {
@@ -488,8 +488,8 @@
     },
     "laos_plain_of_jars": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-24T04:54:14.691646+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-16T16:44:25.539812+00:00",
+      "times_used": 4
     },
     "lebanon_phoenician_alphabet": {
       "ema_score": 0.5,
