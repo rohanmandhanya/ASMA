@@ -199,7 +199,7 @@
       "last_used_at": "2026-10-15T21:24:48.215931+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-10-15T04:40:19.013469+00:00"
+      "last_used_at": "2026-10-16T04:33:27.028924+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-08-30T21:10:16.301012+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-14T19:25:40.200739+00:00"
+      "last_used_at": "2026-10-16T04:33:27.028924+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -673,8 +673,8 @@
     },
     "sport_cricket_timeless_test_1939": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-02T00:52:07.388722+00:00",
-      "times_used": 5
+      "last_used_at": "2026-10-16T04:33:27.028924+00:00",
+      "times_used": 6
     },
     "sport_first_modern_olympics_1896": {
       "ema_score": 0.5,
