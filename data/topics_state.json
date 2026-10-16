@@ -241,7 +241,7 @@
       "last_used_at": "2026-09-10T11:21:27.264766+00:00"
     },
     "Yemen": {
-      "last_used_at": "2026-08-17T21:45:57.839136+00:00"
+      "last_used_at": "2026-10-16T23:40:07.497837+00:00"
     },
     "Zimbabwe": {
       "last_used_at": "2026-08-30T05:28:41.599391+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-16T16:44:25.539812+00:00"
+      "last_used_at": "2026-10-16T23:40:07.497837+00:00"
     }
   },
   "topics": {
@@ -788,8 +788,8 @@
     },
     "yemen_queen_of_sheba_legends": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-17T21:45:57.839136+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-16T23:40:07.497837+00:00",
+      "times_used": 3
     },
     "zimbabwe_great_zimbabwe": {
       "ema_score": 0.5,
