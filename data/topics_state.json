@@ -199,7 +199,7 @@
       "last_used_at": "2026-10-15T21:24:48.215931+00:00"
     },
     "Sports": {
-      "last_used_at": "2026-10-16T04:33:27.028924+00:00"
+      "last_used_at": "2026-10-18T04:38:06.763661+00:00"
     },
     "Sri Lanka": {
       "last_used_at": "2026-08-30T21:10:16.301012+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-17T20:40:23.249044+00:00"
+      "last_used_at": "2026-10-18T04:38:06.763661+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -688,8 +688,8 @@
     },
     "sport_marathon_distance_origin": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-27T05:23:20.964267+00:00",
-      "times_used": 5
+      "last_used_at": "2026-10-18T04:38:06.763661+00:00",
+      "times_used": 6
     },
     "sport_wimbledon_all_white_rule_origin": {
       "ema_score": 0.5,
