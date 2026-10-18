@@ -238,7 +238,7 @@
       "last_used_at": "2026-09-21T20:04:03.808392+00:00"
     },
     "Vietnam": {
-      "last_used_at": "2026-09-10T11:21:27.264766+00:00"
+      "last_used_at": "2026-10-18T20:44:18.317650+00:00"
     },
     "Yemen": {
       "last_used_at": "2026-10-16T23:40:07.497837+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-18T11:10:21.169206+00:00"
+      "last_used_at": "2026-10-18T20:44:18.317650+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -783,8 +783,8 @@
     },
     "vietnam_trung_sisters": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-10T11:21:27.264766+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-18T20:44:18.317650+00:00",
+      "times_used": 3
     },
     "yemen_queen_of_sheba_legends": {
       "ema_score": 0.5,
