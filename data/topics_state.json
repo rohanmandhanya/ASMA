@@ -37,7 +37,7 @@
       "last_used_at": "2026-09-20T16:09:46.023582+00:00"
     },
     "China": {
-      "last_used_at": "2026-09-02T11:19:58.236922+00:00"
+      "last_used_at": "2026-10-20T00:23:47.943731+00:00"
     },
     "Colombia": {
       "last_used_at": "2026-08-25T09:53:45.037667+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-18T15:55:09.590828+00:00"
+      "last_used_at": "2026-10-20T00:23:47.943731+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -333,8 +333,8 @@
     },
     "china_zheng_he_fleet": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-02T11:19:58.236922+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-20T00:23:47.943731+00:00",
+      "times_used": 3
     },
     "colombia_el_dorado_origins": {
       "ema_score": 0.5,
