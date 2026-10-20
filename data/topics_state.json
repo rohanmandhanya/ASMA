@@ -205,7 +205,7 @@
       "last_used_at": "2026-08-30T21:10:16.301012+00:00"
     },
     "Sudan": {
-      "last_used_at": "2026-09-29T09:54:11.973714+00:00"
+      "last_used_at": "2026-10-20T19:18:26.298411+00:00"
     },
     "Sweden": {
       "last_used_at": "2026-10-14T19:25:40.200739+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-19T13:20:32.322073+00:00"
+      "last_used_at": "2026-10-20T19:18:26.298411+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -703,8 +703,8 @@
     },
     "sudan_nubian_pyramids": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-29T09:54:11.973714+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-20T19:18:26.298411+00:00",
+      "times_used": 4
     },
     "sweden_vasa_ship_disaster": {
       "ema_score": 0.5,
