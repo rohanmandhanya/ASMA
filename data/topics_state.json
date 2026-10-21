@@ -82,7 +82,7 @@
       "last_used_at": "2026-10-14T00:20:12.790688+00:00"
     },
     "Hungary": {
-      "last_used_at": "2026-10-07T06:03:26.264237+00:00"
+      "last_used_at": "2026-10-21T17:16:24.026419+00:00"
     },
     "Iceland": {
       "last_used_at": "2026-09-06T10:59:49.303478+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-21T04:51:25.631225+00:00"
+      "last_used_at": "2026-10-21T17:16:24.026419+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -418,8 +418,8 @@
     },
     "hungary_thermal_bath_history": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-07T06:03:26.264237+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-21T17:16:24.026419+00:00",
+      "times_used": 4
     },
     "iceland_althing_parliament": {
       "ema_score": 0.5,
