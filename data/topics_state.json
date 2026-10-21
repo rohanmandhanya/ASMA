@@ -190,7 +190,7 @@
       "last_used_at": "2026-08-25T16:05:40.662013+00:00"
     },
     "Senegal": {
-      "last_used_at": "2026-09-19T15:54:46.734562+00:00"
+      "last_used_at": "2026-10-21T21:46:36.703107+00:00"
     },
     "South Africa": {
       "last_used_at": "2026-10-08T10:39:17.185743+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-17T15:38:17.177720+00:00"
+      "last_used_at": "2026-10-21T21:46:36.703107+00:00"
     }
   },
   "topics": {
@@ -653,8 +653,8 @@
     },
     "senegal_goree_island_history": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-19T15:54:46.734562+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-21T21:46:36.703107+00:00",
+      "times_used": 4
     },
     "south_africa_blombos_art": {
       "ema_score": 0.5,
