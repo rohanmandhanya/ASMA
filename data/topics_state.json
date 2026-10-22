@@ -178,7 +178,7 @@
       "last_used_at": "2026-10-01T00:37:11.275661+00:00"
     },
     "Poland": {
-      "last_used_at": "2026-08-27T00:51:34.845439+00:00"
+      "last_used_at": "2026-10-22T11:56:09.686901+00:00"
     },
     "Portugal": {
       "last_used_at": "2026-10-09T01:17:22.854668+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-22T04:49:11.682193+00:00"
+      "last_used_at": "2026-10-22T11:56:09.686901+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -628,8 +628,8 @@
     },
     "poland_warsaw_reconstruction": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-27T00:51:34.845439+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-22T11:56:09.686901+00:00",
+      "times_used": 3
     },
     "portugal_navigation_techniques": {
       "ema_score": 0.5,
