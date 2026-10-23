@@ -160,7 +160,7 @@
       "last_used_at": "2026-09-24T11:49:25.991297+00:00"
     },
     "Nigeria": {
-      "last_used_at": "2026-09-30T20:06:30.449195+00:00"
+      "last_used_at": "2026-10-23T04:52:49.675119+00:00"
     },
     "Norway": {
       "last_used_at": "2026-10-13T02:40:04.723247+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-20T23:54:04.142432+00:00"
+      "last_used_at": "2026-10-23T04:52:49.675119+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -298,8 +298,8 @@
     },
     "benin_bronze_craftsmanship": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-25T11:55:06.630177+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-23T04:52:49.675119+00:00",
+      "times_used": 4
     },
     "bhutan_isolation_choice": {
       "ema_score": 0.5,
