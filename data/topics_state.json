@@ -91,7 +91,7 @@
       "last_used_at": "2026-10-06T06:24:42.101690+00:00"
     },
     "Indonesia": {
-      "last_used_at": "2026-09-04T20:47:02.490423+00:00"
+      "last_used_at": "2026-10-23T17:11:33.167157+00:00"
     },
     "Iran": {
       "last_used_at": "2026-10-17T15:38:17.177720+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-23T04:52:49.675119+00:00"
+      "last_used_at": "2026-10-23T17:11:33.167157+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -433,8 +433,8 @@
     },
     "indonesia_borobudur": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-04T20:47:02.490423+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-23T17:11:33.167157+00:00",
+      "times_used": 3
     },
     "iran_cyrus_cylinder": {
       "ema_score": 0.5,
