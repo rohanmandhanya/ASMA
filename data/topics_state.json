@@ -244,13 +244,13 @@
       "last_used_at": "2026-10-16T23:40:07.497837+00:00"
     },
     "Zimbabwe": {
-      "last_used_at": "2026-08-30T05:28:41.599391+00:00"
+      "last_used_at": "2026-10-25T11:31:54.258371+00:00"
     }
   },
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-24T04:40:05.920332+00:00"
+      "last_used_at": "2026-10-25T11:31:54.258371+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -793,8 +793,8 @@
     },
     "zimbabwe_great_zimbabwe": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-30T05:28:41.599391+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-25T11:31:54.258371+00:00",
+      "times_used": 3
     }
   }
 }
