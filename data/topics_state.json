@@ -193,7 +193,7 @@
       "last_used_at": "2026-10-21T21:46:36.703107+00:00"
     },
     "South Africa": {
-      "last_used_at": "2026-10-08T10:39:17.185743+00:00"
+      "last_used_at": "2026-10-25T20:55:48.266332+00:00"
     },
     "Spain": {
       "last_used_at": "2026-10-15T21:24:48.215931+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-24T20:52:51.351384+00:00"
+      "last_used_at": "2026-10-25T20:55:48.266332+00:00"
     }
   },
   "topics": {
@@ -658,8 +658,8 @@
     },
     "south_africa_blombos_art": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-08T10:39:17.185743+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-25T20:55:48.266332+00:00",
+      "times_used": 4
     },
     "spain_alhambra_tile_mathematics": {
       "ema_score": 0.5,
