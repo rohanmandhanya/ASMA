@@ -142,7 +142,7 @@
       "last_used_at": "2026-10-24T20:52:51.351384+00:00"
     },
     "Mongolia": {
-      "last_used_at": "2026-10-12T00:35:25.992624+00:00"
+      "last_used_at": "2026-10-26T20:30:25.192879+00:00"
     },
     "Morocco": {
       "last_used_at": "2026-09-27T21:25:36.795341+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-22T11:56:09.686901+00:00"
+      "last_used_at": "2026-10-26T20:30:25.192879+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -538,8 +538,8 @@
     },
     "mongolia_yam_relay": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-13T04:52:27.333799+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-26T20:30:25.192879+00:00",
+      "times_used": 3
     },
     "morocco_fez_oldest_university": {
       "ema_score": 0.5,
