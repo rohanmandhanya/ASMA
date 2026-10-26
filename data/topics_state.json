@@ -40,7 +40,7 @@
       "last_used_at": "2026-10-20T00:23:47.943731+00:00"
     },
     "Colombia": {
-      "last_used_at": "2026-08-25T09:53:45.037667+00:00"
+      "last_used_at": "2026-10-26T04:48:31.240046+00:00"
     },
     "Czechia": {
       "last_used_at": "2026-09-19T11:03:19.955984+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-25T20:55:48.266332+00:00"
+      "last_used_at": "2026-10-26T04:48:31.240046+00:00"
     }
   },
   "topics": {
@@ -338,8 +338,8 @@
     },
     "colombia_el_dorado_origins": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-25T09:53:45.037667+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-26T04:48:31.240046+00:00",
+      "times_used": 3
     },
     "czechia_astronomical_clock": {
       "ema_score": 0.5,
