@@ -67,7 +67,7 @@
       "last_used_at": "2026-10-17T10:47:13.579144+00:00"
     },
     "Germany": {
-      "last_used_at": "2026-09-25T04:59:14.367286+00:00"
+      "last_used_at": "2026-10-29T10:00:40.183970+00:00"
     },
     "Ghana": {
       "last_used_at": "2026-10-09T10:37:45.971786+00:00"
@@ -250,7 +250,7 @@
   "hooks": {
     "bold_claim": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-29T01:00:13.958250+00:00"
+      "last_used_at": "2026-10-29T10:00:40.183970+00:00"
     },
     "myth_bust": {
       "ema_score": 0.5,
@@ -393,8 +393,8 @@
     },
     "germany_gutenberg_press_mechanics": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-25T04:59:14.367286+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-29T10:00:40.183970+00:00",
+      "times_used": 3
     },
     "ghana_akan_gold_weights": {
       "ema_score": 0.5,
