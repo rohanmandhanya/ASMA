@@ -220,7 +220,7 @@
       "last_used_at": "2026-10-29T18:31:51.979948+00:00"
     },
     "Thailand": {
-      "last_used_at": "2026-09-22T11:41:58.459084+00:00"
+      "last_used_at": "2026-10-30T10:01:48.669300+00:00"
     },
     "Tunisia": {
       "last_used_at": "2026-10-15T11:30:26.901211+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-26T20:30:25.192879+00:00"
+      "last_used_at": "2026-10-30T10:01:48.669300+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -723,8 +723,8 @@
     },
     "thailand_ayutthaya_trade_hub": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-22T11:41:58.459084+00:00",
-      "times_used": 3
+      "last_used_at": "2026-10-30T10:01:48.669300+00:00",
+      "times_used": 4
     },
     "tunisia_carthage_naval_innovation": {
       "ema_score": 0.5,
