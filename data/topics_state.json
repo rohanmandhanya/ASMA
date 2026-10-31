@@ -61,7 +61,7 @@
       "last_used_at": "2026-10-18T15:55:09.590828+00:00"
     },
     "France": {
-      "last_used_at": "2026-09-26T11:30:08.836591+00:00"
+      "last_used_at": "2026-10-31T12:33:24.921725+00:00"
     },
     "Georgia": {
       "last_used_at": "2026-10-17T10:47:13.579144+00:00"
@@ -258,7 +258,7 @@
     },
     "question_hook": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-30T10:01:48.669300+00:00"
+      "last_used_at": "2026-10-31T12:33:24.921725+00:00"
     },
     "stat_led": {
       "ema_score": 0.5,
@@ -383,8 +383,8 @@
     },
     "france_lascaux_cave_paintings": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-26T11:30:08.836591+00:00",
-      "times_used": 2
+      "last_used_at": "2026-10-31T12:33:24.921725+00:00",
+      "times_used": 3
     },
     "georgia_birthplace_of_wine": {
       "ema_score": 0.5,
