@@ -172,7 +172,7 @@
       "last_used_at": "2026-10-01T18:27:08.077569+00:00"
     },
     "Peru": {
-      "last_used_at": "2026-10-10T09:52:08.405533+00:00"
+      "last_used_at": "2026-10-31T19:19:31.309847+00:00"
     },
     "Philippines": {
       "last_used_at": "2026-10-01T00:37:11.275661+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-30T18:04:00.795543+00:00"
+      "last_used_at": "2026-10-31T19:19:31.309847+00:00"
     }
   },
   "topics": {
@@ -613,8 +613,8 @@
     },
     "peru_inca_quipu_records": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-07T13:24:52.407482+00:00",
-      "times_used": 4
+      "last_used_at": "2026-10-31T19:19:31.309847+00:00",
+      "times_used": 5
     },
     "peru_machu_picchu_engineering": {
       "ema_score": 0.5,
