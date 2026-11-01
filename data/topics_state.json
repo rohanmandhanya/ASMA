@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-27T16:59:49.849641+00:00"
     },
     "Television": {
-      "last_used_at": "2026-10-29T18:31:51.979948+00:00"
+      "last_used_at": "2026-11-01T06:08:46.192005+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-10-30T10:01:48.669300+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-30T22:22:59.123063+00:00"
+      "last_used_at": "2026-11-01T06:08:46.192005+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -738,8 +738,8 @@
     },
     "tv_breaking_bad_pilot_rejections": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-11T19:37:34.484665+00:00",
-      "times_used": 6
+      "last_used_at": "2026-11-01T06:08:46.192005+00:00",
+      "times_used": 7
     },
     "tv_friends_central_perk_couch": {
       "ema_score": 0.5,
