@@ -154,7 +154,7 @@
       "last_used_at": "2026-09-29T22:19:38.782986+00:00"
     },
     "Netherlands": {
-      "last_used_at": "2026-09-08T21:13:51.534845+00:00"
+      "last_used_at": "2026-11-01T00:13:56.693841+00:00"
     },
     "New Zealand": {
       "last_used_at": "2026-09-24T11:49:25.991297+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-31T19:19:31.309847+00:00"
+      "last_used_at": "2026-11-01T00:13:56.693841+00:00"
     }
   },
   "topics": {
@@ -583,8 +583,8 @@
     },
     "netherlands_tulip_mania": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-08T21:13:51.534845+00:00",
-      "times_used": 2
+      "last_used_at": "2026-11-01T00:13:56.693841+00:00",
+      "times_used": 3
     },
     "new_zealand_maori_navigation": {
       "ema_score": 0.5,
