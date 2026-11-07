@@ -151,7 +151,7 @@
       "last_used_at": "2026-11-06T16:48:57.334571+00:00"
     },
     "Nepal": {
-      "last_used_at": "2026-09-29T22:19:38.782986+00:00"
+      "last_used_at": "2026-11-07T13:04:00.136914+00:00"
     },
     "Netherlands": {
       "last_used_at": "2026-11-01T00:13:56.693841+00:00"
@@ -254,7 +254,7 @@
     },
     "myth_bust": {
       "ema_score": 0.5,
-      "last_used_at": "2026-11-03T17:07:35.336478+00:00"
+      "last_used_at": "2026-11-07T13:04:00.136914+00:00"
     },
     "question_hook": {
       "ema_score": 0.5,
@@ -578,8 +578,8 @@
     },
     "nepal_kathmandu_urban_planning": {
       "ema_score": 0.5,
-      "last_used_at": "2026-09-29T22:19:38.782986+00:00",
-      "times_used": 2
+      "last_used_at": "2026-11-07T13:04:00.136914+00:00",
+      "times_used": 3
     },
     "netherlands_tulip_mania": {
       "ema_score": 0.5,
