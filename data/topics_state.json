@@ -217,7 +217,7 @@
       "last_used_at": "2026-09-27T16:59:49.849641+00:00"
     },
     "Television": {
-      "last_used_at": "2026-11-04T23:43:25.749512+00:00"
+      "last_used_at": "2026-11-07T06:01:38.091527+00:00"
     },
     "Thailand": {
       "last_used_at": "2026-10-30T10:01:48.669300+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-11-06T06:48:42.745431+00:00"
+      "last_used_at": "2026-11-07T06:01:38.091527+00:00"
     }
   },
   "topics": {
@@ -753,8 +753,8 @@
     },
     "tv_i_love_lucy_multicam_invention": {
       "ema_score": 0.5,
-      "last_used_at": "2026-10-21T11:52:53.716470+00:00",
-      "times_used": 6
+      "last_used_at": "2026-11-07T06:01:38.091527+00:00",
+      "times_used": 7
     },
     "tv_seinfeld_show_about_nothing_pitch": {
       "ema_score": 0.5,
