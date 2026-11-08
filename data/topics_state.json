@@ -184,7 +184,7 @@
       "last_used_at": "2026-11-04T06:25:52.287885+00:00"
     },
     "Rwanda": {
-      "last_used_at": "2026-08-24T13:17:39.876301+00:00"
+      "last_used_at": "2026-11-08T00:37:06.665089+00:00"
     },
     "Saudi Arabia": {
       "last_used_at": "2026-08-25T16:05:40.662013+00:00"
@@ -262,7 +262,7 @@
     },
     "stat_led": {
       "ema_score": 0.5,
-      "last_used_at": "2026-11-07T06:01:38.091527+00:00"
+      "last_used_at": "2026-11-08T00:37:06.665089+00:00"
     }
   },
   "topics": {
@@ -638,8 +638,8 @@
     },
     "rwanda_precolonial_governance": {
       "ema_score": 0.5,
-      "last_used_at": "2026-08-24T13:17:39.876301+00:00",
-      "times_used": 2
+      "last_used_at": "2026-11-08T00:37:06.665089+00:00",
+      "times_used": 3
     },
     "saudi_arabia_nabatean_trade_routes": {
       "ema_score": 0.5,
